@@ -20,7 +20,7 @@ class Signe
     private ?string $niveau = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\Column(nullable: false)]
     private ?Element $element = null;
 
     #[ORM\Column(length: 255)]
