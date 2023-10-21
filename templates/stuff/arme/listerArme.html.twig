@@ -1,55 +1,71 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ArmeController!{% endblock %}
+{% block title %}Magasin{% endblock %}
 
 {% block body %}
 
-    <section class="admin_body_container">
-        <div class="accordion" id="accordionExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Épées
-                    </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th scope="col">Nom</th>
-                                <th scope="col">Dégats</th>
-                                <th scope="col">Mains</th>
-                                <th scope="col">Portée</th>
-                                <th scope="col">Effets</th>
-                                <th scope="col">Poids</th>
-                                <th scope="col">Taille</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Épée de chevalier</td>
-                                    <td>2d6+4</td>
-                                    <td>1</td>
-                                    <td>Corps à corps</td>
-                                    <td></td>
-                                    <td>2.5</td>
-                                    <td>270</td>
-                                </tr>
-                                <tr>
-                                    <td>Torrwr</td>
-                                    <td>6d6</td>
-                                    <td>2</td>
-                                    <td>Corps à corps</td>
-                                    <td>Saignement 50%</td>
-                                    <td>2</td>
-                                    <td>1075</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success" role="alert">
+            {{ message }}
         </div>
+    {% endfor %}
+
+    <section class="admin_body_container">
+        <a class="btn btn-info" href="{{ path('app_admin_arme_ajouter') }}" style="color: #3D3D3D;"><i class="fa-solid fa-circle-plus" style="color: #3D3D3D;"></i> Nouveau Livre</a>
+    </section>
+
+    <section class="admin_body_container">
+        {% if armes is empty %}
+            <h2 style="text-align: center">Le Magasin est vide</h2>
+        <div style="text-align: center;">
+            <img style="margin: 0 auto;" src="{{ asset('images/magasin.png') }}" alt="Logo" />
+        </div>
+            <a class="btn btn-info" data-toggle="modal" data-target="#" href="#" class="card-link" style="color: #3D3D3D;">
+                <i class="fa-solid fa-circle-plus" style="color: #3D3D3D;"></i> Nouvelle bibliothèque
+            </a>
+
+        {% else %}
+            <div class="accordion" id="accordionExample">
+                {% for arme in armes %}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                {{arme.type}}
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Nom</th>
+                                        <th scope="col">Dégats</th>
+                                        <th scope="col">Mains</th>
+                                        <th scope="col">Portée</th>
+                                        <th scope="col">Effets</th>
+                                        <th scope="col">Poids</th>
+                                        <th scope="col">Taille</th>
+                                        <th scope="col">Prix</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{arme.nom}}</td>
+                                            <td>{{arme.degat}}</td>
+                                            <td>{{arme.mains}}</td>
+                                            <td>{{arme.portee}}</td>
+                                            <td>{{arme.effet}}</td>
+                                            <td>{{arme.poids}}</td>
+                                            <td>{{arme.taille}}</td>
+                                            <td>{{arme.prix}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
     </section>
 {% endblock %}

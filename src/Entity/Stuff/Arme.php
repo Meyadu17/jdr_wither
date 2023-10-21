@@ -26,13 +26,13 @@ class Arme
     #[ORM\Column(name: "arm_portee", nullable: true)]
     private ?int $portee = null;
 
-    #[ORM\Column(name: "arm_effet", length: 255)]
+    #[ORM\Column(name: "arm_effet", length: 255, nullable: true)]
     private ?string $effet = null;
 
     #[ORM\Column(name: "arm_poids")]
     private ?float $poids = null;
 
-    #[ORM\Column(name: "arm_prix")]
+    #[ORM\Column(name: "arm_prix", nullable: false)]
     private ?int $prix = null;
 
     #[ORM\ManyToOne]
@@ -40,7 +40,7 @@ class Arme
     private ?Taille $taille = null;
 
     #[ORM\ManyToOne]
-    #[ORM\Column(name: "arm_type")]
+    #[ORM\Column(name: "arm_type", nullable: false)]
     private ?Type $type = null;
 
     public function getId(): ?int
