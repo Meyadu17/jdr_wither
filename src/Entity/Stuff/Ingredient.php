@@ -2,7 +2,7 @@
 
 namespace App\Entity\Stuff;
 
-use App\Repository\IngredientRepository;
+use App\Repository\Stuff\IngredientRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: IngredientRepository::class)]

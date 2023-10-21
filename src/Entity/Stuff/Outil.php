@@ -2,7 +2,7 @@
 
 namespace App\Entity\Stuff;
 
-use App\Repository\OutilRepository;
+use App\Repository\Stuff\OutilRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: OutilRepository::class)]

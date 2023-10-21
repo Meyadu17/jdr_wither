@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\Stuff;
 
 use App\Entity\Stuff\Arme;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;

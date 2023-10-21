@@ -2,7 +2,7 @@
 
 namespace App\Entity\Stuff;
 
-use App\Repository\ArmeRepository;
+use App\Repository\Stuff\ArmeRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ArmeRepository::class)]
