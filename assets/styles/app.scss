@@ -1,0 +1,56 @@
+@import '~bootstrap/scss/bootstrap';
+
+.pied-page{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    list-style: none;
+}
+
+body {
+    background-color: #fafafa;
+    & a {
+        text-decoration: none;
+    }
+    & header {
+        height: 90px;
+        display: block;
+        padding: 20px 20px;
+        background-color: #efefef;
+        & a {
+            text-decoration: none;
+            color: black;
+        }
+        & a.active {
+            font-weight: bold;
+        }
+    }
+    & main {
+        margin-left: 100px;
+        margin-right: 100px;
+        padding-top: 30px;
+        display: block;
+    }
+    & footer {
+        padding-top: 50px;
+        bottom: 0;
+        width: 100%;
+        display: block;
+    }
+}
+.nav-links {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.dropdown{
+    list-style-type: none;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    width: auto;
+}

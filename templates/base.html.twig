@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <title>{% block title %}JDR Witcher{% endblock %}</title>
+        <link rel="icon" href="{{ asset('images/favicon.jpg') }}">
+
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
@@ -12,7 +13,50 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
+
     <body>
-        {% block body %}{% endblock %}
+        <header>
+            <nav class="navbar-expand-lg nav-links">
+                <div>
+                    <img class="logo" src="{{ asset('images/favicon.jpg') }}" alt="Logo" />
+                </div>
+
+                <a class="#" href="#">Accueil</a>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Administration
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ path('app_stuff_lister') }}">Magasin</a></li>
+                        <li><a class="dropdown-item" href="#">Compétences en combat</a></li>
+                        <li><a class="dropdown-item" href="#">Compétences des personnes</a></li>
+                    </ul>
+                </li>
+
+                <a class="#" href="{{ path('app_admin_arme_lister') }}">Armes</a>
+                <a class="" href="#">Mon profil</a>
+                <a href="#">Se déconnecter</a>
+            </nav>
+
+        </header>
+
+        <main>
+            {% block body %}{% endblock %}
+        </main>
+
+        <footer class="footer">
+            <div>
+                <ul class="pied-page">
+                    <li>Informations légales</li>
+                    <li>-</li>
+                    <li>JDRWitcher.com ©</li>
+                    <li><a target=”_blank” class="text-primary" href="https://www.eni-ecole.fr/">ENI Ecole Informatique</a></li>
+                    <li>-</li>
+                    <li><a target=”_blank” class="text-primary" href="https://github.com/Eliot-BPJ/ENI-Sortir">Code source sous license</a></li>
+                </ul>
+
+            </div>
+        </footer>
     </body>
 </html>
