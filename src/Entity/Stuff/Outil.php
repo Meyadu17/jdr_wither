@@ -6,27 +6,28 @@ use App\Repository\Stuff\OutilRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: OutilRepository::class)]
+#[ORM\Table(name: "outil_out")]
 class Outil
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(name: "out_")]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(name: "out_nom", length: 255)]
     private ?string $nom = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(name: "out_effet", length: 255)]
     private ?string $effet = null;
 
-    #[ORM\Column]
+    #[ORM\Column(name: "out_poids")]
     private ?float $poids = null;
 
-    #[ORM\Column]
+    #[ORM\Column(name: "out_prix")]
     private ?int $prix = null;
 
     #[ORM\ManyToOne]
-    #[ORM\Column(nullable: false)]
+    #[ORM\Column(name: "out_taille", nullable: false)]
     private ?Taille $taille = null;
 
     public function getId(): ?int

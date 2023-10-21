@@ -6,36 +6,37 @@ use App\Repository\DonsAuCombat\SigneRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SigneRepository::class)]
+#[ORM\Table(name: "signe_sig")]
 class Signe
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(name: "sig_id")]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(name: "sig_nom", length: 255)]
     private ?string $nom = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(name: "signiveau_", length: 255)]
     private ?string $niveau = null;
 
     #[ORM\ManyToOne]
-    #[ORM\Column(nullable: false)]
+    #[ORM\Column(name: "sig_element", nullable: false)]
     private ?Element $element = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(name: "sig_description", length: 255)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(name: "sig_cout", length: 255)]
     private ?string $cout = null;
 
-    #[ORM\Column]
+    #[ORM\Column(name: "sig_portee")]
     private ?int $portee = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(name: "sig_contre", length: 255, nullable: true)]
     private ?string $contre = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(name: "sig_duree", length: 255)]
     private ?string $duree = null;
 
     public function getId(): ?int
