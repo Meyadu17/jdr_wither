@@ -2,7 +2,7 @@
 
 namespace App\Controller\Stuff;
 
-use App\Entity\Stuff\Arme;
+use App\Entity\Arme;
 use App\Form\ArmeType;
 use App\Repository\Stuff\ArmeRepository;
 use Doctrine\ORM\EntityManagerInterface;

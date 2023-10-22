@@ -1,36 +1,34 @@
 <?php
 
-namespace App\Entity\Stuff;
+namespace App\Entity;
 
-use App\Repository\Stuff\ArmureRepository;
+use App\Repository\Stuff\OutilRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ArmureRepository::class)]
-#[ORM\Table(name: "armure_apr")]
-class Armure
+#[ORM\Entity(repositoryClass: OutilRepository::class)]
+#[ORM\Table(name: "outil_out")]
+class Outil
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(name: "apr_id")]
+    #[ORM\Column(name: "out_id")]
     private ?int $id = null;
 
-    #[ORM\Column(name: "apr_nom", length: 255)]
+    #[ORM\Column(name: "out_nom", length: 255)]
     private ?string $nom = null;
 
-    #[ORM\Column(name: "apr_protection")]
-    private ?int $protection = null;
-
-    #[ORM\Column(name: "apr_effet", length: 255)]
+    #[ORM\Column(name: "out_effet", length: 255)]
     private ?string $effet = null;
 
-    #[ORM\Column(name: "apr_encombrement")]
-    private ?int $encombrement = null;
-
-    #[ORM\Column(name: "apr_poids", length: 255)]
+    #[ORM\Column(name: "out_poids")]
     private ?float $poids = null;
 
-    #[ORM\Column(name: "apr_prix", length: 255)]
+    #[ORM\Column(name: "out_prix")]
     private ?int $prix = null;
+
+    #[ORM\ManyToOne(targetEntity: Taille::class, inversedBy: 'armes')]
+    #[ORM\JoinColumn(name: "out_id_taille_id", referencedColumnName: "tai_id")]
+    private ?Taille $taille = null;
 
     public function getId(): ?int
     {
@@ -49,18 +47,6 @@ class Armure
         return $this;
     }
 
-    public function getProtection(): ?int
-    {
-        return $this->protection;
-    }
-
-    public function setProtection(int $protection): static
-    {
-        $this->protection = $protection;
-
-        return $this;
-    }
-
     public function getEffet(): ?string
     {
         return $this->effet;
@@ -69,18 +55,6 @@ class Armure
     public function setEffet(string $effet): static
     {
         $this->effet = $effet;
-
-        return $this;
-    }
-
-    public function getEncombrement(): ?int
-    {
-        return $this->encombrement;
-    }
-
-    public function setEncombrement(int $encombrement): static
-    {
-        $this->encombrement = $encombrement;
 
         return $this;
     }
@@ -105,6 +79,18 @@ class Armure
     public function setPrix(int $prix): static
     {
         $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function getTaille(): ?Taille
+    {
+        return $this->taille;
+    }
+
+    public function setTaille(?Taille $taille): static
+    {
+        $this->taille = $taille;
 
         return $this;
     }

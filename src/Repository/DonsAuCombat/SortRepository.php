@@ -2,16 +2,16 @@
 
 namespace App\Repository\DonsAuCombat;
 
-use App\Entity\DonsAuCombat\Sort;
+use App\Entity\Sort;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Sort>
+ * @extends ServiceEntityRepository<\App\Entity\Sort>
  *
- * @method Sort|null find($id, $lockMode = null, $lockVersion = null)
- * @method Sort|null findOneBy(array $criteria, array $orderBy = null)
- * @method Sort[]    findAll()
+ * @method \App\Entity\Sort|null find($id, $lockMode = null, $lockVersion = null)
+ * @method \App\Entity\Sort|null findOneBy(array $criteria, array $orderBy = null)
+ * @method \App\Entity\Sort[]    findAll()
  * @method Sort[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class SortRepository extends ServiceEntityRepository

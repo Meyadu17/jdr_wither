@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity\DonsAuCombat;
+namespace App\Entity;
 
 use App\Repository\DonsAuCombat\DonRepository;
 use Doctrine\ORM\Mapping as ORM;

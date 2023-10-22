@@ -2,16 +2,16 @@
 
 namespace App\Repository\Stuff;
 
-use App\Entity\Stuff\EquipementGeneral;
+use App\Entity\EquipementGeneral;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<EquipementGeneral>
+ * @extends ServiceEntityRepository<\App\Entity\EquipementGeneral>
  *
  * @method EquipementGeneral|null find($id, $lockMode = null, $lockVersion = null)
- * @method EquipementGeneral|null findOneBy(array $criteria, array $orderBy = null)
- * @method EquipementGeneral[]    findAll()
+ * @method \App\Entity\EquipementGeneral|null findOneBy(array $criteria, array $orderBy = null)
+ * @method \App\Entity\EquipementGeneral[]    findAll()
  * @method EquipementGeneral[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class EquipementGeneralRepository extends ServiceEntityRepository

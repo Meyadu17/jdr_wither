@@ -2,23 +2,23 @@
 
 namespace App\Repository\Stuff;
 
-use App\Entity\Stuff\Ingredient;
+use App\Entity\Ingredient;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Ingredient>
+ * @extends ServiceEntityRepository<\App\Entity\Ingredient>
  *
- * @method Ingredient|null find($id, $lockMode = null, $lockVersion = null)
- * @method Ingredient|null findOneBy(array $criteria, array $orderBy = null)
- * @method Ingredient[]    findAll()
- * @method Ingredient[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method \App\Entity\Ingredient|null find($id, $lockMode = null, $lockVersion = null)
+ * @method \App\Entity\Ingredient|null findOneBy(array $criteria, array $orderBy = null)
+ * @method \App\Entity\Ingredient[]    findAll()
+ * @method \App\Entity\Ingredient[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class IngredientRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Ingredient::class);
+        parent::__construct($registry, \App\Entity\Ingredient::class);
     }
 
 //    /**

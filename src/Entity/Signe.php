@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity\DonsAuCombat;
+namespace App\Entity;
 
 use App\Repository\DonsAuCombat\SigneRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -17,7 +17,7 @@ class Signe
     #[ORM\Column(name: "sig_nom", length: 255)]
     private ?string $nom = null;
 
-    #[ORM\Column(name: "signiveau_", length: 255)]
+    #[ORM\Column(name: "sig_niveau_", length: 255)]
     private ?string $niveau = null;
 
     #[ORM\ManyToOne]

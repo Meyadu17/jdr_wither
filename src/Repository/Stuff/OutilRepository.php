@@ -2,7 +2,7 @@
 
 namespace App\Repository\Stuff;
 
-use App\Entity\Stuff\Outil;
+use App\Entity\Outil;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -11,14 +11,14 @@ use Doctrine\Persistence\ManagerRegistry;
  *
  * @method Outil|null find($id, $lockMode = null, $lockVersion = null)
  * @method Outil|null findOneBy(array $criteria, array $orderBy = null)
- * @method Outil[]    findAll()
+ * @method \App\Entity\Outil[]    findAll()
  * @method Outil[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class OutilRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Outil::class);
+        parent::__construct($registry, \App\Entity\Outil::class);
     }
 
 //    /**

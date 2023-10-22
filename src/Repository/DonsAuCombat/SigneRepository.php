@@ -2,23 +2,23 @@
 
 namespace App\Repository\DonsAuCombat;
 
-use App\Entity\DonsAuCombat\Signe;
+use App\Entity\Signe;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<Signe>
  *
- * @method Signe|null find($id, $lockMode = null, $lockVersion = null)
- * @method Signe|null findOneBy(array $criteria, array $orderBy = null)
- * @method Signe[]    findAll()
+ * @method \App\Entity\Signe|null find($id, $lockMode = null, $lockVersion = null)
+ * @method \App\Entity\Signe|null findOneBy(array $criteria, array $orderBy = null)
+ * @method \App\Entity\Signe[]    findAll()
  * @method Signe[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class SigneRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Signe::class);
+        parent::__construct($registry, \App\Entity\Signe::class);
     }
 
 //    /**

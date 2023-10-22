@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity\Stuff;
+namespace App\Entity;
 
 use App\Repository\Stuff\IngredientRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,7 +11,7 @@ class Ingredient
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(name: "ing_id")]
+    #[ORM\Column]
     private ?int $id = null;
 
     #[ORM\Column(name: "ing_nom", length: 255)]

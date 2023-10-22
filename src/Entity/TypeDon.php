@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity\DonsAuCombat;
+namespace App\Entity;
 
 enum TypeDon : string
 {

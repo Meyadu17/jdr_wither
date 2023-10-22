@@ -2,7 +2,7 @@
 
 namespace App\Repository\DonsAuCombat;
 
-use App\Entity\DonsAuCombat\Don;
+use App\Entity\Don;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -10,15 +10,15 @@ use Doctrine\Persistence\ManagerRegistry;
  * @extends ServiceEntityRepository<Don>
  *
  * @method Don|null find($id, $lockMode = null, $lockVersion = null)
- * @method Don|null findOneBy(array $criteria, array $orderBy = null)
- * @method Don[]    findAll()
+ * @method \App\Entity\Don|null findOneBy(array $criteria, array $orderBy = null)
+ * @method \App\Entity\Don[]    findAll()
  * @method Don[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class DonRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Don::class);
+        parent::__construct($registry, \App\Entity\Don::class);
     }
 
 //    /**
