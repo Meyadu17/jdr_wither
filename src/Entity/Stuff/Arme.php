@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Stuff;
 
 use App\Repository\Stuff\ArmeRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -36,11 +36,11 @@ class Arme
     private ?int $prix = null;
 
     #[ORM\ManyToOne(targetEntity: Taille::class, inversedBy: 'armes')]
-    #[ORM\JoinColumn(name: "arm_id_taille_id", referencedColumnName: "tai_id")]
+    #[ORM\JoinColumn(name: "arm_fk_tai_id", referencedColumnName: "tai_id")]
     private ?Taille $taille = null;
 
     #[ORM\ManyToOne(targetEntity: Type::class, inversedBy: 'armes')]
-    #[ORM\JoinColumn(name: "arm_id_type_id", referencedColumnName: "typ_id", nullable: false)]
+    #[ORM\JoinColumn(name: "arm_fk_typ_id", referencedColumnName: "typ_id", nullable: false)]
     private ?Type $type = null;
 
     public function getId(): ?int

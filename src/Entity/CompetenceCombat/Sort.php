@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\CompetenceCombat;
 
-use App\Repository\DonsAuCombat\SortRepository;
+use App\Repository\CompetenceCombat\SortRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SortRepository::class)]
@@ -16,14 +16,6 @@ class Sort
 
     #[ORM\Column(name: "sor_nom", length: 255)]
     private ?string $nom = null;
-
-    #[ORM\ManyToOne]
-    #[ORM\Column(name: "sor_niveau", nullable: false)]
-    private ?NiveauSort $niveau = null;
-
-    #[ORM\ManyToOne]
-    #[ORM\Column(name: "sor_element", nullable: false)]
-    private ?Element $element = null;
 
     #[ORM\Column(name: "sor_cout")]
     private ?int $cout = null;
@@ -40,6 +32,14 @@ class Sort
     #[ORM\Column(name: "sor_contre", length: 255)]
     private ?string $contre = null;
 
+    #[ORM\ManyToOne(targetEntity: Element::class, inversedBy: 'sorts')]
+    #[ORM\JoinColumn(name: "sor_fk_ele_id", referencedColumnName: "ele_id")]
+    private ?Element $element = null;
+
+    #[ORM\ManyToOne(targetEntity: NiveauSort::class, inversedBy: 'sorts')]
+    #[ORM\JoinColumn(name: "sor_fk_nis_id", referencedColumnName: "nis_id")]
+    private ?NiveauSort $niveau = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -53,30 +53,6 @@ class Sort
     public function setNom(string $nom): static
     {
         $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getNiveau(): ?NiveauSort
-    {
-        return $this->niveau;
-    }
-
-    public function setNiveau(?NiveauSort $niveau): static
-    {
-        $this->niveau = $niveau;
-
-        return $this;
-    }
-
-    public function getElement(): ?Element
-    {
-        return $this->element;
-    }
-
-    public function setElement(?Element $element): static
-    {
-        $this->element = $element;
 
         return $this;
     }
@@ -137,6 +113,30 @@ class Sort
     public function setContre(string $contre): static
     {
         $this->contre = $contre;
+
+        return $this;
+    }
+
+    public function getElement(): ?Element
+    {
+        return $this->element;
+    }
+
+    public function setElement(?Element $element): static
+    {
+        $this->element = $element;
+
+        return $this;
+    }
+
+    public function getNiveau(): ?NiveauSort
+    {
+        return $this->niveau;
+    }
+
+    public function setNiveau(?NiveauSort $niveau): static
+    {
+        $this->niveau = $niveau;
 
         return $this;
     }

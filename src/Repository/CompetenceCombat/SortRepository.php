@@ -1,28 +1,28 @@
 <?php
 
-namespace App\Repository\DonsAuCombat;
+namespace App\Repository\CompetenceCombat;
 
-use App\Entity\Signe;
+use App\Entity\CompetenceCombat\Sort;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Signe>
+ * @extends ServiceEntityRepository<\App\Entity\CompetenceCombat\Sort>
  *
- * @method \App\Entity\Signe|null find($id, $lockMode = null, $lockVersion = null)
- * @method \App\Entity\Signe|null findOneBy(array $criteria, array $orderBy = null)
- * @method \App\Entity\Signe[]    findAll()
- * @method Signe[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method \App\Entity\CompetenceCombat\Sort|null find($id, $lockMode = null, $lockVersion = null)
+ * @method \App\Entity\CompetenceCombat\Sort|null findOneBy(array $criteria, array $orderBy = null)
+ * @method \App\Entity\CompetenceCombat\Sort[]    findAll()
+ * @method Sort[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class SigneRepository extends ServiceEntityRepository
+class SortRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, \App\Entity\Signe::class);
+        parent::__construct($registry, Sort::class);
     }
 
 //    /**
-//     * @return Signe[] Returns an array of Signe objects
+//     * @return Sort[] Returns an array of Sort objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -36,7 +36,7 @@ class SigneRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Signe
+//    public function findOneBySomeField($value): ?Sort
 //    {
 //        return $this->createQueryBuilder('s')
 //            ->andWhere('s.exampleField = :val')

@@ -2,7 +2,7 @@
 
 namespace App\Repository\Stuff;
 
-use App\Entity\Armure;
+use App\Entity\Stuff\Armure;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -11,7 +11,7 @@ use Doctrine\Persistence\ManagerRegistry;
  *
  * @method Armure|null find($id, $lockMode = null, $lockVersion = null)
  * @method Armure|null findOneBy(array $criteria, array $orderBy = null)
- * @method \App\Entity\Armure[]    findAll()
+ * @method \App\Entity\Stuff\Armure[]    findAll()
  * @method Armure[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class ArmureRepository extends ServiceEntityRepository

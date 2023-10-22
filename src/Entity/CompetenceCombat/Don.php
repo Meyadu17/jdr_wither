@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\CompetenceCombat;
 
-use App\Repository\DonsAuCombat\DonRepository;
+use App\Repository\CompetenceCombat\DonRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: DonRepository::class)]
@@ -26,9 +26,9 @@ class Don
     #[ORM\Column(name: "don_effet", length: 255)]
     private ?string $effet = null;
 
-    #[ORM\ManyToOne]
-    #[ORM\Column(name: "don_type", nullable: false)]
-    private ?TypeDon $typeDon = null;
+    #[ORM\ManyToOne(targetEntity: TypeDon::class, inversedBy: 'dons')]
+    #[ORM\JoinColumn(name: "don_fk_tdo_id", referencedColumnName: "tdo_id")]
+    private ?TypeDon $type = null;
 
     public function getId(): ?int
     {
@@ -83,14 +83,14 @@ class Don
         return $this;
     }
 
-    public function getTypeDon(): ?TypeDon
+    public function getType(): ?TypeDon
     {
-        return $this->typeDon;
+        return $this->type;
     }
 
-    public function setTypeDon(?TypeDon $typeDon): static
+    public function setType(?TypeDon $type): static
     {
-        $this->typeDon = $typeDon;
+        $this->type = $type;
 
         return $this;
     }

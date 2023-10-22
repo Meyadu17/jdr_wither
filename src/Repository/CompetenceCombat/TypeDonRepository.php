@@ -1,28 +1,28 @@
 <?php
 
-namespace App\Repository\Stuff;
+namespace App\Repository\CompetenceCombat;
 
-use App\Entity\Stuff\Type;
+use App\Entity\CompetenceCombat\TypeDon;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<\App\Entity\Stuff\Type>
+ * @extends ServiceEntityRepository<TypeDon>
  *
- * @method Type|null find($id, $lockMode = null, $lockVersion = null)
- * @method \App\Entity\Stuff\Type|null findOneBy(array $criteria, array $orderBy = null)
- * @method Type[]    findAll()
- * @method \App\Entity\Stuff\Type[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method TypeDon|null find($id, $lockMode = null, $lockVersion = null)
+ * @method TypeDon|null findOneBy(array $criteria, array $orderBy = null)
+ * @method TypeDon[]    findAll()
+ * @method TypeDon[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class TypeRepository extends ServiceEntityRepository
+class TypeDonRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, \App\Entity\Stuff\Type::class);
+        parent::__construct($registry, TypeDon::class);
     }
 
 //    /**
-//     * @return Type[] Returns an array of Type objects
+//     * @return TypeDon[] Returns an array of TypeDon objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -36,7 +36,7 @@ class TypeRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Type
+//    public function findOneBySomeField($value): ?TypeDon
 //    {
 //        return $this->createQueryBuilder('t')
 //            ->andWhere('t.exampleField = :val')

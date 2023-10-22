@@ -2,9 +2,9 @@
 
 namespace App\Form;
 
-use App\Entity\Arme;
-use App\Entity\Taille;
-use App\Entity\Type;
+use App\Entity\Stuff\Arme;
+use App\Entity\Stuff\Taille;
+use App\Entity\Stuff\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;

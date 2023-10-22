@@ -2,9 +2,8 @@
 
 namespace App\Controller\Stuff;
 
-use App\Entity\Arme;
+use App\Entity\Stuff\Arme;
 use App\Form\ArmeType;
-use App\Repository\Stuff\ArmeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +15,7 @@ class ArmeController extends AbstractController
 {
     const MESSAGE = "Le livre";
     #[Route('/', name: '_lister')]
-    public function lister(ArmeRepository $armeRepository): Response
+    public function lister(\App\Repository\ArmeRepository $armeRepository): Response
     {
         return $this->render('stuff/arme/listerArme.html.twig', [
             'armes' => $armeRepository->findBy([],['type' => 'ASC']),
@@ -25,10 +24,10 @@ class ArmeController extends AbstractController
 
     #[Route('/ajouter', name: '_ajouter')]
     #[Route('/modifier/{id}', name: '_modifier')]
-    public function editier(Request $request,
-                            EntityManagerInterface $entityManager,
-                            ArmeRepository $armeRepository,
-                            int $id = null): Response
+    public function editier(Request                        $request,
+                            EntityManagerInterface         $entityManager,
+                            \App\Repository\ArmeRepository $armeRepository,
+                            int                            $id = null): Response
     {
         //Vérifier si c'est unecréation ou un modification
         if($id == null){

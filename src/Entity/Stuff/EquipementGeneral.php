@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Stuff;
 
 use App\Repository\Stuff\EquipementGeneralRepository;
 use Doctrine\ORM\Mapping as ORM;

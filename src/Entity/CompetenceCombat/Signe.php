@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\CompetenceCombat;
 
-use App\Repository\DonsAuCombat\SigneRepository;
+use App\Repository\CompetenceCombat\SigneRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SigneRepository::class)]
@@ -20,10 +20,6 @@ class Signe
     #[ORM\Column(name: "sig_niveau_", length: 255)]
     private ?string $niveau = null;
 
-    #[ORM\ManyToOne]
-    #[ORM\Column(name: "sig_element", nullable: false)]
-    private ?Element $element = null;
-
     #[ORM\Column(name: "sig_description", length: 255)]
     private ?string $description = null;
 
@@ -38,6 +34,10 @@ class Signe
 
     #[ORM\Column(name: "sig_duree", length: 255)]
     private ?string $duree = null;
+
+    #[ORM\ManyToOne(targetEntity: Element::class, inversedBy: 'signes')]
+    #[ORM\JoinColumn(name: "sig_fk_ele_id", referencedColumnName: "ele_id")]
+    private ?Element $element = null;
 
     public function getId(): ?int
     {
@@ -67,19 +67,6 @@ class Signe
 
         return $this;
     }
-
-    public function getElement(): ?Element
-    {
-        return $this->element;
-    }
-
-    public function setElement(?Element $element): static
-    {
-        $this->element = $element;
-
-        return $this;
-    }
-
     public function getDescription(): ?string
     {
         return $this->description;
@@ -136,6 +123,18 @@ class Signe
     public function setDuree(string $duree): static
     {
         $this->duree = $duree;
+
+        return $this;
+    }
+
+    public function getElement(): ?Element
+    {
+        return $this->element;
+    }
+
+    public function setElement(?Element $element): static
+    {
+        $this->element = $element;
 
         return $this;
     }
