@@ -1,6 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Magasin{% endblock %}
+{% block title %}Armes{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
 
 {% block body %}
 
@@ -9,63 +17,65 @@
             {{ message }}
         </div>
     {% endfor %}
+    <div class="titre-logo">
+        <img class="logo" src="{{ asset('images/logo-armes.jpg') }}" alt="Logo" />
+        <h1>Les armes </h1>
+        <img class="logo" src="{{ asset('images/logo-armes.jpg') }}" alt="Logo" />
+    </div>
 
-    <section class="admin_body_container">
-        <a class="btn btn-info" href="{{ path('app_admin_arme_ajouter') }}" style="color: #3D3D3D;"><i class="fa-solid fa-circle-plus" style="color: #3D3D3D;"></i> Nouveau Livre</a>
+    <section class="admin_body_container" >
+        <a class="btn btn-outline-info" href="{{ path('app_admin_arme_ajouter') }}">Mettre une arme en vente</a>
+        <a class="btn btn-outline-light" href="{{ path('app_stuff_lister') }}">Retour</a>
     </section>
+    <br>
 
     <section class="admin_body_container">
-        {% if armes is empty %}
-            <h2 style="text-align: center">Le Magasin est vide</h2>
-        <div style="text-align: center;">
-            <img style="margin: 0 auto;" src="{{ asset('images/magasin.png') }}" alt="Logo" />
-        </div>
-            <a class="btn btn-info" data-toggle="modal" data-target="#" href="#" class="card-link" style="color: #3D3D3D;">
-                <i class="fa-solid fa-circle-plus" style="color: #3D3D3D;"></i> Nouvelle bibliothèque
-            </a>
-
-        {% else %}
-            <div class="accordion" id="accordionExample">
-                {% for arme in armes %}
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                {{arme.type}}
-                            </button>
-                        </h2>
-                        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <table class="table table-striped">
-                                    <thead>
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            {% for typeArme in typeArmes %}
+                <div class="accordion-item accordion-color">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                            {{typeArme.libelle}}
+                        </button>
+                    </h2>
+                    <div id="{{ 'collapse_' ~ typeArme.id }}" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            <table class="table table-dark" title="Bibliothèque {{ typeArme.libelle }}">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Dégats</th>
+                                    <th scope="col">Mains</th>
+                                    <th scope="col">Portée</th>
+                                    <th scope="col">Effets</th>
+                                    <th scope="col">Poids</th>
+                                    <th scope="col">Taille</th>
+                                    <th scope="col">Prix</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for arme in typeArme.armes %}
                                     <tr>
-                                        <th scope="col">Nom</th>
-                                        <th scope="col">Dégats</th>
-                                        <th scope="col">Mains</th>
-                                        <th scope="col">Portée</th>
-                                        <th scope="col">Effets</th>
-                                        <th scope="col">Poids</th>
-                                        <th scope="col">Taille</th>
-                                        <th scope="col">Prix</th>
+                                        <td>{{arme.nom}}</td>
+                                        <td>{{arme.degat}}</td>
+                                        <td>{{arme.mains}}</td>
+                                        <td>{{arme.portee}}</td>
+                                        <td>{{arme.effet}}</td>
+                                        <td>{{arme.poids}}</td>
+                                        <td>{{arme.taille.libelle}}</td>
+                                        <td>{{arme.prix}}</td>
+                                        <td>
+                                            <a class="btn btn-outline-info" href="{{ path('app_admin_arme_modifier', { 'id' : arme.id }) }}">modifier</a>
+                                        </td>
                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>{{arme.nom}}</td>
-                                            <td>{{arme.degat}}</td>
-                                            <td>{{arme.mains}}</td>
-                                            <td>{{arme.portee}}</td>
-                                            <td>{{arme.effet}}</td>
-                                            <td>{{arme.poids}}</td>
-                                            <td>{{arme.taille}}</td>
-                                            <td>{{arme.prix}}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                {% endfor %}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                {% endfor %}
-            </div>
-        {% endif %}
+                </div>
+            {% endfor %}
+        </div>
     </section>
 {% endblock %}

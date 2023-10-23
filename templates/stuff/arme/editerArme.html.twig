@@ -1,98 +1,104 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Magasin{% endblock %}
+{% block title %}Armes{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
 
 {% block body %}
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-error" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+
 
     <section class="admin_body_container">
-        <form class="row g-3 needs-validation" novalidate>
-            <div class="col-md-4">
-                <label for="validationCustom01" class="form-label">First name</label>
-                <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-            <div class="col-md-4">
-                <label for="validationCustom02" class="form-label">Last name</label>
-                <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-            <div class="col-md-4">
-                <label for="validationCustomUsername" class="form-label">Username</label>
-                <div class="input-group has-validation">
-                    <span class="input-group-text" id="inputGroupPrepend">@</span>
-                    <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-                    <div class="invalid-feedback">
-                        Please choose a username.
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <label for="validationCustom03" class="form-label">City</label>
-                <input type="text" class="form-control" id="validationCustom03" required>
-                <div class="invalid-feedback">
-                    Please provide a valid city.
-                </div>
-            </div>
-            <div class="col-md-3">
-                <label for="validationCustom04" class="form-label">State</label>
-                <select class="form-select" id="validationCustom04" required>
-                    <option selected disabled value="">Choose...</option>
-                    <option>...</option>
-                </select>
-                <div class="invalid-feedback">
-                    Please select a valid state.
-                </div>
-            </div>
-            <div class="col-md-3">
-                <label for="validationCustom05" class="form-label">Zip</label>
-                <input type="text" class="form-control" id="validationCustom05" required>
-                <div class="invalid-feedback">
-                    Please provide a valid zip.
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                    <label class="form-check-label" for="invalidCheck">
-                        Agree to terms and conditions
-                    </label>
-                    <div class="invalid-feedback">
-                        You must agree before submitting.
-                    </div>
-                </div>
-            </div>
-            <div class="col-12">
-                <button class="btn btn-primary" type="submit">Submit form</button>
-            </div>
-        </form>
-        {{ form_start(form) }}
 
-        <div class="row">
-            <div class="col-4">
-                {{ form_row(form.nom) }}
-            </div>
-            <div class="col-4">
-                {{ form_row(form.degat) }}
-            </div>
-            <div class="col-4">
-                {{ form_row(form.mains) }}
-            </div>
-            <div class="col-4">
-                {{ form_row(form.portee) }}
-            </div>
-            <div class="col-4">
-                {{ form_row(form.effet) }}
-            </div>
-            <div class="col-4">
-                {{ form_row(form.poids) }}
-            </div>
+        {{ form_start(form, {'attr':{'class':'row g-3 needs-validation', 'novalidate': 'novalidate'}}) }}
 
-            <button class="btn btn-success" type="submit">Ajouter</button>
-            <button class="btn btn-primary" type="submit">Modifier</button>
+        <div class="col-md-3">
+            <label for="{{ form.typeArme.vars.id }}" class="form-label">{{ form.typeArme.vars.label }}</label>
+            {{ form_widget(form.typeArme) }}
+            <div class="invalid-feedback">
+                Champs requis.
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <label for="{{ form.taille.vars.id }}" class="form-label">{{ form.taille.vars.label }}</label>
+            {{ form_widget(form.taille) }}
+            <div class="invalid-feedback">
+                Champs requis.
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            {{ form_row(form.nom) }}
+            <div class="invalid-feedback">
+                Champs requis.
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            {{ form_row(form.degat) }}
+            <div class="invalid-feedback">
+                Champs requis. si null mettre "-"
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            {{ form_row(form.mains) }}
+            <div class="invalid-feedback">
+                Champs requis. si null mettre "-"
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            {{ form_row(form.portee) }}
+            <div class="invalid-feedback">
+                Champs requis. si null mettre "-"
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            {{ form_row(form.effet) }}
+            <div class="invalid-feedback">
+                Champs requis.
+            </div>
+        </div>
+
+
+        <div class="col-md-4">
+            {{ form_row(form.poids) }}
+            <div class="invalid-feedback">
+                Champs requis.
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            {{ form_row(form.prix) }}
+            <div class="invalid-feedback">
+                Champs requis.
+            </div>
+        </div>
+
+
+
+        <div class="col-12">
+            {% if app.request.get('_route') == "app_admin_arme_ajouter" %}
+                <button class="btn btn-outline-info" type="submit">Ajouter</button>
+            {% else %}
+                <button class="btn btn-outline-info" type="submit">Modifier</button>
+            {% endif %}
+            <a href="{{ path('app_admin_arme_lister') }}" class="btn btn-outline-light">Retour</a>
+
+        </div>
 
         {{ form_end(form) }}
     </section>

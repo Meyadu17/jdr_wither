@@ -4,9 +4,9 @@ namespace App\Form;
 
 use App\Entity\Stuff\Arme;
 use App\Entity\Stuff\Taille;
-use App\Entity\Stuff\Type;
+use App\Entity\Stuff\TypeArme;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,33 +17,75 @@ class ArmeType extends AbstractType
     {
         $builder
             ->add('nom', TextType::class, [
-                'label' => "Nom* :"
+                'label' => "Nom*",
+                'attr' => [
+                    'class' => 'form-control',
+                    'id' => 'validationCustom03',
+                    'required' => true,
+                ],
             ])
             ->add('degat', TextType::class, [
-                'label' => "Dégâts :"
+                'label' => "Dégâts",
+                'attr' => [
+                    'class' => 'form-control',
+                    'id' => 'validationCustom03',
+                ],
             ])
             ->add('mains', TextType::class, [
-                'label' => "Mains :"
+                'label' => "Mains",
+                'attr' => [
+                    'class' => 'form-control',
+                    'id' => 'validationCustom03',
+                ],
             ])
             ->add('portee', TextType::class, [
-                'label' => "Effet :"
+                'label' => "Portée",
+                'attr' => [
+                    'class' => 'form-control',
+                    'id' => 'validationCustom03',
+                ],
             ])
             ->add('effet', TextType::class, [
-                'label' => "Effet(s)* :"
+                'label' => "Effet(s)* :",
+                'attr' => [
+                    'class' => 'form-control',
+                    'id' => 'validationCustom03',
+                    'required' => true,
+                ],
             ])
             ->add('poids', TextType::class, [
-                'label' => "Poids* :"
+                'label' => "Poids*",
+                'attr' => [
+                    'class' => 'form-control',
+                    'id' => 'validationCustom03',
+                    'required' => true,
+                ],
             ])
             ->add('prix', TextType::class, [
-                'label' => "Prix* :"
+                'label' => "Prix*",
+                'attr' => [
+                    'class' => 'form-control',
+                    'id' => 'validationCustom03',
+                    'required' => true,
+                ],
             ])
-            ->add('taille', EnumType::class, [
+            ->add('taille', EntityType::class, [
                 'class' => Taille::class,
-                'label' => "Taille* :",
+                'choice_label' => 'libelle',
+                'label' => "Taille*",
+                'required' => true,
+                'attr' => [
+                    'class' => 'form-select',
+                ],
             ])
-            ->add('type', EnumType::class, [
-                'class' => Type::class,
-                'label' => "Type d\'arme* :"
+            ->add('typeArme', EntityType::class, [
+                'class' => TypeArme::class,
+                'choice_label' => 'libelle',
+                'label' => "Type d'arme*",
+                'required' => true,
+                'attr' => [
+                    'class' => 'form-select',
+                ],
             ])
         ;
     }

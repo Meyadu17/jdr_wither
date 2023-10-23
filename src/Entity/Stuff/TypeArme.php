@@ -2,31 +2,30 @@
 
 namespace App\Entity\Stuff;
 
-use App\Repository\Stuff\TailleRepository;
+use App\Repository\Stuff\TypeArmeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: TailleRepository::class)]
-#[ORM\Table(name: "taille_tai")]
-class Taille
+#[ORM\Entity(repositoryClass: TypeArmeRepository::class)]
+#[ORM\Table(name: "type_arme_typ")]
+class TypeArme
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(name: "tai_id")]
+    #[ORM\Column(name: "typ_id")]
     private ?int $id = null;
 
-    #[ORM\Column(name: "tai_libelle", length: 255)]
+    #[ORM\Column(name: "typ_libelle", length: 255)]
     private ?string $libelle = null;
 
-//    #[ORM\OneToMany(mappedBy: 'taille', targetEntity: Arme::class)]
-//    private Collection $armes;
+    #[ORM\OneToMany(mappedBy: 'type', targetEntity: Arme::class)]
+    private Collection $armes;
 
     public function __construct()
     {
         $this->armes = new ArrayCollection();
     }
-
 
     public function getId(): ?int
     {
@@ -57,7 +56,7 @@ class Taille
     {
         if (!$this->armes->contains($arme)) {
             $this->armes->add($arme);
-            $arme->setTaille($this);
+            $arme->setTypeArme($this);
         }
 
         return $this;
@@ -67,8 +66,8 @@ class Taille
     {
         if ($this->armes->removeElement($arme)) {
             // set the owning side to null (unless already changed)
-            if ($arme->getTaille() === $this) {
-                $arme->setTaille(null);
+            if ($arme->getTypeArme() === $this) {
+                $arme->setTypeArme(null);
             }
         }
 

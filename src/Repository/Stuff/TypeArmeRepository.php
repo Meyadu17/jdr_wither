@@ -2,23 +2,23 @@
 
 namespace App\Repository\Stuff;
 
-use App\Entity\Stuff\Type;
+use App\Entity\Stuff\TypeArme;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<\App\Entity\Stuff\Type>
+ * @extends ServiceEntityRepository<TypeArme>
  *
- * @method Type|null find($id, $lockMode = null, $lockVersion = null)
- * @method \App\Entity\Stuff\Type|null findOneBy(array $criteria, array $orderBy = null)
- * @method Type[]    findAll()
- * @method \App\Entity\Stuff\Type[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method TypeArme|null find($id, $lockMode = null, $lockVersion = null)
+ * @method TypeArme|null findOneBy(array $criteria, array $orderBy = null)
+ * @method TypeArme[]    findAll()
+ * @method TypeArme[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class TypeRepository extends ServiceEntityRepository
+class TypeArmeRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, \App\Entity\Stuff\Type::class);
+        parent::__construct($registry, TypeArme::class);
     }
 
 //    /**

@@ -9,12 +9,27 @@
 import './styles/app.scss';
 
 const bootstrap = require('bootstrap');
-// // importing core styling file
-// import "./fontawesome/scss/fontawesome.scss";
-//
-// //  importing Font Awesome styles
-// import "./fontawesome/scss/solid.scss";
-// import "./fontawesome/scss/brands.scss";
-//
-// // importing a kit's custom icons
-// import "./fontawesome/scss/custom-icons.scss";
+// #region ------------------- Accordion Bibliothèque -------------------
+document.addEventListener('DOMContentLoaded', function () {
+    const accordionItems = document.querySelectorAll('.accordion-item');
+
+    accordionItems.forEach((item) => {
+        const accordionButton = item.querySelector('.accordion-button');
+
+        accordionButton.addEventListener('click', () => {
+            // Fermez tous les éléments de l'accordéon
+            accordionItems.forEach((otherItem) => {
+                if (otherItem !== item) {
+                    const otherCollapse = otherItem.querySelector('.accordion-collapse');
+                    otherCollapse.classList.remove('show');
+                }
+            });
+
+            // Ouvrez ou fermez l'élément actuel de l'accordéon
+            const collapse = item.querySelector('.accordion-collapse');
+            collapse.classList.toggle('show');
+        });
+    });
+});
+// #endregion ------------------- Accordion Bibliothèque -------------------
+"./fontawesome/scss/custom-icons.scss";

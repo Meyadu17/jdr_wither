@@ -35,13 +35,13 @@ class Arme
     #[ORM\Column(name: "arm_prix", nullable: false)]
     private ?int $prix = null;
 
-    #[ORM\ManyToOne(targetEntity: Taille::class, inversedBy: 'armes')]
-    #[ORM\JoinColumn(name: "arm_fk_tai_id", referencedColumnName: "tai_id")]
-    private ?Taille $taille = null;
-
-    #[ORM\ManyToOne(targetEntity: Type::class, inversedBy: 'armes')]
+    #[ORM\ManyToOne(targetEntity: TypeArme::class, inversedBy: 'armes')]
     #[ORM\JoinColumn(name: "arm_fk_typ_id", referencedColumnName: "typ_id", nullable: false)]
-    private ?Type $type = null;
+    private ?TypeArme $type = null;
+
+    #[ORM\ManyToOne(inversedBy: 'armes')]
+    #[ORM\JoinColumn(name: "arm_fk_tai_id", referencedColumnName: "tai_id", nullable: false)]
+    private ?Taille $taille = null;
 
     public function getId(): ?int
     {
@@ -132,6 +132,18 @@ class Arme
         return $this;
     }
 
+    public function getTypeArme(): ?TypeArme
+    {
+        return $this->type;
+    }
+
+    public function setTypeArme(?TypeArme $type): static
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
     public function getTaille(): ?Taille
     {
         return $this->taille;
@@ -140,18 +152,6 @@ class Arme
     public function setTaille(?Taille $taille): static
     {
         $this->taille = $taille;
-
-        return $this;
-    }
-
-    public function getType(): ?Type
-    {
-        return $this->type;
-    }
-
-    public function setType(?Type $type): static
-    {
-        $this->type = $type;
 
         return $this;
     }

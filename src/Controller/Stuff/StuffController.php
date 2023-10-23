@@ -12,7 +12,7 @@ class StuffController extends AbstractController
     #[Route('/', name: '_lister')]
     public function lister(): Response
     {
-        return $this->render('stuff/index.html.twig', [
+        return $this->render('stuff/magasin.html.twig', [
             'controller_name' => 'ArmeController',
         ]);
     }
