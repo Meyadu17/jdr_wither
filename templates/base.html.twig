@@ -23,15 +23,20 @@
 
                 <a class="#" href="{{ path('app_stuff_lister') }}">Accueil</a>
                 <a class="#" href="{{ path('app_stuff_lister') }}">Magasin</a>
+                <a class="#" href="#">Compétences de combat</a>
 
                 <li class="nav-item dropdown menu">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Administration
                     </a>
                     <ul class="dropdown-menu menu">
-                        <li><a class="dropdown-item menu" href="{{ path('app_admin_arme_lister') }}">Armes</a></li>
-                        <li><a class="dropdown-item menu" href="#">Compétences en combat</a></li>
-                        <li><a class="dropdown-item menu" href="#">Compétences des personnes</a></li>
+                        <li><a class="dropdown-item menu" href="{{ path('app_stuff_arme') }}">Armes</a></li>
+                        <li><a class="dropdown-item menu" href="{{ path('app_stuff_armure') }}">Armures</a></li>
+                        <li><a class="dropdown-item menu" href="{{ path('app_stuff_equipement') }}">Équipement général</a></li>
+                        <li><a class="dropdown-item menu" href="{{ path('app_stuff_ingredient') }}">Ingrédients & Alchimie</a></li>
+                        <li><a class="dropdown-item menu" href="{{ path('app_stuff_outil') }}">Outils</a></li>
+                        <li><hr></li>
+                        <li><a class="dropdown-item menu" href="#">A venir</a></li>
                     </ul>
                 </li>
 

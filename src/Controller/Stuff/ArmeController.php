@@ -16,14 +16,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArmeController extends AbstractController
 {
     const MESSAGE = "L'arme'";
-    #[Route('/', name: '_lister')]
-    public function lister(TypeArmeRepository $typeRepository): Response
-    {
-
-        return $this->render('stuff/arme/listerArme.html.twig', [
-            'typeArmes' =>$typeRepository->findAll(),
-        ]);
-    }
+//    #[Route('/', name: '_lister')]
+//    public function lister(TypeArmeRepository $typeRepository): Response
+//    {
+//
+//        return $this->render('stuff/arme/listerArme.html.twig', [
+//            'typeArmes' =>$typeRepository->findAll(),
+//        ]);
+//    }
 
     #[Route('/ajouter', name: '_ajouter')]
     #[Route('/modifier/{id}', name: '_modifier')]
