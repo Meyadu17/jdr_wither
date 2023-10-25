@@ -2,7 +2,11 @@
 
 namespace App\Controller\Stuff;
 
+use App\Repository\Stuff\EquipementGeneralRepository;
+use App\Repository\Stuff\IngredientRepository;
+use App\Repository\Stuff\OutilRepository;
 use App\Repository\Stuff\TypeArmeRepository;
+use App\Repository\Stuff\TypeArmureRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,9 +17,7 @@ class StuffController extends AbstractController
     #[Route('/', name: '_lister')]
     public function magasin(): Response
     {
-        return $this->render('stuff/magasin.html.twig', [
-            'controller_name' => 'ArmeController',
-        ]);
+        return $this->render('stuff/magasin.html.twig');
     }
 
     #[Route('/armes', name: '_arme')]
@@ -27,38 +29,35 @@ class StuffController extends AbstractController
     }
 
     #[Route('/armures', name: '_armure')]
-    public function armures(TypeArmeRepository $typeRepository): Response
+    public function armures(TypeArmureRepository $typeArmureRepository): Response
     {
-    //TODO - Armures
         return $this->render('stuff/armure/listerArmure.html.twig', [
-            'typeArmes' =>$typeRepository->findAll(),
+            'typeArmures' =>$typeArmureRepository->findAll(),
         ]);
     }
 
     #[Route('/equipement/general', name: '_equipement')]
-    public function equipementGeneral(TypeArmeRepository $typeRepository): Response
+    public function equipementGeneral(EquipementGeneralRepository $equipementGeneralRepository): Response
     {
-        //TODO - Equipement général
         return $this->render('stuff/equipement_general/listerEquipementG.html.twig', [
-            'typeArmures' =>$typeRepository->findAll(),
+            'equipements' =>$equipementGeneralRepository->findAll(),
         ]);
     }
 
     #[Route('/ingredients', name: '_ingredient')]
-    public function alchimie(TypeArmeRepository $typeRepository): Response
+    public function alchimie(IngredientRepository $ingredientRepository): Response
     {
-        //TODO- Alchimie
         return $this->render('stuff/ingredient/listerIngredient.html.twig', [
-            'typeArmures' =>$typeRepository->findAll(),
+            'ingredients' =>$ingredientRepository->findAll(),
         ]);
     }
 
     #[Route('/outils', name: '_outil')]
-    public function outil(TypeArmeRepository $typeRepository): Response
+    public function outil(OutilRepository $outilRepository): Response
     {
         //TODO - Outils
         return $this->render('stuff/outil/listerOutil.html.twig', [
-            'typeArmures' =>$typeRepository->findAll(),
+            'outils' =>$outilRepository->findAll(),
         ]);
     }
 }

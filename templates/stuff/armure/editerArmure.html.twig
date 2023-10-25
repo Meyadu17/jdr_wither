@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Armes{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+
+    <section class="admin_body_container">
+
+        {{ form_start(form, {'attr':{'class':'row g-3 needs-validation', 'novalidate': 'novalidate'}}) }}
+
+        <div class="col-md-4">
+            {{ form_row(form.nom) }}
+            <div class="invalid-feedback">
+                Champs requis.
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            {{ form_row(form.protection) }}
+            <div class="invalid-feedback">
+                Champs requis.
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            {{ form_row(form.effet) }}
+            <div class="invalid-feedback">
+                Champs requis. si null mettre "-"
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            {{ form_row(form.encombrement) }}
+            <div class="invalid-feedback">
+                Champs requis.
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            {{ form_row(form.poids) }}
+            <div class="invalid-feedback">
+                Champs requis.
+            </div>
+        </div>
+
+
+        <div class="col-md-4">
+            {{ form_row(form.prix) }}
+            <div class="invalid-feedback">
+                Champs requis.
+            </div>
+        </div>
+
+        <div class="col-12">
+            {% if app.request.get('_route') == "app_admin_armure_ajouter" %}
+                <button class="btn btn-outline-info" type="submit">Ajouter</button>
+            {% else %}
+                <button class="btn btn-outline-info" type="submit">Modifier</button>
+            {% endif %}
+            <a href="{{ path('app_stuff_armure') }}" class="btn btn-outline-light">Retour</a>
+
+        </div>
+
+        {{ form_end(form) }}
+    </section>
+{% endblock %}

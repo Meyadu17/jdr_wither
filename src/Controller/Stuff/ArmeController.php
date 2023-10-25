@@ -5,7 +5,6 @@ namespace App\Controller\Stuff;
 use App\Entity\Stuff\Arme;
 use App\Form\ArmeType;
 use App\Repository\Stuff\ArmeRepository;
-use App\Repository\Stuff\TypeArmeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,15 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin/arme', name: 'app_admin_arme')]
 class ArmeController extends AbstractController
 {
-    const MESSAGE = "L'arme'";
-//    #[Route('/', name: '_lister')]
-//    public function lister(TypeArmeRepository $typeRepository): Response
-//    {
-//
-//        return $this->render('stuff/arme/listerArme.html.twig', [
-//            'typeArmes' =>$typeRepository->findAll(),
-//        ]);
-//    }
+    const MESSAGE = "L'arme";
 
     #[Route('/ajouter', name: '_ajouter')]
     #[Route('/modifier/{id}', name: '_modifier')]
@@ -41,23 +32,34 @@ class ArmeController extends AbstractController
 
         $form = $this->createForm(ArmeType::class, $arme);
         $form->handleRequest($request);
+        //Si le formulaire est valide
 
         if($form->isSubmitted() && $form->isValid()) {
-            //traitement des données
-            $entityManager->persist($arme);
-            $entityManager->flush();
+            if (is_numeric($arme->getPoids())) {
+                //traitement des données
+                $entityManager->persist($arme);
+                $entityManager->flush();
 
-            //message de succés
-            $this->addFlash(
-                'success',
-                self::MESSAGE . ' à bien été édité !'
-            );
+                //message de succés
+                $this->addFlash(
+                    'success',
+                    self::MESSAGE . ' à bien été édité !'
+                );
 
-            return $this->redirectToRoute('app_admin_arme_lister');
+                return $this->redirectToRoute('app_stuff_arme');
+
+            } /*else {
+                $this->addFlash('error',
+                    'Le début de la sortie doit être avant la date de fin de sortie'
+                );
+            }*/
+
+
+
         }
 
         return $this->render('stuff/arme/editerArme.html.twig', [
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 }

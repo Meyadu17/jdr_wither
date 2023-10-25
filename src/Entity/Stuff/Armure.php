@@ -32,6 +32,10 @@ class Armure
     #[ORM\Column(name: "apr_prix", length: 255)]
     private ?int $prix = null;
 
+    #[ORM\ManyToOne(targetEntity: TypeArmure::class, inversedBy: 'armures')]
+    #[ORM\JoinColumn(name: "apr_fk_tar_id", referencedColumnName: "tar_id", nullable: false)]
+    private ?TypeArmure $typeArmure = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +109,18 @@ class Armure
     public function setPrix(int $prix): static
     {
         $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function getTypeArmure(): ?TypeArmure
+    {
+        return $this->typeArmure;
+    }
+
+    public function setTypeArmure(?TypeArmure $typeArmure): static
+    {
+        $this->typeArmure = $typeArmure;
 
         return $this;
     }

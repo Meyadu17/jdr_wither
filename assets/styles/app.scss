@@ -1,8 +1,9 @@
 @import '~bootstrap/scss/bootstrap';
+@import "variables.scss";
 
 body {
-    background-color: #343E43;
-    color: #57CEE3;
+    background-color: $font;
+    color: $text;
     & h1 {
         text-align: center;
     }
@@ -14,12 +15,12 @@ body {
         height: 90px;
         display: block;
         padding: 20px 20px;
-        background-color: #141717;
-        color: #57CEE3 ;
+        background-color: $menu;
+        color: $text ;
 
         & a {
             text-decoration: none;
-            color: #57CEE3;
+            color: $text;
         }
         & a.active {
             font-weight: bold;
@@ -58,8 +59,8 @@ body {
 }
 .dropdown{
     list-style-type: none;
-    background-color: #141717;
-    color: #57CEE3 ;
+    background-color: $menu;
+    color: $text ;
 }
 
 .logo {
@@ -69,8 +70,8 @@ body {
     width: auto;
 }
  .menu{
-     background-color: #141717;
-     color: #57CEE3 ;
+     background-color: $menu;
+     color: $text ;
  }
 .pied-page{
     display: flex;
@@ -83,11 +84,11 @@ body {
 
 //#region Accordion
 .accordion-color{
-    background-color: #343E43
+    background-color: $font
 }
 .accordion-button{
-    color: #57CEE3;
-    background-color: #141717;
+    color: $text;
+    background-color: $menu;
 }
 //#endregion Accordion
 
@@ -96,8 +97,8 @@ body {
     width: 18rem
 }
 .card-body{
-    background-color: #2b3035;
-    color: #0dcaf0;
+    background-color: $font-2;
+    color: $text;
 }
 .card-element {
     display: flex;
@@ -110,3 +111,23 @@ body {
 
 
 //#endregion Card
+
+//#region Form
+.rounded-t-5 {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+.fond-image{
+    background-color: $font-2;
+}
+
+@media (min-width: 992px) {
+    .rounded-tr-lg-0 {
+        border-top-right-radius: 0;
+    }
+
+    .rounded-bl-lg-5 {
+        border-bottom-left-radius: 0.5rem;
+    }
+}
+//#endregion Form

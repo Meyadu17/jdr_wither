@@ -7,6 +7,7 @@ use App\Entity\CompetenceCombat\NiveauSort;
 use App\Entity\CompetenceCombat\TypeDon;
 use App\Entity\Stuff\Taille;
 use App\Entity\Stuff\TypeArme;
+use App\Entity\Stuff\TypeArmure;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -85,7 +86,7 @@ class AppFixtures extends Fixture
         $manager->persist($taille4);
         //#endregion -------------------------- TAILLE --------------------------
 
-        //#region -------------------------- TYPE --------------------------
+        //#region -------------------------- TYPE D'ARME --------------------------
         $typeArme5 = new TypeArme();
         $typeArme5->setLibelle('Épée');
         $manager->persist($typeArme5);
@@ -125,7 +126,27 @@ class AppFixtures extends Fixture
         $typeArme14 = new TypeArme();
         $typeArme14->setLibelle('Projectile');
         $manager->persist($typeArme14);
-        //#endregion -------------------------- TYPE --------------------------
+        //#endregion -------------------------- TYPE D'ARME --------------------------
+
+        //#region -------------------------- TYPE D'ARMURE --------------------------
+        $typeArmure1 = new TypeArmure();
+        $typeArmure1->setLibelle('Tête');
+        $manager->persist($typeArmure1);
+
+        $typeArmure2 = new TypeArmure();
+        $typeArmure2->setLibelle('Torse');
+        $manager->persist($typeArmure2);
+
+        $typeArmure2 = new TypeArmure();
+        $typeArmure2->setLibelle('Jambe');
+        $manager->persist($typeArmure2);
+
+        $typeArmure2 = new TypeArmure();
+        $typeArmure2->setLibelle('Bouclier');
+        $manager->persist($typeArmure2);
+        //#endregion -------------------------- TYPE D'ARMURE --------------------------
+
+
         //#endregion -------------------------- STUFF --------------------------
 
         $manager->flush();
