@@ -46,16 +46,14 @@ class ArmeController extends AbstractController
                     self::MESSAGE . ' à bien été édité !'
                 );
 
-                return $this->redirectToRoute('app_stuff_arme');
+                if ($request->request->has('create_and_new')) {
+                    // Redirige vers le formulaire avec un nouvel objet Arme
+                    return $this->redirectToRoute('app_admin_arme_ajouter');
+                } else {
+                    return $this->redirectToRoute('app_stuff_arme');
+                }
 
-            } /*else {
-                $this->addFlash('error',
-                    'Le début de la sortie doit être avant la date de fin de sortie'
-                );
-            }*/
-
-
-
+            }
         }
 
         return $this->render('stuff/arme/editerArme.html.twig', [
