@@ -12,11 +12,15 @@
 
 {% block body %}
 
-    <!-- Section: Design Block -->
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+
     <section class=" text-center text-lg-start">
 
         <h1>Nouvelle arme</h1>
-
         <div class="card mb-3">
             <div class="row g-0 d-flex align-items-center fond-image">
 
@@ -27,7 +31,7 @@
                 <div class="col-lg-8">
                     <div class="card-body py-5 px-md-5">
 
-                        {{ form_start(form, {'attr':{'class':'row g-3 needs-validation', 'novalidate': 'novalidate'}}) }}
+                        {{ form_start(form, {'attr':{'class':'row g-3 controle-form', 'novalidate': 'novalidate'}}) }}
                             <!-- Ligne 1 -->
                             <div class="row">
                                 <div class="col-md-6 mb-4">
@@ -117,5 +121,31 @@
             </div>
         </div>
     </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let form = document.querySelector("form");
+
+            form.addEventListener("submit", function (event) {
+                let requiredFields = form.querySelectorAll(".required-field");
+
+                requiredFields.forEach(function (field) {
+                    if (field.value.trim() === "") {
+                        event.preventDefault(); // Empêche la soumission du formulaire
+                        field.style.borderColor = "red"; // Définir la bordure du champ en rouge
+
+                        // Créer un élément de message d'erreur
+                        let errorMessage = document.createElement("div");
+                        errorMessage.className = "error-message";
+                        errorMessage.textContent = "Le champ est requis.";
+
+                        // Insérer le message d'erreur après le champ
+                        field.parentNode.appendChild(errorMessage);
+                    }
+                });
+            });
+        });
+
+    </script>
+
 
 {% endblock %}
