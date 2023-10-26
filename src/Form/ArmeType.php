@@ -57,14 +57,14 @@ class ArmeType extends AbstractType
             ->add('mains', IntegerType::class, [
                 'label' => "Mains (1, ou 2)",
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control positive-integer',
                     'placeholder' => 'Saisissez un nombre'
                 ],
             ])
             ->add('portee', IntegerType::class, [
                 'label' => "Portée (en mettre)",
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control positive-integer',
                     'placeholder' => 'Saisissez un nombre'
                 ],
             ])
@@ -78,7 +78,7 @@ class ArmeType extends AbstractType
             ->add('poids', NumberType::class, [
                 'label' => "Poids*",
                 'attr' => [
-                    'class' => 'form-control required-field',
+                    'class' => 'form-control required-field positive-float',
                     'placeholder' => 'Saisissez un nombre',
                     'required' => true,
                 ],
@@ -86,7 +86,7 @@ class ArmeType extends AbstractType
             ->add('prix', IntegerType::class, [
                 'label' => "Prix*",
                 'attr' => [
-                    'class' => 'form-control required-field',
+                    'class' => 'form-control required-field positive-integer',
                     'placeholder' => 'Saisissez un nombre',
                     'required' => true,
                 ],

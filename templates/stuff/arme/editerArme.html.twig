@@ -121,31 +121,5 @@
             </div>
         </div>
     </section>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            let form = document.querySelector("form");
-
-            form.addEventListener("submit", function (event) {
-                let requiredFields = form.querySelectorAll(".required-field");
-
-                requiredFields.forEach(function (field) {
-                    if (field.value.trim() === "") {
-                        event.preventDefault(); // Empêche la soumission du formulaire
-                        field.style.borderColor = "red"; // Définir la bordure du champ en rouge
-
-                        // Créer un élément de message d'erreur
-                        let errorMessage = document.createElement("div");
-                        errorMessage.className = "error-message";
-                        errorMessage.textContent = "Le champ est requis.";
-
-                        // Insérer le message d'erreur après le champ
-                        field.parentNode.appendChild(errorMessage);
-                    }
-                });
-            });
-        });
-
-    </script>
-
 
 {% endblock %}
