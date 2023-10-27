@@ -24,7 +24,7 @@ class Arme
     private ?int $mains = null;
 
     #[ORM\Column(name: "arm_portee", nullable: true)]
-    private ?int $portee = null;
+    private ?string $portee = null;
 
     #[ORM\Column(name: "arm_effet", length: 255, nullable: true)]
     private ?string $effet = null;
@@ -84,12 +84,12 @@ class Arme
         return $this;
     }
 
-    public function getPortee(): ?int
+    public function getPortee(): ?string
     {
         return $this->portee;
     }
 
-    public function setPortee(?int $portee): static
+    public function setPortee(?string $portee): static
     {
         $this->portee = $portee;
 

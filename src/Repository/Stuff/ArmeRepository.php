@@ -29,7 +29,8 @@ class ArmeRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('a')
             ->join('a.type', 'ta')
-            ->orderBy('ta.id', 'ASC')
+            ->orderBy('ta.libelle', 'ASC')
+            ->addOrderBy('a.nom', 'ASC') // Ajout du critère de tri par nom
             ->getQuery();
 
         $result = $qb->getResult();

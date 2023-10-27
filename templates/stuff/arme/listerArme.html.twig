@@ -35,7 +35,7 @@
             {{ form_start(form) }}
             <section class="admin_body_container " >
                 <div class="input-group">
-                    {{ form_widget(form.nom, {'attr': {'class': 'form-control', 'type': 'search', 'placeholder': 'Type query', 'aria-label': 'Search', 'id': 'search-input'}}) }}
+                    {{ form_widget(form.nom, {'attr': {'class': 'form-control', 'type': 'search', 'placeholder': 'Rechercher par nom...', 'aria-label': 'Search', 'id': 'search-input'}}) }}
                     <span class="input-group-text"><a class="btn-close" href="{{ path('app_stuff_arme') }}"></a></span>
                 </div>
             </section>
@@ -63,7 +63,7 @@
                             {{ libelle }}
                         </button>
                     </h2>
-                    <div id="{{ 'collapse_' ~ libelle }}" class="accordion-collapse collapse show">
+                    <div id="{{ 'collapse_' ~ libelle }}" class="accordion-collapse collapse hide">
                         <div class="accordion-body">
                             <table class="table table-dark">
                                 <thead>

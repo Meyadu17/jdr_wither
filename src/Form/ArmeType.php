@@ -42,7 +42,7 @@ class ArmeType extends AbstractType
                 'label' => "Nom*",
                 'attr' => [
                     'class' => 'form-control required-field',
-                    'placeholder' => 'Arc court',
+                    'placeholder' => 'ex : Arc court',
                     'required' => true,
                 ],
             ])
@@ -60,18 +60,18 @@ class ArmeType extends AbstractType
                     'placeholder' => 'Saisissez un nombre'
                 ],
             ])
-            ->add('portee', IntegerType::class, [
-                'label' => "Portée (en mettre)",
+            ->add('portee', TextType::class, [
+                'label' => "Portée",
                 'attr' => [
-                    'class' => 'form-control positive-integer',
-                    'placeholder' => 'Saisissez un nombre'
+                    'class' => 'form-control',
+                    'placeholder' => 'ex : Corps x 2m'
                 ],
             ])
             ->add('effet', TextType::class, [
                 'label' => "Effet(s)",
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'saignement',
+                    'placeholder' => 'ex : Saignement',
                 ],
             ])
             ->add('poids', NumberType::class, [
