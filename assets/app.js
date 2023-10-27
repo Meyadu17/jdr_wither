@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
 //#endregion ------------------- Accordion -------------------
 
 //#region ------------------- Contrôle form -------------------
+
 document.addEventListener("DOMContentLoaded", function () {
     let form = document.querySelector("form");
 
