@@ -40,7 +40,6 @@ class ArmeType extends AbstractType
             ])
             ->add('nom', TextType::class, [
                 'label' => "Nom*",
-
                 'attr' => [
                     'class' => 'form-control required-field',
                     'placeholder' => 'Arc court',
@@ -91,9 +90,6 @@ class ArmeType extends AbstractType
                     'required' => true,
                 ],
             ])
-
-
-
         ;
     }
 

@@ -2,12 +2,16 @@
 
 namespace App\Controller\Stuff;
 
+use App\Filter\TypeArmeFilter;
+use App\Form\SearchTypeArmeType;
+use App\Repository\Stuff\ArmeRepository;
 use App\Repository\Stuff\EquipementGeneralRepository;
 use App\Repository\Stuff\IngredientRepository;
 use App\Repository\Stuff\OutilRepository;
 use App\Repository\Stuff\TypeArmeRepository;
 use App\Repository\Stuff\TypeArmureRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -21,10 +25,24 @@ class StuffController extends AbstractController
     }
 
     #[Route('/armes', name: '_arme')]
-    public function armes(TypeArmeRepository $typeRepository): Response
+    public function armes(Request            $request,
+                          ArmeRepository     $armeRepository
+                          ): Response
     {
+
+        $form = $this->createForm(SearchTypeArmeType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $nom = $form->get('nom')->getData();
+            $armesGroupedByType = $armeRepository->findArmesFilteredByNom($nom);
+        } else {
+            $armesGroupedByType = $armeRepository->findArmesGroupedByType();
+        }
+
         return $this->render('stuff/arme/listerArme.html.twig', [
-            'typeArmes' =>$typeRepository->findAll(),
+            'armesGroupedByType' => $armesGroupedByType,
+            'form' => $form->createView(),
         ]);
     }
 
