@@ -8,7 +8,6 @@ use App\Repository\Stuff\ArmeRepository;
 use App\Repository\Stuff\EquipementGeneralRepository;
 use App\Repository\Stuff\IngredientRepository;
 use App\Repository\Stuff\OutilRepository;
-use App\Repository\Stuff\TypeArmeRepository;
 use App\Repository\Stuff\TypeArmureRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,12 +28,24 @@ class StuffController extends AbstractController
                           ArmeRepository     $armeRepository
                           ): Response
     {
-
         $form = $this->createForm(SearchTypeArmeType::class);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $nom = $form->get('nom')->getData();
+        $nom = $form->get('nom')->getData();
+
+        if ($request->isXmlHttpRequest()) {
+            // Si la requête est une requête AJAX
+            if ($nom) {
+                $armesGroupedByType = $armeRepository->findArmesFilteredByNom($nom);
+            } else {
+                $armesGroupedByType = $armeRepository->findArmesGroupedByType();
+            }
+
+            return $this->json($armesGroupedByType);
+        }
+
+        // Si ce n'est pas une requête AJAX, affichez la page normalement
+        if ($nom) {
             $armesGroupedByType = $armeRepository->findArmesFilteredByNom($nom);
         } else {
             $armesGroupedByType = $armeRepository->findArmesGroupedByType();
