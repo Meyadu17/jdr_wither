@@ -24,6 +24,7 @@ Encore
     .addEntry('variables', './assets/variables.js')
     .addEntry('filter', './assets/filter.js')
     .addEntry('accordion', './assets/accordion.js')
+    .addEntry('formControl', './assets/formControl.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
