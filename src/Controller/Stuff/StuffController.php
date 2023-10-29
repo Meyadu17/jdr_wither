@@ -20,6 +20,10 @@ class StuffController extends AbstractController
     #[Route('/', name: '_lister')]
     public function magasin(): Response
     {
+        $user = $this->getUser();
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
         return $this->render('stuff/magasin.html.twig');
     }
 
@@ -28,6 +32,10 @@ class StuffController extends AbstractController
                           ArmeRepository     $armeRepository
                           ): Response
     {
+        $user = $this->getUser();
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
         $form = $this->createForm(SearchTypeArmeType::class);
         $form->handleRequest($request);
 
@@ -60,6 +68,11 @@ class StuffController extends AbstractController
     #[Route('/armures', name: '_armure')]
     public function armures(TypeArmureRepository $typeArmureRepository): Response
     {
+        $user = $this->getUser();
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+        //TODO - Armures
         return $this->render('stuff/armure/listerArmure.html.twig', [
             'typeArmures' =>$typeArmureRepository->findAll(),
         ]);
@@ -68,6 +81,11 @@ class StuffController extends AbstractController
     #[Route('/equipement/general', name: '_equipement')]
     public function equipementGeneral(EquipementGeneralRepository $equipementGeneralRepository): Response
     {
+        $user = $this->getUser();
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+        //TODO - Equipements
         return $this->render('stuff/equipement_general/listerEquipementG.html.twig', [
             'equipements' =>$equipementGeneralRepository->findAll(),
         ]);
@@ -76,6 +94,11 @@ class StuffController extends AbstractController
     #[Route('/ingredients', name: '_ingredient')]
     public function alchimie(IngredientRepository $ingredientRepository): Response
     {
+        $user = $this->getUser();
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+        //TODO - Ingredients
         return $this->render('stuff/ingredient/listerIngredient.html.twig', [
             'ingredients' =>$ingredientRepository->findAll(),
         ]);
@@ -84,6 +107,10 @@ class StuffController extends AbstractController
     #[Route('/outils', name: '_outil')]
     public function outil(OutilRepository $outilRepository): Response
     {
+        $user = $this->getUser();
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
         //TODO - Outils
         return $this->render('stuff/outil/listerOutil.html.twig', [
             'outils' =>$outilRepository->findAll(),

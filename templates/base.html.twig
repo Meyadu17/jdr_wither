@@ -22,12 +22,16 @@
                 </div>
 
                 <a class="#" href="{{ path('app_stuff_lister') }}">Accueil</a>
+                {% if is_granted('ROLE_USER') %}
+                <a class="#" href="#">Fiches personnage</a>
                 <a class="#" href="{{ path('app_stuff_lister') }}">Magasin</a>
                 <a class="#" href="#">Compétences de combat</a>
+                <a class="#" href="#">Bestiaire</a>
 
+                {% if is_granted('ROLE_ADMIN') %}
                 <li class="nav-item dropdown menu">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Administration
+                        Magasin
                     </a>
                     <ul class="dropdown-menu menu">
                         <li><a class="dropdown-item menu" href="{{ path('app_stuff_arme') }}">Armes</a></li>
@@ -39,10 +43,17 @@
                         <li><a class="dropdown-item menu" href="#">A venir</a></li>
                     </ul>
                 </li>
+                {% endif %}
 
 
-                <a class="" href="#">Mon profil</a>
-                <a href="#">Se déconnecter</a>
+                {% endif %}
+
+                {% if app.user is null %}
+                    <a class="#" href="{{ path('app_login') }}">Connexion</a>
+                {% else %}
+                    <a class="#" href="{{ path('app_logout') }}">Déconnexion</a>
+                    <a class="#" href="#">Bonjour {{ app.user.pseudo }}</a>
+                {% endif %}
             </nav>
 
         </header>
