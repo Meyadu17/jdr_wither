@@ -21,7 +21,7 @@
                     <img class="logo" src="{{ asset('images/favicon.jpg') }}" alt="Logo" />
                 </div>
 
-                <a class="#" href="{{ path('app_stuff_lister') }}">Accueil</a>
+                <a class="#" href="{{ path('app_accueil') }}">Accueil</a>
                 {% if is_granted('ROLE_USER') %}
                 <a class="#" href="#">Fiches personnage</a>
                 <a class="#" href="{{ path('app_stuff_lister') }}">Magasin</a>
@@ -52,7 +52,7 @@
                     <a class="#" href="{{ path('app_login') }}">Connexion</a>
                 {% else %}
                     <a class="#" href="{{ path('app_logout') }}">Déconnexion</a>
-                    <a class="#" href="#">Bonjour {{ app.user.pseudo }}</a>
+                    <a class="#" href="{{ path('app_profil_consulter') }}">Bonjour {{ app.user.pseudo }}</a>
                 {% endif %}
             </nav>
 

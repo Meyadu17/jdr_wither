@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Profil{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('profile') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('profile') }}
+{% endblock %}
+
+{% block body %}
+
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <section>
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-lg-6 mb-4 mb-lg-0">
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4 gradient-custom text-center">
+
+                                {% if app.user.photo is not null %}
+                                    <img src="{{ asset('images/uploads/' ~ utilisateur.imageProfil) }}"
+                                         alt="Avatar" class="rounded-circle img-fluid img-profile my-5 img-profile" />
+                                {% else %}
+                                    <img src="{{ asset('images/photo_default.jpg') }}"
+                                         alt="Avatar" class="rounded-circle img-fluid img-profile my-5 img-profile" />
+                                {% endif %}
+
+                                <h5><a class="btn btn-outline-info" href="#">
+                                        Valider
+                                    </a></h5>
+                                <h5><a class="btn btn-outline-light" href="{{ path('app_profil_consulter') }}">
+                                        Retour
+                                    </a></h5>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body p-4">
+                                    <h6>Modifier profil</h6>
+                                    <hr class="mt-0 mb-4">
+                                    <div class="row pt-1">
+                                        <div class="col-6 mb-3">
+                                            <h6>Pseudo</h6>
+                                            <p>{{ app.user.pseudo }}</p>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <h6>Email</h6>
+                                            <p>{{ app.user.email }}</p>
+                                        </div>
+                                    </div>
+                                    <h6>Modifier mot de passe</h6>
+                                    <hr class="mt-0 mb-4">
+                                    <div class="row pt-1">
+                                        <div class="col-6 mb-3">
+                                            <h6>Mot de passe</h6>
+                                            <p>*****</p>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <h6>Confirmer mot de passe</h6>
+                                            <p>*****</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

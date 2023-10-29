@@ -60,7 +60,7 @@ class LoginController extends AbstractController
                 )
             );
 
-            //Upload de l'image
+            //Upload de la photo
             if($form->get('photo')->getData()) {
                 $newFilename = $uploadService->upload($form->get('photo')->getData(),
                                                       $this->getParameter('photo_directory'));
