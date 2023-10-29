@@ -29,7 +29,7 @@
                             <div class="col-md-4 gradient-custom text-center">
 
                                 {% if app.user.photo is not null %}
-                                    <img src="{{ asset('images/uploads/' ~ utilisateur.imageProfil) }}"
+                                    <img src="{{ asset('images/uploads/' ~ app.user.photo) }}"
                                          alt="Avatar" class="rounded-circle img-fluid img-profile my-5 img-profile" />
                                 {% else %}
                                     <img src="{{ asset('images/photo_default.jpg') }}"

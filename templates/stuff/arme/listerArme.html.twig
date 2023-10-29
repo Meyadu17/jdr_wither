@@ -27,9 +27,11 @@
 
             <!--bouton-->
             <section class="admin_body_container" >
+                {% if is_granted('ROLE_ADMIN') %}
                 <a class="btn btn-outline-info" href="{{ path('app_admin_arme_ajouter') }}">
                     Mettre une arme en vente
                 </a>
+                {% endif %}
                 <a class="btn btn-outline-light" href="{{ path('app_stuff_lister') }}">Retour</a>
             </section>
             <br>

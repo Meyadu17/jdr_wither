@@ -28,24 +28,6 @@
                 <a class="#" href="#">Compétences de combat</a>
                 <a class="#" href="#">Bestiaire</a>
 
-                {% if is_granted('ROLE_ADMIN') %}
-                <li class="nav-item dropdown menu">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Magasin
-                    </a>
-                    <ul class="dropdown-menu menu">
-                        <li><a class="dropdown-item menu" href="{{ path('app_stuff_arme') }}">Armes</a></li>
-                        <li><a class="dropdown-item menu" href="{{ path('app_stuff_armure') }}">Armures</a></li>
-                        <li><a class="dropdown-item menu" href="{{ path('app_stuff_equipement') }}">Équipement général</a></li>
-                        <li><a class="dropdown-item menu" href="{{ path('app_stuff_ingredient') }}">Ingrédients & Alchimie</a></li>
-                        <li><a class="dropdown-item menu" href="{{ path('app_stuff_outil') }}">Outils</a></li>
-                        <li><hr></li>
-                        <li><a class="dropdown-item menu" href="#">A venir</a></li>
-                    </ul>
-                </li>
-                {% endif %}
-
-
                 {% endif %}
 
                 {% if app.user is null %}
