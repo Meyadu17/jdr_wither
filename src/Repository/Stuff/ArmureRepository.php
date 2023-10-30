@@ -11,7 +11,7 @@ use Doctrine\Persistence\ManagerRegistry;
  *
  * @method Armure|null find($id, $lockMode = null, $lockVersion = null)
  * @method Armure|null findOneBy(array $criteria, array $orderBy = null)
- * @method \App\Entity\Stuff\Armure[]    findAll()
+ * @method Armure[]    findAll()
  * @method Armure[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class ArmureRepository extends ServiceEntityRepository

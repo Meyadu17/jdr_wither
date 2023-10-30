@@ -2,12 +2,12 @@
 
 namespace App\Form;
 
-use App\Entity\Stuff\TypeArmure;
+use App\Entity\Stuff\EmplacementArmure;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class TypeArmureType extends AbstractType
+class EmplacementArmureType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -19,7 +19,7 @@ class TypeArmureType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => TypeArmure::class,
+            'data_class' => EmplacementArmure::class,
         ]);
     }
 }

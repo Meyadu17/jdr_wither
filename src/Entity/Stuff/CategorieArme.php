@@ -2,21 +2,21 @@
 
 namespace App\Entity\Stuff;
 
-use App\Repository\Stuff\TypeArmeRepository;
+use App\Repository\Stuff\CategorieArmeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: TypeArmeRepository::class)]
-#[ORM\Table(name: "type_arme_typ")]
-class TypeArme
+#[ORM\Entity(repositoryClass: CategorieArmeRepository::class)]
+#[ORM\Table(name: "categorie_arme_car")]
+class CategorieArme
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(name: "typ_id")]
+    #[ORM\Column(name: "car_id")]
     private ?int $id = null;
 
-    #[ORM\Column(name: "typ_libelle", length: 255)]
+    #[ORM\Column(name: "car_libelle", length: 255)]
     private ?string $libelle = null;
 
     #[ORM\OneToMany(mappedBy: 'type', targetEntity: Arme::class)]

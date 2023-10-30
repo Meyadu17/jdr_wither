@@ -28,8 +28,8 @@ class ArmeRepository extends ServiceEntityRepository
     public function findArmesGroupedByType()
     {
         $qb = $this->createQueryBuilder('a')
-            ->join('a.type', 'ta')
-            ->orderBy('ta.libelle', 'ASC')
+            ->join('a.categorieArme', 'c')
+            ->orderBy('c.libelle', 'ASC')
             ->addOrderBy('a.nom', 'ASC') // Ajout du critère de tri par nom
             ->getQuery();
 
@@ -37,7 +37,7 @@ class ArmeRepository extends ServiceEntityRepository
 
         $armesGroupedByType = [];
         foreach ($result as $arme) {
-            $type = $arme->getTypeArme();
+            $type = $arme->getCategorieArme();
             $armesGroupedByType[$type->getLibelle()][] = $arme;
         }
 

@@ -2,27 +2,27 @@
 
 namespace App\Repository\Stuff;
 
-use App\Entity\Stuff\EquipementGeneral;
+use App\Entity\Stuff\EncombrementArmure;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<\App\Entity\Stuff\EquipementGeneral>
+ * @extends ServiceEntityRepository<EncombrementArmure>
  *
- * @method EquipementGeneral|null find($id, $lockMode = null, $lockVersion = null)
- * @method EquipementGeneral|null findOneBy(array $criteria, array $orderBy = null)
- * @method EquipementGeneral[]    findAll()
- * @method EquipementGeneral[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method EncombrementArmure|null find($id, $lockMode = null, $lockVersion = null)
+ * @method EncombrementArmure|null findOneBy(array $criteria, array $orderBy = null)
+ * @method EncombrementArmure[]    findAll()
+ * @method EncombrementArmure[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class EquipementGeneralRepository extends ServiceEntityRepository
+class EncombrementArmureRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, EquipementGeneral::class);
+        parent::__construct($registry, EncombrementArmure::class);
     }
 
 //    /**
-//     * @return EquipementGeneral[] Returns an array of EquipementGeneral objects
+//     * @return EncombrementArmure[] Returns an array of EncombrementArmure objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -36,7 +36,7 @@ class EquipementGeneralRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?EquipementGeneral
+//    public function findOneBySomeField($value): ?EncombrementArmure
 //    {
 //        return $this->createQueryBuilder('e')
 //            ->andWhere('e.exampleField = :val')

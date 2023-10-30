@@ -3,8 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Stuff\Arme;
+use App\Entity\Stuff\CategorieArme;
 use App\Entity\Stuff\Taille;
-use App\Entity\Stuff\TypeArme;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -18,10 +18,10 @@ class ArmeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('typeArme', EntityType::class, [
-                'class' => TypeArme::class,
+            ->add('categorieArme', EntityType::class, [
+                'class' => CategorieArme::class,
                 'choice_label' => 'libelle',
-                'label' => "Type d'arme*",
+                'label' => "Catégorie*",
                 'required' => true,
                 'placeholder' => 'Choisir le type de l\'arme',
                 'attr' => [

@@ -2,13 +2,12 @@
 
 namespace App\Controller\Stuff;
 
-use App\Filter\TypeArmeFilter;
 use App\Form\SearchTypeArmeType;
 use App\Repository\Stuff\ArmeRepository;
 use App\Repository\Stuff\EquipementGeneralRepository;
 use App\Repository\Stuff\IngredientRepository;
 use App\Repository\Stuff\OutilRepository;
-use App\Repository\Stuff\TypeArmureRepository;
+use App\Repository\Stuff\EmplacementArmureRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -41,23 +40,18 @@ class StuffController extends AbstractController
 
         $nom = $form->get('nom')->getData();
 
-        if ($request->isXmlHttpRequest()) {
-            // Si la requête est une requête AJAX
-            if ($nom) {
-                $armesGroupedByType = $armeRepository->findArmesFilteredByNom($nom);
-            } else {
-                $armesGroupedByType = $armeRepository->findArmesGroupedByType();
-            }
-
-            return $this->json($armesGroupedByType);
-        }
-
-        // Si ce n'est pas une requête AJAX, affichez la page normalement
         if ($nom) {
             $armesGroupedByType = $armeRepository->findArmesFilteredByNom($nom);
         } else {
             $armesGroupedByType = $armeRepository->findArmesGroupedByType();
         }
+        if ($request->isXmlHttpRequest()) {
+            // Si la requête est une requête AJAX
+
+            return $this->json($armesGroupedByType);
+        }
+
+        // Si ce n'est pas une requête AJAX, affichez la page normalement
 
         return $this->render('stuff/arme/listerArme.html.twig', [
             'armesGroupedByType' => $armesGroupedByType,
@@ -66,7 +60,7 @@ class StuffController extends AbstractController
     }
 
     #[Route('/armures', name: '_armure')]
-    public function armures(TypeArmureRepository $typeArmureRepository): Response
+    public function armures(EmplacementArmureRepository $typeArmureRepository): Response
     {
         $user = $this->getUser();
         if (!$user) {

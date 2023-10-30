@@ -2,12 +2,12 @@
 
 namespace App\Form;
 
-use App\Entity\Stuff\TypeArme;
+use App\Entity\Stuff\CategorieArme;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class TypeArmeType extends AbstractType
+class CategorieArmeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -19,7 +19,7 @@ class TypeArmeType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => TypeArme::class,
+            'data_class' => CategorieArme::class,
         ]);
     }
 }

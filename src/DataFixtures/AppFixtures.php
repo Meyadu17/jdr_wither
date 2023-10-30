@@ -5,16 +5,43 @@ namespace App\DataFixtures;
 use App\Entity\CompetenceCombat\Element;
 use App\Entity\CompetenceCombat\NiveauSort;
 use App\Entity\CompetenceCombat\TypeDon;
+use App\Entity\Stuff\CategorieArme;
+use App\Entity\Stuff\EmplacementArmure;
+use App\Entity\Stuff\EncombrementArmure;
 use App\Entity\Stuff\Taille;
-use App\Entity\Stuff\TypeArme;
-use App\Entity\Stuff\TypeArmure;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
+    private UserPasswordHasherInterface $hasher;
+
+    public function __construct(UserPasswordHasherInterface $hasher)
+    {
+        $this->hasher = $hasher;
+    }
     public function load(ObjectManager $manager): void
     {
+        //#region -------------------------- USER --------------------------
+        $user1 = new User();
+        $user1->setPseudo('Meya');
+        $user1->setEmail('admin@admin.fr');
+        $password1 = $this->hasher->hashPassword($user1, 'Pa$$w0rd');
+        $user1->setPassword($password1);
+        $user1->setRoles(["ROLE_ADMIN"]);
+        $user1->setPhoto('photoProfil.jpg');
+        $manager->persist($user1);
+
+        $user2 = new User();
+        $user2->setPseudo('Woogeek');
+        $user2->setEmail('woogeek@gmail.com');
+        $password2 = $this->hasher->hashPassword($user2, 'Pa$$w0rd');
+        $user2->setPassword($password2);
+        $manager->persist($user2);
+        //#endregion -------------------------- USER --------------------------
+
         //#region -------------------------- COMPETENCE DE GUERRE --------------------------
         //#region -------------------------- TYPE DE DON --------------------------
         $typeDon1 = new TypeDon();
@@ -86,67 +113,79 @@ class AppFixtures extends Fixture
         $manager->persist($taille4);
         //#endregion -------------------------- TAILLE --------------------------
 
-        //#region -------------------------- TYPE D'ARME --------------------------
-        $typeArme5 = new TypeArme();
-        $typeArme5->setLibelle('Épée');
+        //#region -------------------------- CATEGORIE D'ARME --------------------------
+        $typeArme5 = new CategorieArme();
+        $typeArme5->setLibelle('Épées');
         $manager->persist($typeArme5);
 
-        $typeArme6 = new TypeArme();
-        $typeArme6->setLibelle('Lame courte');
+        $typeArme6 = new CategorieArme();
+        $typeArme6->setLibelle('Lames courte');
         $manager->persist($typeArme6);
 
-        $typeArme7 = new TypeArme();
-        $typeArme7->setLibelle('Hache');
+        $typeArme7 = new CategorieArme();
+        $typeArme7->setLibelle('Haches');
         $manager->persist($typeArme7);
 
-        $typeArme8 = new TypeArme();
-        $typeArme8->setLibelle('Arme contondante');
+        $typeArme8 = new CategorieArme();
+        $typeArme8->setLibelle('Armes contondante');
         $manager->persist($typeArme8);
 
-        $typeArme9 = new TypeArme();
-        $typeArme9->setLibelle('Arme d\'hast');
+        $typeArme9 = new CategorieArme();
+        $typeArme9->setLibelle('Armes d\'hast');
         $manager->persist($typeArme9);
 
-        $typeArme10 = new TypeArme();
-        $typeArme10->setLibelle('Bâton');
+        $typeArme10 = new CategorieArme();
+        $typeArme10->setLibelle('Bâtons');
         $manager->persist($typeArme10);
 
-        $typeArme11 = new TypeArme();
-        $typeArme11->setLibelle('Arme de jet');
+        $typeArme11 = new CategorieArme();
+        $typeArme11->setLibelle('Armes de jet');
         $manager->persist($typeArme11);
 
-        $typeArme12 = new TypeArme();
-        $typeArme12->setLibelle('Arc');
+        $typeArme12 = new CategorieArme();
+        $typeArme12->setLibelle('Arcs');
         $manager->persist($typeArme12);
 
-        $typeArme13 = new TypeArme();
-        $typeArme13->setLibelle('Arbalète');
+        $typeArme13 = new CategorieArme();
+        $typeArme13->setLibelle('Arbalètes');
         $manager->persist($typeArme13);
 
-        $typeArme14 = new TypeArme();
-        $typeArme14->setLibelle('Projectile');
+        $typeArme14 = new CategorieArme();
+        $typeArme14->setLibelle('Projectiles');
         $manager->persist($typeArme14);
-        //#endregion -------------------------- TYPE D'ARME --------------------------
+        //#endregion -------------------------- CATEGORIE D'ARME --------------------------
 
-        //#region -------------------------- TYPE D'ARMURE --------------------------
-        $typeArmure1 = new TypeArmure();
-        $typeArmure1->setLibelle('Tête');
-        $manager->persist($typeArmure1);
+        //#region -------------------------- EMPLACEMENT D'ARMURE --------------------------
+        $emplacementArmure1 = new EmplacementArmure();
+        $emplacementArmure1->setLibelle('Tête');
+        $manager->persist($emplacementArmure1);
 
-        $typeArmure2 = new TypeArmure();
-        $typeArmure2->setLibelle('Torse');
-        $manager->persist($typeArmure2);
+        $emplacementArmure2 = new EmplacementArmure();
+        $emplacementArmure2->setLibelle('Torse');
+        $manager->persist($emplacementArmure2);
 
-        $typeArmure2 = new TypeArmure();
-        $typeArmure2->setLibelle('Jambe');
-        $manager->persist($typeArmure2);
+        $emplacementArmure3 = new EmplacementArmure();
+        $emplacementArmure3->setLibelle('Jambe');
+        $manager->persist($emplacementArmure3);
 
-        $typeArmure2 = new TypeArmure();
-        $typeArmure2->setLibelle('Bouclier');
-        $manager->persist($typeArmure2);
-        //#endregion -------------------------- TYPE D'ARMURE --------------------------
+        $emplacementArmure4 = new EmplacementArmure();
+        $emplacementArmure4->setLibelle('Bouclier');
+        $manager->persist($emplacementArmure4);
+        //#endregion -------------------------- EMPLACEMENT D'ARMURE --------------------------
+        //#region -------------------------- ENCOMBREMENT D'ARMURE --------------------------
+        $encombrementArmunre1 = new EncombrementArmure();
+        $encombrementArmunre1->setLibelle('Armures légères');
+        $manager->persist($encombrementArmunre1);
 
+        $encombrementArmunre2 = new EncombrementArmure();
+        $encombrementArmunre2->setLibelle('Armures intermédiaires');
+        $manager->persist($encombrementArmunre2);
 
+        $encombrementArmunre3 = new EncombrementArmure();
+        $encombrementArmunre3->setLibelle('Armures lourdes');
+        $manager->persist($encombrementArmunre3);
+
+        //#endregion -------------------------- ENCOMBREMENT D'ARMUREE --------------------------
         //#endregion -------------------------- STUFF --------------------------
 
         $manager->flush();

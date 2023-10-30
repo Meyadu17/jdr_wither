@@ -11,7 +11,7 @@ use Doctrine\Persistence\ManagerRegistry;
  *
  * @method Taille|null find($id, $lockMode = null, $lockVersion = null)
  * @method Taille|null findOneBy(array $criteria, array $orderBy = null)
- * @method \App\Entity\Stuff\Taille[]    findAll()
+ * @method Taille[]    findAll()
  * @method Taille[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class TailleRepository extends ServiceEntityRepository

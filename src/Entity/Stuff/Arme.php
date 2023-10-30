@@ -35,9 +35,9 @@ class Arme
     #[ORM\Column(name: "arm_prix", nullable: false)]
     private ?int $prix = null;
 
-    #[ORM\ManyToOne(targetEntity: TypeArme::class, inversedBy: 'armes')]
-    #[ORM\JoinColumn(name: "arm_fk_typ_id", referencedColumnName: "typ_id", nullable: false)]
-    private ?TypeArme $type = null;
+    #[ORM\ManyToOne(targetEntity: CategorieArme::class, inversedBy: 'armes')]
+    #[ORM\JoinColumn(name: "arm_fk_car_id", referencedColumnName: "car_id", nullable: false)]
+    private ?CategorieArme $categorieArme = null;
 
     #[ORM\ManyToOne(inversedBy: 'armes')]
     #[ORM\JoinColumn(name: "arm_fk_tai_id", referencedColumnName: "tai_id", nullable: false)]
@@ -132,14 +132,14 @@ class Arme
         return $this;
     }
 
-    public function getTypeArme(): ?TypeArme
+    public function getCategorieArme(): ?CategorieArme
     {
-        return $this->type;
+        return $this->categorieArme;
     }
 
-    public function setTypeArme(?TypeArme $type): static
+    public function setCategorieArme(?CategorieArme $categorieArme): static
     {
-        $this->type = $type;
+        $this->categorieArme = $categorieArme;
 
         return $this;
     }

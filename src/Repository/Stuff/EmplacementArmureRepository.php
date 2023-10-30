@@ -2,23 +2,23 @@
 
 namespace App\Repository\Stuff;
 
-use App\Entity\Stuff\TypeArmure;
+use App\Entity\Stuff\EmplacementArmure;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<TypeArmure>
+ * @extends ServiceEntityRepository<EmplacementArmure>
  *
- * @method TypeArmure|null find($id, $lockMode = null, $lockVersion = null)
- * @method TypeArmure|null findOneBy(array $criteria, array $orderBy = null)
- * @method TypeArmure[]    findAll()
- * @method TypeArmure[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method EmplacementArmure|null find($id, $lockMode = null, $lockVersion = null)
+ * @method EmplacementArmure|null findOneBy(array $criteria, array $orderBy = null)
+ * @method EmplacementArmure[]    findAll()
+ * @method EmplacementArmure[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class TypeArmureRepository extends ServiceEntityRepository
+class EmplacementArmureRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, TypeArmure::class);
+        parent::__construct($registry, EmplacementArmure::class);
     }
 
 //    /**

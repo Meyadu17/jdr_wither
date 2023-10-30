@@ -11,7 +11,7 @@ use Doctrine\Persistence\ManagerRegistry;
  *
  * @method Outil|null find($id, $lockMode = null, $lockVersion = null)
  * @method Outil|null findOneBy(array $criteria, array $orderBy = null)
- * @method \App\Entity\Stuff\Outil[]    findAll()
+ * @method Outil[]    findAll()
  * @method Outil[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class OutilRepository extends ServiceEntityRepository

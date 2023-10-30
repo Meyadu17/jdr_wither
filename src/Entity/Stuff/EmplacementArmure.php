@@ -2,14 +2,14 @@
 
 namespace App\Entity\Stuff;
 
-use App\Repository\Stuff\TypeArmureRepository;
+use App\Repository\Stuff\EmplacementArmureRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: TypeArmureRepository::class)]
-#[ORM\Table(name: "type_armure_tar")]
-class TypeArmure
+#[ORM\Entity(repositoryClass: EmplacementArmureRepository::class)]
+#[ORM\Table(name: "emplacement_armure_ear")]
+class EmplacementArmure
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

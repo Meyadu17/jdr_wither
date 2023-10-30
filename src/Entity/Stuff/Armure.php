@@ -32,9 +32,13 @@ class Armure
     #[ORM\Column(name: "apr_prix", length: 255)]
     private ?int $prix = null;
 
-    #[ORM\ManyToOne(targetEntity: TypeArmure::class, inversedBy: 'armures')]
+    #[ORM\ManyToOne(targetEntity: EmplacementArmure::class, inversedBy: 'armures')]
     #[ORM\JoinColumn(name: "apr_fk_tar_id", referencedColumnName: "tar_id", nullable: false)]
-    private ?TypeArmure $typeArmure = null;
+    private ?EmplacementArmure $emplacementArmure = null;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(name: "apr_fk_ear_id", referencedColumnName: "ear_id",nullable: false)]
+    private ?EncombrementArmure $encombrementArmure = null;
 
     public function getId(): ?int
     {
@@ -113,14 +117,26 @@ class Armure
         return $this;
     }
 
-    public function getTypeArmure(): ?TypeArmure
+    public function getEmplacementArmure(): ?EmplacementArmure
     {
-        return $this->typeArmure;
+        return $this->emplacementArmure;
     }
 
-    public function setTypeArmure(?TypeArmure $typeArmure): static
+    public function setEmplacementArmure(?EmplacementArmure $emplacementArmure): static
     {
-        $this->typeArmure = $typeArmure;
+        $this->emplacementArmure = $emplacementArmure;
+
+        return $this;
+    }
+
+    public function getEncombrementArmure(): ?EncombrementArmure
+    {
+        return $this->encombrementArmure;
+    }
+
+    public function setEncombrementArmure(?EncombrementArmure $encombrementArmure): static
+    {
+        $this->encombrementArmure = $encombrementArmure;
 
         return $this;
     }
