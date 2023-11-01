@@ -2,8 +2,10 @@
 
 namespace App\Controller\Stuff;
 
-use App\Form\SearchTypeArmeType;
+use App\Form\SearchArmeType;
+use App\Form\SearchArmureType;
 use App\Repository\Stuff\ArmeRepository;
+use App\Repository\Stuff\ArmureRepository;
 use App\Repository\Stuff\EquipementGeneralRepository;
 use App\Repository\Stuff\IngredientRepository;
 use App\Repository\Stuff\OutilRepository;
@@ -35,7 +37,8 @@ class StuffController extends AbstractController
         if (!$user) {
             return $this->redirectToRoute('app_login');
         }
-        $form = $this->createForm(SearchTypeArmeType::class);
+
+        $form = $this->createForm(SearchArmeType::class);
         $form->handleRequest($request);
 
         $nom = $form->get('nom')->getData();
@@ -60,15 +63,35 @@ class StuffController extends AbstractController
     }
 
     #[Route('/armures', name: '_armure')]
-    public function armures(EmplacementArmureRepository $typeArmureRepository): Response
+    public function armures(Request            $request,
+                            ArmureRepository   $armureRepository,
+                            ): Response
     {
         $user = $this->getUser();
         if (!$user) {
             return $this->redirectToRoute('app_login');
         }
-        //TODO - Armures
+
+        $form = $this->createForm(SearchArmureType::class);
+        $form->handleRequest($request);
+
+        $nom = $form->get('nom')->getData();
+
+        if ($nom) {
+            $armuresGroupedByType = $armureRepository->findArmuresFilteredByNom($nom);
+        } else {
+            $armuresGroupedByType = $armureRepository->findArmuresGroupedByType();
+        }
+        if ($request->isXmlHttpRequest()) {
+            // Si la requête est une requête AJAX
+
+            return $this->json($armuresGroupedByType);
+        }
+
+        // Si ce n'est pas une requête AJAX, affichez la page normalement
         return $this->render('stuff/armure/listerArmure.html.twig', [
-            'typeArmures' =>$typeArmureRepository->findAll(),
+            'armuresGroupedByType' => $armuresGroupedByType,
+            'form' => $form->createView(),
         ]);
     }
 

@@ -43,7 +43,7 @@ class ArmureController extends AbstractController
             'success',
             self::MESSAGE . ' à bien été édité !'
         );
-            return $this->redirectToRoute('app_admin_armure_lister');
+            return $this->redirectToRoute('app_stuff_armure');
         }
 
         return $this->render('stuff/armure/editerArmure.html.twig', [

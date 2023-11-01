@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Armes{% endblock %}
+{% block title %}Armures{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
+    {{ encore_entry_link_tags('formControl') }}
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
+    {{ encore_entry_script_tags('formControl') }}
 {% endblock %}
 
 {% block body %}
@@ -18,64 +20,93 @@
         </div>
     {% endfor %}
 
+    <section class=" text-center text-lg-start">
 
-    <section class="admin_body_container">
+        <h1>Nouvelle protection</h1>
+        <div class="card mb-3">
+            <div class="row g-0 d-flex align-items-center fond-image">
 
-        {{ form_start(form, {'attr':{'class':'row g-3 needs-validation', 'novalidate': 'novalidate'}}) }}
+                <div class="col-lg-4 d-none d-lg-flex">
+                    <img src="{{ asset('images/armures.jpg') }}" alt="Trendy Pants and Shoes"
+                         class="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5" />
+                </div>
+                <div class="col-lg-8">
+                    <div class="card-body py-5 px-md-5">
 
-        <div class="col-md-4">
-            {{ form_row(form.nom) }}
-            <div class="invalid-feedback">
-                Champs requis.
+                        {{ form_start(form, {'attr':{'class':'row g-3 controle-form', 'novalidate': 'novalidate'}}) }}
+                        <!-- Ligne 1 -->
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    {{ form_widget(form.emplacementArmure) }}
+                                    <label for="{{ form.emplacementArmure.vars.id }}" class="form-label">{{ form.emplacementArmure.vars.label }}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    {{ form_widget(form.encombrementArmure) }}
+                                    <label for="{{ form.encombrementArmure.vars.id }}" class="form-label">{{ form.encombrementArmure.vars.label }}</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ligne 2 -->
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    {{ form_widget(form.nom) }}
+                                    {{ form_label(form.nom) }}
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    {{ form_widget(form.protection) }}
+                                    {{ form_label(form.protection) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ligne 3 -->
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    {{ form_widget(form.effet) }}
+                                    {{ form_label(form.effet) }}
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    {{ form_widget(form.poids) }}
+                                    {{ form_label(form.poids) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ligne 3 -->
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    {{ form_widget(form.prix) }}
+                                    {{ form_label(form.prix) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Submit button -->
+                        <div class="col-md-6 mb-4">
+                            {% if app.request.get('_route') == "app_admin_armure_ajouter" %}
+                                <button class="btn btn-outline-info" type="submit">Ajouter</button>
+                                <button class="btn btn-outline-info" type="submit" name="create_and_new">Valider et créer de nouveau</button>
+                            {% else %}
+                                <button class="btn btn-outline-info" type="submit">Modifier</button>
+                            {% endif %}
+                            <a href="{{ path('app_stuff_armure') }}" class="btn btn-outline-light">Retour</a>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="col-md-4">
-            {{ form_row(form.protection) }}
-            <div class="invalid-feedback">
-                Champs requis.
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            {{ form_row(form.effet) }}
-            <div class="invalid-feedback">
-                Champs requis. si null mettre "-"
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            {{ form_row(form.encombrement) }}
-            <div class="invalid-feedback">
-                Champs requis.
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            {{ form_row(form.poids) }}
-            <div class="invalid-feedback">
-                Champs requis.
-            </div>
-        </div>
-
-
-        <div class="col-md-4">
-            {{ form_row(form.prix) }}
-            <div class="invalid-feedback">
-                Champs requis.
-            </div>
-        </div>
-
-        <div class="col-12">
-            {% if app.request.get('_route') == "app_admin_armure_ajouter" %}
-                <button class="btn btn-outline-info" type="submit">Ajouter</button>
-            {% else %}
-                <button class="btn btn-outline-info" type="submit">Modifier</button>
-            {% endif %}
-            <a href="{{ path('app_stuff_armure') }}" class="btn btn-outline-light">Retour</a>
-
-        </div>
-
-        {{ form_end(form) }}
     </section>
+
 {% endblock %}

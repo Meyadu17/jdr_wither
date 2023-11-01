@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20231030201818 extends AbstractMigration
+final class Version20231101153407 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -21,11 +21,11 @@ final class Version20231030201818 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TABLE arme_arm (arm_id INT AUTO_INCREMENT NOT NULL, arm_fk_car_id INT NOT NULL, arm_fk_tai_id INT NOT NULL, arm_nom VARCHAR(255) NOT NULL, arm_degat VARCHAR(255) DEFAULT NULL, arm_mains INT DEFAULT NULL, arm_portee VARCHAR(255) DEFAULT NULL, arm_effet VARCHAR(255) DEFAULT NULL, arm_poids DOUBLE PRECISION NOT NULL, arm_prix INT NOT NULL, INDEX IDX_135DE285C25ED669 (arm_fk_car_id), INDEX IDX_135DE2855B9534D4 (arm_fk_tai_id), PRIMARY KEY(arm_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE armure_apr (apr_id INT AUTO_INCREMENT NOT NULL, apr_fk_tar_id INT NOT NULL, apr_fk_ear_id INT NOT NULL, apr_nom VARCHAR(255) NOT NULL, apr_protection INT NOT NULL, apr_effet VARCHAR(255) NOT NULL, apr_encombrement INT NOT NULL, apr_poids DOUBLE PRECISION NOT NULL, apr_prix INT NOT NULL, INDEX IDX_AA33257FDB84AD8 (apr_fk_tar_id), INDEX IDX_AA33257FC5329BE6 (apr_fk_ear_id), PRIMARY KEY(apr_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE armure_apr (apr_id INT AUTO_INCREMENT NOT NULL, apr_fk_tar_id INT NOT NULL, apr_fk_ear_id INT NOT NULL, apr_nom VARCHAR(255) NOT NULL, apr_protection INT DEFAULT NULL, apr_effet VARCHAR(255) DEFAULT NULL, apr_poids DOUBLE PRECISION NOT NULL, apr_prix INT NOT NULL, INDEX IDX_AA33257FDB84AD8 (apr_fk_tar_id), INDEX IDX_AA33257FC5329BE6 (apr_fk_ear_id), PRIMARY KEY(apr_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE categorie_arme_car (car_id INT AUTO_INCREMENT NOT NULL, car_libelle VARCHAR(255) NOT NULL, PRIMARY KEY(car_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE don_don (don_id INT AUTO_INCREMENT NOT NULL, don_fk_tdo_id INT DEFAULT NULL, don_nom VARCHAR(255) NOT NULL, don_pres_requis VARCHAR(255) DEFAULT NULL, don_initiative INT DEFAULT NULL, don_effet VARCHAR(255) NOT NULL, INDEX IDX_A9EA8414A064DD78 (don_fk_tdo_id), PRIMARY KEY(don_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE element_ele (ele_id INT AUTO_INCREMENT NOT NULL, ele_libelle VARCHAR(255) NOT NULL, PRIMARY KEY(ele_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE emplacement_armure_ear (tar_id INT AUTO_INCREMENT NOT NULL, tar_libelle VARCHAR(255) NOT NULL, PRIMARY KEY(tar_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE emplacement_armure_tar (tar_id INT AUTO_INCREMENT NOT NULL, tar_libelle VARCHAR(255) NOT NULL, PRIMARY KEY(tar_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE encombrement_armure_ear (ear_id INT AUTO_INCREMENT NOT NULL, ear_libelle VARCHAR(255) NOT NULL, PRIMARY KEY(ear_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE equipement_general_eqg (eqg_id INT AUTO_INCREMENT NOT NULL, eqg_nom VARCHAR(255) NOT NULL, eqg_poids DOUBLE PRECISION NOT NULL, eqg_prix INT NOT NULL, PRIMARY KEY(eqg_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE ingredient_ing (id INT AUTO_INCREMENT NOT NULL, ing_nom VARCHAR(255) NOT NULL, ing_description VARCHAR(255) NOT NULL, ing_effet VARCHAR(255) NOT NULL, ing_prix INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
@@ -39,7 +39,7 @@ final class Version20231030201818 extends AbstractMigration
         $this->addSql('CREATE TABLE messenger_messages (id BIGINT AUTO_INCREMENT NOT NULL, body LONGTEXT NOT NULL, headers LONGTEXT NOT NULL, queue_name VARCHAR(190) NOT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', available_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', delivered_at DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', INDEX IDX_75EA56E0FB7336F0 (queue_name), INDEX IDX_75EA56E0E3BD61CE (available_at), INDEX IDX_75EA56E016BA31DB (delivered_at), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE arme_arm ADD CONSTRAINT FK_135DE285C25ED669 FOREIGN KEY (arm_fk_car_id) REFERENCES categorie_arme_car (car_id)');
         $this->addSql('ALTER TABLE arme_arm ADD CONSTRAINT FK_135DE2855B9534D4 FOREIGN KEY (arm_fk_tai_id) REFERENCES taille_tai (tai_id)');
-        $this->addSql('ALTER TABLE armure_apr ADD CONSTRAINT FK_AA33257FDB84AD8 FOREIGN KEY (apr_fk_tar_id) REFERENCES emplacement_armure_ear (tar_id)');
+        $this->addSql('ALTER TABLE armure_apr ADD CONSTRAINT FK_AA33257FDB84AD8 FOREIGN KEY (apr_fk_tar_id) REFERENCES emplacement_armure_tar (tar_id)');
         $this->addSql('ALTER TABLE armure_apr ADD CONSTRAINT FK_AA33257FC5329BE6 FOREIGN KEY (apr_fk_ear_id) REFERENCES encombrement_armure_ear (ear_id)');
         $this->addSql('ALTER TABLE don_don ADD CONSTRAINT FK_A9EA8414A064DD78 FOREIGN KEY (don_fk_tdo_id) REFERENCES type_don_tdo (tdo_id)');
         $this->addSql('ALTER TABLE outil_out ADD CONSTRAINT FK_3FB85EB66C9F6D8 FOREIGN KEY (out_id_tai_id) REFERENCES taille_tai (tai_id)');
@@ -65,7 +65,7 @@ final class Version20231030201818 extends AbstractMigration
         $this->addSql('DROP TABLE categorie_arme_car');
         $this->addSql('DROP TABLE don_don');
         $this->addSql('DROP TABLE element_ele');
-        $this->addSql('DROP TABLE emplacement_armure_ear');
+        $this->addSql('DROP TABLE emplacement_armure_tar');
         $this->addSql('DROP TABLE encombrement_armure_ear');
         $this->addSql('DROP TABLE equipement_general_eqg');
         $this->addSql('DROP TABLE ingredient_ing');

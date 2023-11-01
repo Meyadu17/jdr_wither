@@ -174,15 +174,15 @@ class AppFixtures extends Fixture
         //#endregion -------------------------- EMPLACEMENT D'ARMURE --------------------------
         //#region -------------------------- ENCOMBREMENT D'ARMURE --------------------------
         $encombrementArmunre1 = new EncombrementArmure();
-        $encombrementArmunre1->setLibelle('Armures légères');
+        $encombrementArmunre1->setLibelle('Léger');
         $manager->persist($encombrementArmunre1);
 
         $encombrementArmunre2 = new EncombrementArmure();
-        $encombrementArmunre2->setLibelle('Armures intermédiaires');
+        $encombrementArmunre2->setLibelle('Intermédiaire');
         $manager->persist($encombrementArmunre2);
 
         $encombrementArmunre3 = new EncombrementArmure();
-        $encombrementArmunre3->setLibelle('Armures lourdes');
+        $encombrementArmunre3->setLibelle('Lourd');
         $manager->persist($encombrementArmunre3);
 
         //#endregion -------------------------- ENCOMBREMENT D'ARMUREE --------------------------

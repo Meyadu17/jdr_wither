@@ -17,14 +17,11 @@ class Armure
     #[ORM\Column(name: "apr_nom", length: 255)]
     private ?string $nom = null;
 
-    #[ORM\Column(name: "apr_protection")]
+    #[ORM\Column(name: "apr_protection", nullable: true)]
     private ?int $protection = null;
 
-    #[ORM\Column(name: "apr_effet", length: 255)]
+    #[ORM\Column(name: "apr_effet", length: 255, nullable: true)]
     private ?string $effet = null;
-
-    #[ORM\Column(name: "apr_encombrement")]
-    private ?int $encombrement = null;
 
     #[ORM\Column(name: "apr_poids", length: 255)]
     private ?float $poids = null;
@@ -77,18 +74,6 @@ class Armure
     public function setEffet(string $effet): static
     {
         $this->effet = $effet;
-
-        return $this;
-    }
-
-    public function getEncombrement(): ?int
-    {
-        return $this->encombrement;
-    }
-
-    public function setEncombrement(int $encombrement): static
-    {
-        $this->encombrement = $encombrement;
 
         return $this;
     }

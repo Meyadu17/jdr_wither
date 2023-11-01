@@ -19,7 +19,7 @@ class ArmeRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, \App\Entity\Stuff\Arme::class);
+        parent::__construct($registry, Arme::class);
     }
 
     /**
@@ -61,7 +61,7 @@ class ArmeRepository extends ServiceEntityRepository
 
         $armesGroupedByType = [];
         foreach ($result as $arme) {
-            $type = $arme->getTypeArme();
+            $type = $arme->getCategorieArme();
             $armesGroupedByType[$type->getLibelle()][] = $arme;
         }
 
