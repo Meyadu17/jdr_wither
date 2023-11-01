@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Search;
 
 use App\Entity\Stuff\Armure;
 use Symfony\Component\Form\AbstractType;

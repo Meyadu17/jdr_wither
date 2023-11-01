@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Général{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('formControl') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('formControl') }}
+{% endblock %}
+
+{% block body %}
+
+    <section class=" text-center text-lg-start">
+
+        <h1>Nouvel équipement</h1>
+        <div class="card mb-3">
+            <div class="row g-0 d-flex align-items-center fond-image">
+
+                <div class="col-lg-4 d-none d-lg-flex">
+                    <img src="{{ asset('images/magasin.jpg') }}" alt="Trendy Pants and Shoes"
+                         class="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5" />
+                </div>
+                <div class="col-lg-8">
+                    <div class="card-body py-5 px-md-5">
+
+                        {{ form_start(form, {'attr':{'class':'row g-3 controle-form', 'novalidate': 'novalidate'}}) }}
+                        <!-- Ligne 1 -->
+                        <div class="row">
+                            <div class="col-md-12 mb-4">
+                                <div class="form-outline">
+                                    {{ form_widget(form.nom) }}
+                                    {{ form_label(form.nom) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ligne 2 -->
+                        <div class="row">
+                            <div class="col-md-12 mb-4">
+                                <div class="form-outline">
+                                    {{ form_widget(form.poids) }}
+                                    {{ form_label(form.poids) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ligne 3 -->
+                        <div class="row">
+                            <div class="col-md-12 mb-4">
+                                <div class="form-outline">
+                                    {{ form_widget(form.prix) }}
+                                    {{ form_label(form.prix) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Submit button -->
+                        <div class="col-md-6 mb-4">
+                            {% if app.request.get('_route') == "app_admin_equipement_ajouter" %}
+                                <button class="btn btn-outline-info" type="submit">Ajouter</button>
+                                <button class="btn btn-outline-info" type="submit" name="create_and_new">Valider et créer de nouveau</button>
+                            {% else %}
+                                <button class="btn btn-outline-info" type="submit">Modifier</button>
+                            {% endif %}
+                            <a href="{{ path('app_stuff_equipement') }}" class="btn btn-outline-light">Retour</a>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

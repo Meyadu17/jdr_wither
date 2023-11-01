@@ -19,7 +19,7 @@ class CategorieArme
     #[ORM\Column(name: "car_libelle", length: 255)]
     private ?string $libelle = null;
 
-    #[ORM\OneToMany(mappedBy: 'type', targetEntity: Arme::class)]
+    #[ORM\OneToMany(mappedBy: 'categorieArme', targetEntity: Arme::class)]
     private Collection $armes;
 
     public function __construct()
@@ -56,7 +56,7 @@ class CategorieArme
     {
         if (!$this->armes->contains($arme)) {
             $this->armes->add($arme);
-            $arme->setTypeArme($this);
+            $arme->setCategorieArme($this);
         }
 
         return $this;
@@ -66,8 +66,8 @@ class CategorieArme
     {
         if ($this->armes->removeElement($arme)) {
             // set the owning side to null (unless already changed)
-            if ($arme->getTypeArme() === $this) {
-                $arme->setTypeArme(null);
+            if ($arme->getCategorieArme() === $this) {
+                $arme->setCategorieArme(null);
             }
         }
 

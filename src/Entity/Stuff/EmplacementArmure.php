@@ -19,8 +19,8 @@ class EmplacementArmure
     #[ORM\Column(name: "tar_libelle", length: 255)]
     private ?string $libelle = null;
 
-//    #[ORM\OneToMany(mappedBy: 'typeArmure', targetEntity: Armure::class)]
-//    private Collection $armures;
+    #[ORM\OneToMany(mappedBy: 'typeArmure', targetEntity: Armure::class)]
+    private Collection $armures;
 
     public function __construct()
     {
@@ -52,25 +52,25 @@ class EmplacementArmure
         return $this->armures;
     }
 
-//    public function addArmure(Armure $armure): static
-//    {
-//        if (!$this->armures->contains($armure)) {
-//            $this->armures->add($armure);
-//            $armure->setTypeArmure($this);
-//        }
-//
-//        return $this;
-//    }
-//
-//    public function removeArmure(Armure $armure): static
-//    {
-//        if ($this->armures->removeElement($armure)) {
-//            // set the owning side to null (unless already changed)
-//            if ($armure->getTypeArmure() === $this) {
-//                $armure->setTypeArmure(null);
-//            }
-//        }
-//
-//        return $this;
-//    }
+    public function addArmure(Armure $armure): static
+    {
+        if (!$this->armures->contains($armure)) {
+            $this->armures->add($armure);
+            $armure->setEmplacementArmure($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArmure(Armure $armure): static
+    {
+        if ($this->armures->removeElement($armure)) {
+            // set the owning side to null (unless already changed)
+            if ($armure->getEmplacementArmure() === $this) {
+                $armure->setEmplacementArmure(null);
+            }
+        }
+
+        return $this;
+    }
 }

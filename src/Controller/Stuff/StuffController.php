@@ -2,14 +2,14 @@
 
 namespace App\Controller\Stuff;
 
-use App\Form\SearchArmeType;
-use App\Form\SearchArmureType;
+use App\Form\Search\SearchArmeType;
+use App\Form\Search\SearchArmureType;
+use App\Form\Search\SearchEquipementGeneralType;
 use App\Repository\Stuff\ArmeRepository;
 use App\Repository\Stuff\ArmureRepository;
 use App\Repository\Stuff\EquipementGeneralRepository;
 use App\Repository\Stuff\IngredientRepository;
 use App\Repository\Stuff\OutilRepository;
-use App\Repository\Stuff\EmplacementArmureRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -96,15 +96,34 @@ class StuffController extends AbstractController
     }
 
     #[Route('/equipement/general', name: '_equipement')]
-    public function equipementGeneral(EquipementGeneralRepository $equipementGeneralRepository): Response
+    public function equipementGeneral(Request $request,
+                                      EquipementGeneralRepository $equipementRepository
+                                      ): Response
     {
         $user = $this->getUser();
         if (!$user) {
             return $this->redirectToRoute('app_login');
         }
-        //TODO - Equipements
+
+        $form = $this->createForm(SearchEquipementGeneralType::class);
+        $form->handleRequest($request);
+
+        $nom = $form->get('nom')->getData();
+
+        if ($nom) {
+            $equipements = $equipementRepository->findEquipementFilteredByNom($nom);
+        } else {
+            $equipements = $equipementRepository->findEquipementByName();
+        }
+        if ($request->isXmlHttpRequest()) {
+            // Si la requête est une requête AJAX
+
+            return $this->json($equipements);
+        }
+
         return $this->render('stuff/equipement_general/listerEquipementG.html.twig', [
-            'equipements' =>$equipementGeneralRepository->findAll(),
+            'equipements' => $equipements,
+            'form' => $form->createView(),
         ]);
     }
 

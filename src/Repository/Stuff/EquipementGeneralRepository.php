@@ -21,28 +21,22 @@ class EquipementGeneralRepository extends ServiceEntityRepository
         parent::__construct($registry, EquipementGeneral::class);
     }
 
-//    /**
-//     * @return EquipementGeneral[] Returns an array of EquipementGeneral objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('e.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findEquipementByName()
+    {
+        return $this->createQueryBuilder('eg')
+            ->orderBy('eg.nom', 'ASC')
+            ->getQuery()
+            ->getResult();
 
-//    public function findOneBySomeField($value): ?EquipementGeneral
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    }
+
+    public function findEquipementFilteredByNom($nom)
+    {
+        return $this->createQueryBuilder('eg')
+            ->where('eg.nom LIKE :nom')
+            ->setParameter('nom', '%' . $nom . '%')
+            ->orderBy('eg.nom', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }

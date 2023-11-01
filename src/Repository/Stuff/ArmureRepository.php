@@ -50,10 +50,10 @@ class ArmureRepository extends ServiceEntityRepository
     public function findArmuresFilteredByNom($nom)
     {
         $qb = $this->createQueryBuilder('a')
-            ->join('a.type', 'ta')
+            ->join('a.emplacementArmure', 'e')
             ->where('a.nom LIKE :nom')
             ->setParameter('nom', '%' . $nom . '%')
-            ->orderBy('ta.id', 'ASC')
+            ->orderBy('e.libelle', 'ASC')
             ->getQuery();
 
         $result = $qb->getResult();
@@ -61,7 +61,7 @@ class ArmureRepository extends ServiceEntityRepository
         $armuresGroupedByType = [];
         foreach ($result as $armure) {
             $emplacement = $armure->getEmplacementArmure();
-            $armuresGroupedByType[$emplacement->getLibelle()][] = $emplacement;
+            $armuresGroupedByType[$emplacement->getLibelle()][] = $armure;
         }
 
         return $armuresGroupedByType;

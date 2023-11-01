@@ -37,8 +37,8 @@ class ArmeRepository extends ServiceEntityRepository
 
         $armesGroupedByType = [];
         foreach ($result as $arme) {
-            $type = $arme->getCategorieArme();
-            $armesGroupedByType[$type->getLibelle()][] = $arme;
+            $categorie = $arme->getCategorieArme();
+            $armesGroupedByType[$categorie->getLibelle()][] = $arme;
         }
 
         return $armesGroupedByType;
@@ -51,7 +51,7 @@ class ArmeRepository extends ServiceEntityRepository
     public function findArmesFilteredByNom($nom)
     {
         $qb = $this->createQueryBuilder('a')
-            ->join('a.type', 'ta')
+            ->join('a.categorieArme', 'ta')
             ->where('a.nom LIKE :nom')
             ->setParameter('nom', '%' . $nom . '%')
             ->orderBy('ta.id', 'ASC')
@@ -61,8 +61,8 @@ class ArmeRepository extends ServiceEntityRepository
 
         $armesGroupedByType = [];
         foreach ($result as $arme) {
-            $type = $arme->getCategorieArme();
-            $armesGroupedByType[$type->getLibelle()][] = $arme;
+            $categorie = $arme->getCategorieArme();
+            $armesGroupedByType[$categorie->getLibelle()][] = $arme;
         }
 
         return $armesGroupedByType;

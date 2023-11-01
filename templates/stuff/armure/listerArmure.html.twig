@@ -68,7 +68,7 @@
                             {{ libelle }}
                         </button>
                     </h2>
-                    <div id="{{ 'collapse_' ~ libelle }}" class="accordion-collapse collapse hide">
+                    <div id="{{ 'collapse_' ~ libelle }}" class="accordion-collapse collapse show">
                         <div class="accordion-body">
                             <table class="table table-dark">
                                 <thead>
@@ -112,7 +112,7 @@
     </section>
 
     <script>
-        // Appel de la fonction avec les paramètres spécifiques aux armes
+        // Appel de la fonction avec les paramètres spécifiques aux armures
         document.addEventListener('DOMContentLoaded', function() {
             initializeSearch('search-input', 'result-container', '{{ path('app_stuff_armure') }}');
         });
