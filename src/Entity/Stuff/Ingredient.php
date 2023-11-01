@@ -20,7 +20,7 @@ class Ingredient
     #[ORM\Column(name: "ing_description", length: 255)]
     private ?string $description = null;
 
-    #[ORM\Column(name: "ing_effet", length: 255)]
+    #[ORM\Column(name: "ing_effet", type: "text")]
     private ?string $effet = null;
 
     #[ORM\Column(name: "ing_prix")]
