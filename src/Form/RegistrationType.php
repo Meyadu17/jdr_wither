@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class RegistrationType extends AbstractType
 {
@@ -27,7 +28,7 @@ class RegistrationType extends AbstractType
             ->add('email',null, [
                 'label' => 'Email*',
                 'attr' => [
-                    'class' => 'form-control required-field',
+                    'class' => 'form-control required-field unique-email',
                     'placeholder' => 'j.dupont@gmail.com',
                     'required' => true,
                 ],
@@ -41,13 +42,20 @@ class RegistrationType extends AbstractType
                     'class' => 'form-control required-field',
                     'required' => true,
                 ],
+                'constraints' => [
+                    new Assert\NotBlank(),
+                    new Assert\Regex([
+                        'pattern' => '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[#?!@$;.%§^&*-]).{8,}$/',
+                        'message' => 'Le mot de passe doit respecter les contraintes suivantes : minimum 8 caractères, au moins 1 chiffre, au moins 1 majuscule, au moins 1 minuscule, au moins 1 caractère spécial (#?!@$;.%§^&*-).',
+                    ]),
+                ],
             ])
             ->add('photo', FileType::class, [
                 'label' => 'Photo (PNG, JPG, BMP):',
                 'mapped' => false,
                 'required' => false,
                 'attr' => [
-                    'class' => 'form-control required-field',
+                    'class' => 'form-control',
                 ],
                 'constraints' => [
                     new File([

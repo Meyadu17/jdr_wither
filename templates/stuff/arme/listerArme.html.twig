@@ -17,9 +17,9 @@
 
     <!--titre-->
     <div class="titre-logo">
-        <img class="logo" src="{{ asset('images/logo-armes.jpg') }}" alt="Logo" />
+        <img class="logo" src="{{ asset('images/logo-armes.png') }}" alt="Logo" />
         <h1>Les armes</h1>
-        <img class="logo" src="{{ asset('images/logo-armes.jpg') }}" alt="Logo" />
+        <img class="logo" src="{{ asset('images/logo-armes.png') }}" alt="Logo" />
     </div>
 
     <div class="card text-center">
@@ -80,7 +80,9 @@
                                     <th scope="col">Poids</th>
                                     <th scope="col">Taille</th>
                                     <th scope="col">Prix</th>
+                                    {% if is_granted('ROLE_ADMIN') %}
                                     <th scope="col">Action</th>
+                                    {% endif %}
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -94,11 +96,13 @@
                                         <td>{{arme.poids}}</td>
                                         <td>{{arme.taille.libelle}}</td>
                                         <td>{{arme.prix}}</td>
+                                        {% if is_granted('ROLE_ADMIN') %}
                                         <td>
                                             <a class="btn btn-outline-info" href="{{ path('app_admin_arme_modifier', { 'id' : arme.id }) }}">
                                                 modifier
                                             </a>
                                         </td>
+                                        {% endif %}
                                     </tr>
                                 {% endfor %}
                                 </tbody>

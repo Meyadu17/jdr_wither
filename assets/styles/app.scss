@@ -11,6 +11,7 @@ body {
     & a {
         text-decoration: none;
     }
+
     & header {
         height: 90px;
         display: block;
@@ -59,11 +60,6 @@ body {
     gap: 20px;
     align-items: center;
 }
-.dropdown{
-    list-style-type: none;
-    background-color: $menu;
-    color: $text ;
-}
 
 .logo {
     display: flex;
@@ -71,10 +67,12 @@ body {
     height: 60px;
     width: auto;
 }
+
  .menu{
      background-color: $menu;
      color: $text ;
  }
+
 .pied-page{
     display: flex;
     flex-direction: row;
@@ -88,10 +86,13 @@ body {
 .card-size{
     width: 18rem
 }
+
 .card-body{
-    background-color: $font-2;
+    background: linear-gradient(to right bottom, $menu-2, $menu);
+    background: -webkit-linear-gradient(to right bottom, $menu-2, $menu);
     color: $text;
 }
+
 .card-element {
     display: flex;
     flex-wrap: wrap;

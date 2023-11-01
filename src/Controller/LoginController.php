@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationType;
+use App\Repository\UserRepository;
 use App\Service\UploadService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -45,30 +47,59 @@ class LoginController extends AbstractController
     public function register(Request $request,
                              UserPasswordHasherInterface $userPasswordHasher,
                              EntityManagerInterface $entityManager,
+                             UserRepository $userRepository,
                              UploadService $uploadService): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationType::class, $user);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
-            // Encodez le mot de passe simple
-            $user->setPassword(
-                $userPasswordHasher->hashPassword(
-                    $user,
-                    $form->get('password')->getData()
-                )
-            );
+            // On récupère le Pseudo et l'Email
+            $newPseudo = $form->get('pseudo')->getData();
+            $newEmail = $form->get('email')->getData();
 
-            //Upload de la photo
-            if($form->get('photo')->getData()) {
-                $newFilename = $uploadService->upload($form->get('photo')->getData(),
-                                                      $this->getParameter('photo_directory'));
-                $user->setPhoto($newFilename);
+            // Vérifier si le Pseudo et l'email sont uniques
+            $existingUser = $userRepository->findOneBy(['pseudo' => $newPseudo]);
+            $existingEmail = $userRepository->findOneBy(['email' => $newEmail]);
+
+            if ($existingUser && $existingUser !== $user) {
+                //Si le pseudo existe déjà, on arrête le traitement et on affiche un message flash
+                $form->get('pseudo')->addError(new FormError('Ce pseudo existe déjà.'));
+                $this->addFlash('error',
+                    'Le pseudo existe déjà');
+            } elseif ($existingEmail && $existingEmail !== $user) {
+                //Si l'email existe déjà, on arrête le traitement et on affiche un message flash
+                $form->get('email')->addError(new FormError('Il existe déjà un compte avec cette email.'));
+                $this->addFlash('error',
+                    'Il existe déjà un compte avec cette email.');
+            } else {
+                //Si le pseudo et l'email n'existent pas, on poursuit le traitement
+                //#region Mot de passe
+                // Hash du mot de passe
+                $user->setPassword(
+                    $userPasswordHasher->hashPassword(
+                        $user,
+                        $form->get('password')->getData()
+                    )
+                );
+                //#endregion Mot de passse
+
+                //#region Photo
+                //Upload de la photo
+                if($form->get('photo')->getData()) {
+                    $newFilename = $uploadService->upload($form->get('photo')->getData(),
+                        $this->getParameter('photo_directory'));
+                    $user->setPhoto($newFilename);
+                }
+                //#endregion Photo
+
+                $entityManager->persist($user);
+                $entityManager->flush();
+
+                return $this->redirectToRoute('home');
             }
-
-            $entityManager->persist($user);
-            $entityManager->flush();
 
             //#region email
             /*
@@ -84,7 +115,6 @@ class LoginController extends AbstractController
             */
             //#endregion email
 
-            return $this->redirectToRoute('home');
         }
 
         return $this->render('login/register.html.twig', [

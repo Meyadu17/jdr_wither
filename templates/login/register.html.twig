@@ -13,6 +13,7 @@
 {% endblock %}
 
 {% block body %}
+
     {% for flash_error in app.flashes('error') %}
         <div class="alert alert-danger" role="alert">
             {{ flash_error }}
@@ -30,9 +31,7 @@
 
                                     <h3 class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">S'inscrire</h3>
 
-                                    {{ form_errors(registrationForm, { 'attr' : {'class' : 'mx-1 mx-md-4'}} ) }}
-
-                                    {{ form_start(registrationForm, { 'attr' : {'class' : 'mx-1 mx-md-4'}} ) }}
+                                    {{ form_start(registrationForm, { 'attr' : {'class' : 'mx-1 mx-md-4 controle-form', 'novalidate': 'novalidate'}} ) }}
 
                                     <div class="form-outline mb-4">
                                         {{ form_row(registrationForm.pseudo) }}
@@ -43,11 +42,26 @@
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        {{ form_row(registrationForm.password) }}
+                                        {{ form_row(registrationForm.password.first, {'attr': {
+                                            'class': 'form-control required-field',
+                                            'aria-describedby': 'newPasswordFeedback',
+                                            'required': 'required'
+                                        }}) }}
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        {{ form_row(registrationForm.photo) }}
+                                        {{ form_row(registrationForm.password.second, {'attr': {
+                                            'class': 'form-control required-field',
+                                            'aria-describedby': 'confirmPasswordFeedback',
+                                            'required': 'required'
+                                        }}) }}
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        {{ form_row(registrationForm.photo, {'attr': {
+                                            'class': 'form-control',
+
+                                        }}) }}
                                     </div>
 
                                     <div class="d-flex justify-content-center">
@@ -58,7 +72,7 @@
 
                                 </div>
                                 <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-                                    <img src="{{ asset('images/favicon.jpg') }}" class="img-fluid" alt="Sample image">
+                                    <img src="{{ asset('images/logo-site.png') }}" class="img-fluid" alt="Sample image">
                                 </div>
                             </div>
                         </div>
@@ -67,5 +81,6 @@
             </div>
         </div>
     </section>
+
 
 {% endblock %}

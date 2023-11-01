@@ -5,6 +5,7 @@
 }
 .accordion-button{
   color: $text;
-  background-color: $menu;
+  background: linear-gradient(to left bottom, $menu, $menu-2);
+  background: -webkit-linear-gradient(to left bottom, $menu, $menu-2);
 }
 //#endregion Accordion

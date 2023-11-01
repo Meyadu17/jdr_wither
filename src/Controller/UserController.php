@@ -40,18 +40,16 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Vérifiez si le pseudo a été modifié
-            $newPseudo = $form->get('pseudo')->getData();
-
-            if ($newPseudo !== $pseudo) {
-                // Le pseudo a été modifié, vérifiez s'il est unique
-                $existingUser = $userRepository->findOneBy(['pseudo' => $newPseudo]);
-                if ($existingUser && $existingUser !== $pseudo) {
-                    $form->get('pseudo')->addError(new FormError('Ce pseudo existe déjà.'));
-                    $this->addFlash('error',
-                        'Le pseudo existe déjà');
-                }
-            }
+//            // Vérifiez si le pseudo a été modifié
+//            $newPseudo = $form->get('pseudo')->getData();
+//
+//            if ($newPseudo !== $pseudo) {
+//                // Le pseudo a été modifié, vérifiez s'il est unique
+//                $existingUser = $userRepository->findOneBy(['pseudo' => $newPseudo]);
+//                if ($existingUser && $existingUser !== $pseudo) {
+//                    $form->get('pseudo')->addError(new FormError('Ce pseudo existe déjà.'));
+//                }
+//            }
             //Upload de la photo
             if($form->get('photo')->getData()) {
                 $newFilename = $uploadService->upload($form->get('photo')->getData(),
