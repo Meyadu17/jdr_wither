@@ -21,28 +21,31 @@ class OutilRepository extends ServiceEntityRepository
         parent::__construct($registry, \App\Entity\Stuff\Outil::class);
     }
 
-//    /**
-//     * @return Outil[] Returns an array of Outil objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('o')
-//            ->andWhere('o.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('o.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * Sélectionner les outils par nom
+     * @return float|int|mixed|string
+     */
+    public function findOutilsByName()
+    {
+        return $this->createQueryBuilder('o')
+            ->orderBy('o.nom', 'ASC')
+            ->getQuery()
+            ->getResult();
 
-//    public function findOneBySomeField($value): ?Outil
-//    {
-//        return $this->createQueryBuilder('o')
-//            ->andWhere('o.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    }
+
+    /**
+     * Filtrer les outils en fonction du nom saisie
+     * @param $nom
+     * @return float|int|mixed|string
+     */
+    public function findOutilsFilteredByNom($nom)
+    {
+        return $this->createQueryBuilder('o')
+            ->where('o.nom LIKE :nom')
+            ->setParameter('nom', '%' . $nom . '%')
+            ->orderBy('o.nom', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }

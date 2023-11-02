@@ -6,6 +6,7 @@ use App\Form\Search\SearchArmeType;
 use App\Form\Search\SearchArmureType;
 use App\Form\Search\SearchEquipementGeneralType;
 use App\Form\Search\SearchIngredientType;
+use App\Form\Search\SearchOutilType;
 use App\Repository\Stuff\ArmeRepository;
 use App\Repository\Stuff\ArmureRepository;
 use App\Repository\Stuff\EquipementGeneralRepository;
@@ -161,15 +162,33 @@ class StuffController extends AbstractController
     }
 
     #[Route('/outils', name: '_outil')]
-    public function outil(OutilRepository $outilRepository): Response
+    public function outil(Request $request,
+                          OutilRepository $outilRepository
+                          ): Response
     {
         $user = $this->getUser();
         if (!$user) {
             return $this->redirectToRoute('app_login');
         }
-        //TODO - Outils
+
+        $form = $this->createForm(SearchOutilType::class);
+        $form->handleRequest($request);
+
+        $nom = $form->get('nom')->getData();
+
+        if ($nom) {
+            $outils = $outilRepository->findOutilsFilteredByNom($nom);
+        } else {
+            $outils = $outilRepository->findOutilsByName();
+        }
+        if ($request->isXmlHttpRequest()) {
+            // Si la requête est une requête AJAX
+
+            return $this->json($outils);
+        }
         return $this->render('stuff/outil/listerOutil.html.twig', [
-            'outils' =>$outilRepository->findAll(),
+            'outils' => $outils,
+            'form' => $form->createView(),
         ]);
     }
 }
