@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dons{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('formControl') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('formControl') }}
+{% endblock %}
+
+{% block body %}
+    <h1>Nouveau don</h1>
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ 'C:/Users/melod/PhpstormProjects/jdr_wither/src/Controller/DonController.php'|file_link(0) }}">src/Controller/DonController.php</a></code></li>
+        <li>Your template at <code><a href="{{ 'C:/Users/melod/PhpstormProjects/jdr_wither/templates/don/index.html.twig'|file_link(0) }}">templates/don/index.html.twig</a></code></li>
+    </ul>
+
+{% endblock %}

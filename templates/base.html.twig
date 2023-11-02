@@ -26,7 +26,7 @@
                 {% if is_granted('ROLE_USER') %}
                 <a class="#" href="#">Fiches personnage</a>
                 <a class="#" href="{{ path('app_stuff_lister') }}">Magasin</a>
-                <a class="#" href="#">Compétences de combat</a>
+                <a class="#" href="{{ path('app_competence_combat_lister') }}">Compétences de combat</a>
                 <a class="#" href="#">Bestiaire</a>
 
                 {% endif %}
