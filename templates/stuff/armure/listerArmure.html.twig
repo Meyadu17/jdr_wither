@@ -70,40 +70,30 @@
                     </h2>
                     <div id="{{ 'collapse_' ~ libelle }}" class="accordion-collapse collapse show">
                         <div class="accordion-body">
-                            <table class="table table-dark">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Nom</th>
-                                    <th scope="col">Protection</th>
-                                    <th scope="col">Effet</th>
-                                    <th scope="col">Emcombrement</th>
-                                    <th scope="col">Poids</th>
-                                    <th scope="col">Prix</th>
-                                    {% if is_granted('ROLE_ADMIN') %}
-                                        <th scope="col">Action</th>
-                                    {% endif %}
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for armure in armures %}
-                                    <tr>
-                                        <td>{{armure.nom}}</td>
-                                        <td>{{armure.protection}}</td>
-                                        <td>{{armure.effet}}</td>
-                                        <td>{{armure.encombrementArmure.libelle}}</td>
-                                        <td>{{armure.poids}}</td>
-                                        <td>{{armure.prix}}</td>
-                                        {% if is_granted('ROLE_ADMIN') %}
-                                            <td>
-                                                <a class="btn btn-outline-info" href="{{ path('app_admin_armure_modifier', { 'id' : armure.id }) }}">
-                                                    modifier
-                                                </a>
-                                            </td>
-                                        {% endif %}
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
+                            <!--afficher la liste-->
+                            <section class="admin_body_container">
+                                <div class="card-element">
+                                    {% for armure in armures %}
+                                        <div class="card card-size">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{armure.nom}}</h5>
+                                                <h6 class="card-title">{{armure.poids}} Kg - {{armure.prix}} Couronnes</h6>
+                                                <h6 class="card-title">Encombrement {{armure.encombrementArmure.libelle}} {% if armure.protection is not null %} - {{armure.protection}} PA{% endif %}</h6>
+                                                <p class="card-text">{% if armure.effet is not null %}effet(s) : {{armure.effet}}{% endif %}</p>
+                                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                <p href="#" class="card-text">
+                                                    {% if is_granted('ROLE_ADMIN') %}
+                                                        <a class="btn btn-outline-info" href="{{ path('app_admin_armure_modifier', { 'id' : armure.id }) }}">
+                                                            modifier
+                                                        </a>
+                                                    {% endif %}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </section>
+
                         </div>
                     </div>
                 </div>

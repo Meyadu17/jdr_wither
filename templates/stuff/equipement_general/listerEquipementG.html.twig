@@ -57,40 +57,23 @@
 
     <!--afficher la liste-->
     <section class="admin_body_container">
-        <div class="accordion" id="accordionPanelsStayOpenExample">
-
-            <div class="accordion-item accordion-color">
-                <div class="accordion-body">
-                    <table class="table table-dark">
-                        <thead>
-                        <tr>
-                            <th scope="col">Nom</th>
-                            <th scope="col">Poids</th>
-                            <th scope="col">Prix</th>
-                            {% if is_granted('ROLE_ADMIN') %}
-                                <th scope="col">Action</th>
-                            {% endif %}
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for equipement in equipements %}
-                            <tr>
-                                <td>{{equipement.nom}}</td>
-                                <td>{{equipement.poids}}</td>
-                                <td>{{equipement.prix}}</td>
-                                {% if is_granted('ROLE_ADMIN') %}
-                                    <td>
-                                        <a class="btn btn-outline-info" href="{{ path('app_admin_equipement_modifier', { 'id' : equipement.id }) }}">
-                                            modifier
-                                        </a>
-                                    </td>
-                                {% endif %}
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+        <div class="card-element">
+            {% for equipement in equipements %}
+                <div class="card card-size">
+                <div class="card-body">
+                    <h5 class="card-title">{{equipement.nom}}</h5>
+                    <h6 class="card-title">{{equipement.poids}} Kg - {{equipement.prix}} Couronnes</h6>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <p href="#" class="card-text">
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <a class="btn btn-outline-info" href="{{ path('app_admin_equipement_modifier', { 'id' : equipement.id }) }}">
+                            modifier
+                        </a>
+                        {% endif %}
+                    </p>
                 </div>
             </div>
+            {% endfor %}
         </div>
     </section>
 

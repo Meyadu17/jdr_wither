@@ -69,44 +69,30 @@
                     </h2>
                     <div id="{{ 'collapse_' ~ libelle }}" class="accordion-collapse collapse show">
                         <div class="accordion-body">
-                            <table class="table table-dark">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Nom</th>
-                                    <th scope="col">Dégâts</th>
-                                    <th scope="col">Mains</th>
-                                    <th scope="col">Portée</th>
-                                    <th scope="col">Effets</th>
-                                    <th scope="col">Poids</th>
-                                    <th scope="col">Taille</th>
-                                    <th scope="col">Prix</th>
-                                    {% if is_granted('ROLE_ADMIN') %}
-                                    <th scope="col">Action</th>
-                                    {% endif %}
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for arme in armes %}
-                                    <tr>
-                                        <td>{{arme.nom}}</td>
-                                        <td>{{arme.degat}}</td>
-                                        <td>{{arme.mains}}</td>
-                                        <td>{{arme.portee}}</td>
-                                        <td>{{arme.effet}}</td>
-                                        <td>{{arme.poids}}</td>
-                                        <td>{{arme.taille.libelle}}</td>
-                                        <td>{{arme.prix}}</td>
-                                        {% if is_granted('ROLE_ADMIN') %}
-                                        <td>
-                                            <a class="btn btn-outline-info" href="{{ path('app_admin_arme_modifier', { 'id' : arme.id }) }}">
-                                                modifier
-                                            </a>
-                                        </td>
-                                        {% endif %}
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
+                            <!--afficher la liste-->
+                            <section class="admin_body_container">
+                                <div class="card-element">
+                                    {% for arme in armes %}
+                                        <div class="card card-size">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{arme.nom}}}</h5>
+                                                <h6 class="card-title">{{arme.poids}} Kg - {{arme.prix}} Couronnes</h6>
+                                                <h6 class="card-title">Taille {{arme.taille.libelle}} {% if arme.degat is not null %} - {{arme.degat}}{% endif %}</h6>
+                                                <p class="card-text">{{arme.mains}} min(s) - Portée de {{arme.portee}}</p>
+                                                <p class="card-text">{% if arme.effet is not null %}effet(s) : {{arme.effet}}{% endif %}</p>
+                                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                <p href="#" class="card-text">
+                                                    {% if is_granted('ROLE_ADMIN') %}
+                                                        <a class="btn btn-outline-info" href="{{ path('app_admin_arme_modifier', { 'id' : arme.id }) }}">
+                                                            modifier
+                                                        </a>
+                                                    {% endif %}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </section>
                         </div>
                     </div>
                 </div>
