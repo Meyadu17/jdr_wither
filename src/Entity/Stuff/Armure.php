@@ -5,6 +5,9 @@ namespace App\Entity\Stuff;
 use App\Repository\Stuff\ArmureRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Entité définissant une armure, une protection
+ */
 #[ORM\Entity(repositoryClass: ArmureRepository::class)]
 #[ORM\Table(name: "armure_apr")]
 class Armure
@@ -36,6 +39,9 @@ class Armure
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(name: "apr_fk_ear_id", referencedColumnName: "ear_id",nullable: false)]
     private ?EncombrementArmure $encombrementArmure = null;
+
+    #[ORM\Column(name: "apr_description", type: "text")]
+    private ?string $description = null;
 
     public function getId(): ?int
     {
@@ -122,6 +128,18 @@ class Armure
     public function setEncombrementArmure(?EncombrementArmure $encombrementArmure): static
     {
         $this->encombrementArmure = $encombrementArmure;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
 
         return $this;
     }

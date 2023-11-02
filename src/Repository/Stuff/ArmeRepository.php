@@ -3,7 +3,6 @@
 namespace App\Repository\Stuff;
 
 use App\Entity\Stuff\Arme;
-use App\Filter\ArmeFilter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

@@ -21,6 +21,10 @@ class EquipementGeneralRepository extends ServiceEntityRepository
         parent::__construct($registry, EquipementGeneral::class);
     }
 
+    /**
+     * Sélectionner l'équipement général par nom
+     * @return float|int|mixed|string
+     */
     public function findEquipementByName()
     {
         return $this->createQueryBuilder('eg')
@@ -30,6 +34,11 @@ class EquipementGeneralRepository extends ServiceEntityRepository
 
     }
 
+    /**
+     * Filtrer l'équipement général en fonction du nom saisie
+     * @param $nom
+     * @return float|int|mixed|string
+     */
     public function findEquipementFilteredByNom($nom)
     {
         return $this->createQueryBuilder('eg')

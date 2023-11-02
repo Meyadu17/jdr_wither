@@ -5,6 +5,9 @@ namespace App\Entity\Stuff;
 use App\Repository\Stuff\EquipementGeneralRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Entité définissant un équipement général
+ */
 #[ORM\Entity(repositoryClass: EquipementGeneralRepository::class)]
 #[ORM\Table(name: "equipement_general_eqg")]
 class EquipementGeneral
@@ -22,6 +25,9 @@ class EquipementGeneral
 
     #[ORM\Column(name: "eqg_prix")]
     private ?int $prix = null;
+
+    #[ORM\Column(name: "eqg_description", type: "text")]
+    private ?string $description = null;
 
     public function getId(): ?int
     {
@@ -60,6 +66,18 @@ class EquipementGeneral
     public function setPrix(int $prix): static
     {
         $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
 
         return $this;
     }

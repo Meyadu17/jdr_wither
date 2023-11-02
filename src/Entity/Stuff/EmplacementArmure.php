@@ -7,6 +7,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Entité définissant un emplacement d'armure, de protection
+ */
 #[ORM\Entity(repositoryClass: EmplacementArmureRepository::class)]
 #[ORM\Table(name: "emplacement_armure_tar")]
 class EmplacementArmure

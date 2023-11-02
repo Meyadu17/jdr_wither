@@ -20,5 +20,4 @@ class CategorieArmeRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, CategorieArme::class);
     }
-
 }

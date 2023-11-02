@@ -5,6 +5,9 @@ namespace App\Entity\Stuff;
 use App\Repository\Stuff\OutilRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Entité définissant un outil
+ */
 #[ORM\Entity(repositoryClass: OutilRepository::class)]
 #[ORM\Table(name: "outil_out")]
 class Outil

@@ -7,6 +7,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Entité définissant la catégorie d'une arme
+ */
 #[ORM\Entity(repositoryClass: CategorieArmeRepository::class)]
 #[ORM\Table(name: "categorie_arme_car")]
 class CategorieArme

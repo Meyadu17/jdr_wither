@@ -5,6 +5,9 @@ namespace App\Entity\Stuff;
 use App\Repository\Stuff\ArmeRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Entité définissant une arme
+ */
 #[ORM\Entity(repositoryClass: ArmeRepository::class)]
 #[ORM\Table(name: "arme_arm")]
 class Arme
@@ -42,6 +45,9 @@ class Arme
     #[ORM\ManyToOne(inversedBy: 'armes')]
     #[ORM\JoinColumn(name: "arm_fk_tai_id", referencedColumnName: "tai_id", nullable: false)]
     private ?Taille $taille = null;
+
+    #[ORM\Column(name: "arm_description", type: "text")]
+    private ?string $description = null;
 
     public function getId(): ?int
     {
@@ -152,6 +158,18 @@ class Arme
     public function setTaille(?Taille $taille): static
     {
         $this->taille = $taille;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
 
         return $this;
     }

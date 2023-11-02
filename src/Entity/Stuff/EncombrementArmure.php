@@ -5,6 +5,9 @@ namespace App\Entity\Stuff;
 use App\Repository\Stuff\EncombrementArmureRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Entité définissant l'emcombrement d'une armure, d'une protection
+ */
 #[ORM\Entity(repositoryClass: EncombrementArmureRepository::class)]
 #[ORM\Table(name: "encombrement_armure_ear")]
 class EncombrementArmure
