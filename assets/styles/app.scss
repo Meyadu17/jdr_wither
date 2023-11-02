@@ -87,10 +87,10 @@ body {
     width: 18rem
 }
 
-.card-body{
+.fond-image{
+    color: $text;
     background: linear-gradient(to right bottom, $menu-2, $menu);
     background: -webkit-linear-gradient(to right bottom, $menu-2, $menu);
-    color: $text;
 }
 
 .card-element {

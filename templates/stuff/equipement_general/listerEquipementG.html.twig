@@ -22,7 +22,7 @@
     </div>
 
     <div class="card text-center">
-        <div class="card-body">
+        <div class="card-body fond-image">
 
             <!--bouton-->
             <section class="admin_body_container" >
@@ -60,10 +60,10 @@
         <div class="card-element">
             {% for equipement in equipements %}
                 <div class="card card-size">
-                <div class="card-body">
+                <div class="card-body fond-image">
                     <h5 class="card-title">{{equipement.nom}}</h5>
                     <h6 class="card-title">{{equipement.poids}} Kg - {{equipement.prix}} Couronnes</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <p class="card-text">{{equipement.description}}</p>
                     <p href="#" class="card-text">
                         {% if is_granted('ROLE_ADMIN') %}
                         <a class="btn btn-outline-info" href="{{ path('app_admin_equipement_modifier', { 'id' : equipement.id }) }}">

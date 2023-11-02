@@ -23,7 +23,7 @@
     </div>
 
     <div class="card text-center">
-        <div class="card-body">
+        <div class="card-body fond-image">
 
             <!--bouton-->
             <section class="admin_body_container" >
@@ -74,13 +74,13 @@
                                 <div class="card-element">
                                     {% for arme in armes %}
                                         <div class="card card-size">
-                                            <div class="card-body">
+                                            <div class="card-body fond-image">
                                                 <h5 class="card-title">{{arme.nom}}}</h5>
                                                 <h6 class="card-title">{{arme.poids}} Kg - {{arme.prix}} Couronnes</h6>
                                                 <h6 class="card-title">Taille {{arme.taille.libelle}} {% if arme.degat is not null %} - {{arme.degat}}{% endif %}</h6>
                                                 <p class="card-text">{{arme.mains}} min(s) - Portée de {{arme.portee}}</p>
                                                 <p class="card-text">{% if arme.effet is not null %}effet(s) : {{arme.effet}}{% endif %}</p>
-                                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                <p class="card-text">{{arme.description}}</p>
                                                 <p href="#" class="card-text">
                                                     {% if is_granted('ROLE_ADMIN') %}
                                                         <a class="btn btn-outline-info" href="{{ path('app_admin_arme_modifier', { 'id' : arme.id }) }}">

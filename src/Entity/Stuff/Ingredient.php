@@ -5,6 +5,9 @@ namespace App\Entity\Stuff;
 use App\Repository\Stuff\IngredientRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Entité définissant un ingrésient d'alchimie
+ */
 #[ORM\Entity(repositoryClass: IngredientRepository::class)]
 #[ORM\Table(name: "ingredient_ing")]
 class Ingredient
@@ -17,7 +20,7 @@ class Ingredient
     #[ORM\Column(name: "ing_nom", length: 255)]
     private ?string $nom = null;
 
-    #[ORM\Column(name: "ing_description", length: 255)]
+    #[ORM\Column(name: "ing_description", type: "text")]
     private ?string $description = null;
 
     #[ORM\Column(name: "ing_effet", type: "text")]

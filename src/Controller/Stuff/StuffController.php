@@ -5,6 +5,7 @@ namespace App\Controller\Stuff;
 use App\Form\Search\SearchArmeType;
 use App\Form\Search\SearchArmureType;
 use App\Form\Search\SearchEquipementGeneralType;
+use App\Form\Search\SearchIngredientType;
 use App\Repository\Stuff\ArmeRepository;
 use App\Repository\Stuff\ArmureRepository;
 use App\Repository\Stuff\EquipementGeneralRepository;
@@ -128,15 +129,34 @@ class StuffController extends AbstractController
     }
 
     #[Route('/ingredients', name: '_ingredient')]
-    public function alchimie(IngredientRepository $ingredientRepository): Response
+    public function alchimie(Request $request,
+                             IngredientRepository $ingredientRepository
+                             ): Response
     {
         $user = $this->getUser();
         if (!$user) {
             return $this->redirectToRoute('app_login');
         }
-        //TODO - Ingredients
+
+        $form = $this->createForm(SearchIngredientType::class);
+        $form->handleRequest($request);
+
+        $nom = $form->get('nom')->getData();
+
+        if ($nom) {
+            $ingredients = $ingredientRepository->findIngredientFilteredByNom($nom);
+        } else {
+            $ingredients = $ingredientRepository->findIngredientByName();
+        }
+        if ($request->isXmlHttpRequest()) {
+            // Si la requête est une requête AJAX
+
+            return $this->json($ingredients);
+        }
+
         return $this->render('stuff/ingredient/listerIngredient.html.twig', [
-            'ingredients' =>$ingredientRepository->findAll(),
+            'ingredients' => $ingredients,
+            'form' => $form->createView(),
         ]);
     }
 

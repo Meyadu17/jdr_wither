@@ -6,6 +6,7 @@ use App\Entity\Stuff\EquipementGeneral;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -36,6 +37,14 @@ class EquipementGeneralType extends AbstractType
                 'attr' => [
                     'class' => 'form-control required-field positive-integer',
                     'placeholder' => 'Saisissez un nombre',
+                    'required' => true,
+                ],
+            ])
+            ->add('description', TextareaType::class, [
+                'label' => "Description*",
+                'attr' => [
+                    'class' => 'form-control required-field',
+                    'placeholder' => 'Description de l\'armure, du bouclier...',
                     'required' => true,
                 ],
             ])

@@ -84,22 +84,32 @@
 
                             <!-- Ligne 4 -->
                             <div class="row">
-                                <div class="col-md-6 mb-4">
+                                <div class="col-md-12 mb-4">
                                     <div class="form-outline">
-                                        {{ form_widget(form.effet) }}
-                                        {{ form_label(form.effet) }}
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-4">
-                                    <div class="form-outline">
-                                        {{ form_widget(form.poids) }}
-                                        {{ form_label(form.poids) }}
+                                        {{ form_widget(form.description) }}
+                                        {{ form_label(form.description) }}
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Ligne 5 -->
                             <div class="row">
+                                <div class="col-md-12 mb-4">
+                                    <div class="form-outline">
+                                        {{ form_widget(form.effet) }}
+                                        {{ form_label(form.effet) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ligne 6 -->
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        {{ form_widget(form.poids) }}
+                                        {{ form_label(form.poids) }}
+                                    </div>
+                                </div>
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
                                         {{ form_widget(form.prix) }}
