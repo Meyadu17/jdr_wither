@@ -22,30 +22,48 @@ class EquipementGeneralRepository extends ServiceEntityRepository
     }
 
     /**
-     * Sélectionner l'équipement général par nom
-     * @return float|int|mixed|string
+     * @return EquipementGeneral[] Retourne un tableau d'objet d'équipement général
      */
-    public function findEquipementByName()
+    public function findEquipementsGroupedByType()
     {
-        return $this->createQueryBuilder('eg')
-            ->orderBy('eg.nom', 'ASC')
-            ->getQuery()
-            ->getResult();
+        $qb = $this->createQueryBuilder('eg')
+            ->join('eg.categorieFourniture', 'cf')
+            ->orderBy('cf.libelle', 'ASC')
+            ->addOrderBy('eg.nom', 'ASC') // Ajout du critère de tri par nom
+            ->getQuery();
 
+        $result = $qb->getResult();
+
+        $equipementGroupedByType = [];
+        foreach ($result as $equipement) {
+            $categorieFourniture = $equipement->getCategorieFourniture();
+            $equipementGroupedByType[$categorieFourniture->getLibelle()][] = $equipement;
+        }
+
+        return $equipementGroupedByType;
     }
 
     /**
-     * Filtrer l'équipement général en fonction du nom saisie
-     * @param $nom
-     * @return float|int|mixed|string
+     * @param string $nom Le nom de l'équipement à filtrer
+     * @return EquipementGeneral[] Retourne un tableau d'objet d'équipement filtré par nom
      */
-    public function findEquipementFilteredByNom($nom)
+    public function findEquipementsFilteredByNom($nom)
     {
-        return $this->createQueryBuilder('eg')
+        $qb = $this->createQueryBuilder('eg')
+            ->join('eg.categorieFourniture', 'cf')
             ->where('eg.nom LIKE :nom')
             ->setParameter('nom', '%' . $nom . '%')
-            ->orderBy('eg.nom', 'ASC')
-            ->getQuery()
-            ->getResult();
+            ->orderBy('cf.id', 'ASC')
+            ->getQuery();
+
+        $result = $qb->getResult();
+
+        $equipementGroupedByType = [];
+        foreach ($result as $equipement) {
+            $categorieFourniture = $equipement->getCategorieFourniture();
+            $equipementGroupedByType[$categorieFourniture->getLibelle()][] = $equipement;
+        }
+
+        return $equipementGroupedByType;
     }
 }

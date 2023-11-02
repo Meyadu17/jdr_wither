@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Stuff\CategorieFourniture;
 use App\Entity\Stuff\EquipementGeneral;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -16,6 +18,16 @@ class EquipementGeneralType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('categorieFourniture', EntityType::class, [
+                'class' => CategorieFourniture::class,
+                'choice_label' => 'libelle',
+                'label' => "Type d'équipement*",
+                'required' => true,
+                'placeholder' => 'Choisir le type d\'équipement',
+                'attr' => [
+                    'class' => 'form-select required-field',
+                ],
+            ])
             ->add('nom', TextType::class, [
                 'label' => "Nom*",
                 'attr' => [

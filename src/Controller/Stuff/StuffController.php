@@ -112,18 +112,18 @@ class StuffController extends AbstractController
         $nom = $form->get('nom')->getData();
 
         if ($nom) {
-            $equipements = $equipementRepository->findEquipementFilteredByNom($nom);
+            $equipementGroupedByType = $equipementRepository->findEquipementsFilteredByNom($nom);
         } else {
-            $equipements = $equipementRepository->findEquipementByName();
+            $equipementGroupedByType = $equipementRepository->findEquipementsGroupedByType();
         }
         if ($request->isXmlHttpRequest()) {
             // Si la requête est une requête AJAX
 
-            return $this->json($equipements);
+            return $this->json($equipementGroupedByType);
         }
 
         return $this->render('stuff/equipement_general/listerEquipementG.html.twig', [
-            'equipements' => $equipements,
+            'equipementGroupedByType' => $equipementGroupedByType,
             'form' => $form->createView(),
         ]);
     }

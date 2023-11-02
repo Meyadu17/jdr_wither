@@ -6,6 +6,7 @@ use App\Entity\CompetenceCombat\Element;
 use App\Entity\CompetenceCombat\NiveauSort;
 use App\Entity\CompetenceCombat\TypeDon;
 use App\Entity\Stuff\CategorieArme;
+use App\Entity\Stuff\CategorieFourniture;
 use App\Entity\Stuff\EmplacementArmure;
 use App\Entity\Stuff\EncombrementArmure;
 use App\Entity\Stuff\Taille;
@@ -173,19 +174,45 @@ class AppFixtures extends Fixture
         $manager->persist($emplacementArmure4);
         //#endregion -------------------------- EMPLACEMENT D'ARMURE --------------------------
         //#region -------------------------- ENCOMBREMENT D'ARMURE --------------------------
-        $encombrementArmunre1 = new EncombrementArmure();
-        $encombrementArmunre1->setLibelle('Léger');
-        $manager->persist($encombrementArmunre1);
+        $encombrementArmure1 = new EncombrementArmure();
+        $encombrementArmure1->setLibelle('léger');
+        $manager->persist($encombrementArmure1);
 
-        $encombrementArmunre2 = new EncombrementArmure();
-        $encombrementArmunre2->setLibelle('Intermédiaire');
-        $manager->persist($encombrementArmunre2);
+        $encombrementArmure2 = new EncombrementArmure();
+        $encombrementArmure2->setLibelle('intermédiaire');
+        $manager->persist($encombrementArmure2);
 
-        $encombrementArmunre3 = new EncombrementArmure();
-        $encombrementArmunre3->setLibelle('Lourd');
-        $manager->persist($encombrementArmunre3);
+        $encombrementArmure3 = new EncombrementArmure();
+        $encombrementArmure3->setLibelle('lourd');
+        $manager->persist($encombrementArmure3);
 
-        //#endregion -------------------------- ENCOMBREMENT D'ARMUREE --------------------------
+        //#endregion -------------------------- ENCOMBREMENT D'ARMURE --------------------------
+        //#region -------------------------- TYPE DE FOURNITURE --------------------------
+        $categorieFourniture1 = new CategorieFourniture();
+        $categorieFourniture1->setLibelle('Équipement général');
+        $manager->persist($categorieFourniture1);
+
+        $categorieFourniture2 = new CategorieFourniture();
+        $categorieFourniture2->setLibelle('Contenant');
+        $manager->persist($categorieFourniture2);
+
+        $categorieFourniture3 = new CategorieFourniture();
+        $categorieFourniture3->setLibelle('Nourriture & Boisson');
+        $manager->persist($categorieFourniture3);
+
+        $categorieFourniture4 = new CategorieFourniture();
+        $categorieFourniture4->setLibelle('Vêtement');
+        $manager->persist($categorieFourniture4);
+
+        $categorieFourniture5 = new CategorieFourniture();
+        $categorieFourniture5->setLibelle('Service');
+        $manager->persist($categorieFourniture5);
+
+        $categorieFourniture6 = new CategorieFourniture();
+        $categorieFourniture6->setLibelle('Logement');
+        $manager->persist($categorieFourniture6);
+
+        //#endregion -------------------------- TYPE DE FOURNITURE --------------------------
         //#endregion -------------------------- STUFF --------------------------
 
         $manager->flush();

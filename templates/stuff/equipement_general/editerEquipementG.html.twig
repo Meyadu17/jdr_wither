@@ -30,7 +30,13 @@
                         {{ form_start(form, {'attr':{'class':'row g-3 controle-form', 'novalidate': 'novalidate'}}) }}
                         <!-- Ligne 1 -->
                         <div class="row">
-                            <div class="col-md-12 mb-4">
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    {{ form_widget(form.categorieFourniture) }}
+                                    {{ form_label(form.categorieFourniture) }}
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
                                 <div class="form-outline">
                                     {{ form_widget(form.nom) }}
                                     {{ form_label(form.nom) }}
@@ -38,7 +44,7 @@
                             </div>
                         </div>
 
-                        <!-- Ligne 1 -->
+                        <!-- Ligne 2 -->
                         <div class="row">
                             <div class="col-md-12 mb-4">
                                 <div class="form-outline">
@@ -48,19 +54,15 @@
                             </div>
                         </div>
 
-                        <!-- Ligne 2 -->
+                        <!-- Ligne 3 -->
                         <div class="row">
-                            <div class="col-md-12 mb-4">
+                            <div class="col-md-6 mb-4">
                                 <div class="form-outline">
                                     {{ form_widget(form.poids) }}
                                     {{ form_label(form.poids) }}
                                 </div>
                             </div>
-                        </div>
-
-                        <!-- Ligne 3 -->
-                        <div class="row">
-                            <div class="col-md-12 mb-4">
+                            <div class="col-md-6 mb-4">
                                 <div class="form-outline">
                                     {{ form_widget(form.prix) }}
                                     {{ form_label(form.prix) }}

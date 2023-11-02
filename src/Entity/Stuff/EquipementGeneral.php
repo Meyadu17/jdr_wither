@@ -29,6 +29,10 @@ class EquipementGeneral
     #[ORM\Column(name: "eqg_description", type: "text")]
     private ?string $description = null;
 
+    #[ORM\ManyToOne(targetEntity: CategorieFourniture::class, inversedBy: 'equipementGenerals')]
+    #[ORM\JoinColumn(name: "eqg_fk_caf_id", referencedColumnName: "caf_id", nullable: false)]
+    private ?CategorieFourniture $categorieFourniture = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -78,6 +82,18 @@ class EquipementGeneral
     public function setDescription(string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getCategorieFourniture(): ?CategorieFourniture
+    {
+        return $this->categorieFourniture;
+    }
+
+    public function setCategorieFourniture(?CategorieFourniture $categorieFourniture): static
+    {
+        $this->categorieFourniture = $categorieFourniture;
 
         return $this;
     }

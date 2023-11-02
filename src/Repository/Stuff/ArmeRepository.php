@@ -66,5 +66,4 @@ class ArmeRepository extends ServiceEntityRepository
 
         return $armesGroupedByType;
     }
-
 }
