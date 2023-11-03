@@ -20,8 +20,9 @@ class SigneRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, \App\Entity\CompetenceCombat\Signe::class);
     }
+
     /**
-     * @return Signe[] Retourne un tableau d'objet d'armes
+     * @return Signe[] Retourne un tableau d'objet de signes
      */
     public function findSignesGroupedByType()
     {
@@ -43,8 +44,8 @@ class SigneRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param string $nom Le nom de l'arme à filtrer
-     * @return Signe[] Retourne un tableau d'objet d'armes filtré par nom
+     * @param string $nom Le nom du signe à filtrer
+     * @return Signe[] Retourne un tableau d'objet du signe filtré par nom
      */
     public function findSignesFilteredByNom($nom)
     {

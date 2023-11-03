@@ -10,8 +10,8 @@ use Doctrine\Persistence\ManagerRegistry;
  * @extends ServiceEntityRepository<\App\Entity\CompetenceCombat\Don>
  *
  * @method Don|null find($id, $lockMode = null, $lockVersion = null)
- * @method \App\Entity\CompetenceCombat\Don|null findOneBy(array $criteria, array $orderBy = null)
- * @method \App\Entity\CompetenceCombat\Don[]    findAll()
+ * @method Don|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Don[]    findAll()
  * @method Don[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class DonRepository extends ServiceEntityRepository

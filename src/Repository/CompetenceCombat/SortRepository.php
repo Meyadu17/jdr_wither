@@ -9,9 +9,9 @@ use Doctrine\Persistence\ManagerRegistry;
 /**
  * @extends ServiceEntityRepository<\App\Entity\CompetenceCombat\Sort>
  *
- * @method \App\Entity\CompetenceCombat\Sort|null find($id, $lockMode = null, $lockVersion = null)
- * @method \App\Entity\CompetenceCombat\Sort|null findOneBy(array $criteria, array $orderBy = null)
- * @method \App\Entity\CompetenceCombat\Sort[]    findAll()
+ * @method Sort|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Sort|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Sort[]    findAll()
  * @method Sort[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class SortRepository extends ServiceEntityRepository
@@ -21,28 +21,49 @@ class SortRepository extends ServiceEntityRepository
         parent::__construct($registry, Sort::class);
     }
 
-//    /**
-//     * @return Sort[] Returns an array of Sort objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('s.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return Sort[] Retourne un tableau d'objet de sorts
+     */
+    public function findSortsGroupedByType()
+    {
+        $qb = $this->createQueryBuilder('s')
+            ->join('s.niveauSort', 'ns')
+            ->orderBy('ns.libelle', 'ASC')
+            ->addOrderBy('s.nom', 'ASC') // Ajout du critère de tri par nom
+            ->getQuery();
 
-//    public function findOneBySomeField($value): ?Sort
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        $result = $qb->getResult();
+
+        $sortsGroupedByType = [];
+        foreach ($result as $sort) {
+            $niveau = $sort->getNiveauSort();
+            $sortsGroupedByType[$niveau->getLibelle()][] = $sort;
+        }
+
+        return $sortsGroupedByType;
+    }
+
+    /**
+     * @param string $nom Le nom du sort à filtrer
+     * @return Sort[] Retourne un tableau d'objet du sort filtré par nom
+     */
+    public function findSortsFilteredByNom($nom)
+    {
+        $qb = $this->createQueryBuilder('s')
+            ->join('s.niveauSort', 'ns')
+            ->where('s.nom LIKE :nom')
+            ->setParameter('nom', '%' . $nom . '%')
+            ->orderBy('ns.id', 'ASC')
+            ->getQuery();
+
+        $result = $qb->getResult();
+
+        $sortsGroupedByType = [];
+        foreach ($result as $sort) {
+            $niveau = $sort->getNiveauSort();
+            $sortsGroupedByType[$niveau->getLibelle()][] = $sort;
+        }
+
+        return $sortsGroupedByType;
+    }
 }
