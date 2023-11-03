@@ -22,20 +22,29 @@
                     <img class="logo" src="{{ asset('images/favicon.png') }}" alt="Logo" />
                 </div>
 
-                <a class="#" href="{{ path('app_accueil') }}">Accueil</a>
+                <a href="{{ path('app_accueil') }}">Accueil</a>
+
                 {% if is_granted('ROLE_USER') %}
-                <a class="#" href="#">Fiches personnage</a>
-                <a class="#" href="{{ path('app_stuff_lister') }}">Magasin</a>
-                <a class="#" href="{{ path('app_competence_combat_lister') }}">Compétences de combat</a>
-                <a class="#" href="#">Bestiaire</a>
+                    <a href="#">Fiches personnage</a>
+
+                    <a href="{{ path('app_stuff_lister') }}">Magasin</a>
+
+                    <a href="{{ path('app_competence_combat_lister') }}">Guide de création</a>
+
+                    <a href="#">Compétences & talents</a>
+
+                    <a href="#">Bestiaire</a>
 
                 {% endif %}
 
                 {% if app.user is null %}
-                    <a class="#" href="{{ path('app_login') }}">Connexion</a>
+                    <a href="{{ path('app_login') }}">Connexion</a>
                 {% else %}
-                    <a class="#" href="{{ path('app_logout') }}">Déconnexion</a>
-                    <a class="#" href="{{ path('app_profil_consulter') }}">Bonjour {{ app.user.pseudo }}</a>
+                    <a href="{{ path('app_logout') }}">Déconnexion</a>
+
+                    <a class="user-profile-link" href="{{ path('app_profil_consulter') }}">
+                        <span class="material-symbols-outlined">edit</span>
+                        Profil de {{ app.user.pseudo }}</a>
                 {% endif %}
             </nav>
 
