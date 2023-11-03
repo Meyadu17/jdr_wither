@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\CompetenceCombat;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/admin/don', name: 'app_admin_don')]
-class DonController extends AbstractController
+#[Route('/admin/signe', name: 'app_admin_signe')]
+class SigneController extends AbstractController
 {
-    const MESSAGE = "Le don";
+    const MESSAGE = "Le signe";
 
     #[Route('/ajouter', name: '_ajouter')]
     #[Route('/modifier/{id}', name: '_modifier')]
     public function index(): Response
     {
-        return $this->render('competenceCombat/don/editerDon.html.twig');
+        return $this->render('competenceCombat/signe/editerSigne.html.twig');
     }
 }

@@ -10,16 +10,78 @@
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('filter') }}
-    {{ encore_entry_script_tags('accordion') }}
 {% endblock %}
 
 {% block body %}
-    <h1>Liste des dons</h1>
+    <!--titre-->
+    <div class="titre-logo">
+        <img class="logo" src="{{ asset('images/competencesCombat/logo-don.png') }}" alt="Logo" />
+        <h1>Dons</h1>
+        <img class="logo" src="{{ asset('images/competencesCombat/logo-don.png') }}" alt="Logo" />
+    </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/melod/PhpstormProjects/jdr_wither/src/Controller/DonController.php'|file_link(0) }}">src/Controller/DonController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/melod/PhpstormProjects/jdr_wither/templates/don/index.html.twig'|file_link(0) }}">templates/don/index.html.twig</a></code></li>
-    </ul>
+    <div class="card text-center">
+        <div class="card-body fond-image">
+
+            <!--bouton-->
+            <section class="admin_body_container" >
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a class="btn btn-outline-info" href="{{ path('app_admin_don_ajouter') }}">
+                        Ajouter un don
+                    </a>
+                {% endif %}
+                <a class="btn btn-outline-light" href="{{ path('app_competence_combat_lister') }}">Retour</a>
+            </section>
+            <br>
+            <!--filtres de recherche-->
+            {{ form_start(form) }}
+            <section class="admin_body_container ">
+                <div class="input-group">
+                    {{ form_widget(form.nom, {'attr': {'class': 'form-control', 'type': 'search', 'placeholder': 'Rechercher par nom...', 'aria-label': 'Search', 'id': 'search-input'}}) }}
+                    <span class="input-group-text"><a class="btn-close" href="{{ path('app_competence_combat_don') }}"></a></span>
+                </div>
+            </section>
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+
+    <br>
+    <!--massage flash-->
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <!--afficher la liste-->
+    <section class="admin_body_container">
+        <div class="card-element">
+            {% for don in dons %}
+                <div class="card card-size">
+                    <div class="card-body fond-image">
+                        <h5 class="card-title">{{don.nom}}</h5>
+                        <h6 class="card-title">Initiative : {{don.initiative}}</h6>
+                        <p class="card-text">{% if don.presRequis is not null %}Près-requis : {{don.presRequis}}{% endif %}</p>
+                        <p class="card-text">{{don.effet}}</p>
+                        <p href="#" class="card-text">
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a class="btn btn-outline-info" href="{{ path('app_admin_don_modifier', { 'id' : don.id }) }}">
+                                    modifier
+                                </a>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <script>
+        // Appel de la fonction avec les paramètres spécifiques aux équipements
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeSearch('search-input', 'result-container', '{{ path('app_competence_combat_don') }}');
+        });
+    </script>
 
 {% endblock %}

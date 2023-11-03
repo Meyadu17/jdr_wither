@@ -20,10 +20,10 @@ class Don
     #[ORM\Column(name: "don_pres_requis", length: 255, nullable: true)]
     private ?string $presRequis = null;
 
-    #[ORM\Column(name: "don_initiative", nullable: true)]
+    #[ORM\Column(name: "don_initiative")]
     private ?int $initiative = null;
 
-    #[ORM\Column(name: "don_effet", length: 255)]
+    #[ORM\Column(name: "don_effet", type: "text")]
     private ?string $effet = null;
 
     #[ORM\ManyToOne(targetEntity: TypeDon::class, inversedBy: 'dons')]

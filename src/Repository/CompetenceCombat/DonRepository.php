@@ -21,28 +21,31 @@ class DonRepository extends ServiceEntityRepository
         parent::__construct($registry, \App\Entity\CompetenceCombat\Don::class);
     }
 
-//    /**
-//     * @return Don[] Returns an array of Don objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('d')
-//            ->andWhere('d.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('d.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * Sélectionner les dons par nom
+     * @return float|int|mixed|string
+     */
+    public function findDonsByName()
+    {
+        return $this->createQueryBuilder('d')
+            ->orderBy('d.nom', 'ASC')
+            ->getQuery()
+            ->getResult();
 
-//    public function findOneBySomeField($value): ?Don
-//    {
-//        return $this->createQueryBuilder('d')
-//            ->andWhere('d.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    }
+
+    /**
+     * Filtrer les dons en fonction du nom saisie
+     * @param $nom
+     * @return float|int|mixed|string
+     */
+    public function findDonsFilteredByNom($nom)
+    {
+        return $this->createQueryBuilder('d')
+            ->where('d.nom LIKE :nom')
+            ->setParameter('nom', '%' . $nom . '%')
+            ->orderBy('d.nom', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }

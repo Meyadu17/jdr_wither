@@ -2,7 +2,10 @@
 
 namespace App\Controller\CompetenceCombat;
 
+use App\Form\Search\SearchDonType;
+use App\Repository\CompetenceCombat\DonRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -21,14 +24,35 @@ class CompetenceCombatController extends AbstractController
     }
 
     #[Route('/dons', name: '_don')]
-    public function dons(): Response
+    public function dons(Request $request,
+                         DonRepository $donRepository
+                         ): Response
     {
         $user = $this->getUser();
         if (!$user) {
             return $this->redirectToRoute('app_login');
         }
 
-        return $this->render('competenceCombat/don/listerDon.html.twig');
+        $form = $this->createForm(SearchDonType::class);
+        $form->handleRequest($request);
+
+        $nom = $form->get('nom')->getData();
+
+        if ($nom) {
+            $dons = $donRepository->findDonsFilteredByNom($nom);
+        } else {
+            $dons = $donRepository->findDonsByName();
+        }
+        if ($request->isXmlHttpRequest()) {
+            // Si la requête est une requête AJAX
+
+            return $this->json($dons);
+        }
+
+        return $this->render('competenceCombat/don/listerDon.html.twig', [
+            'dons' => $dons,
+            'form' => $form->createView(),
+        ]);
     }
 
     #[Route('/signes', name: '_signe')]
