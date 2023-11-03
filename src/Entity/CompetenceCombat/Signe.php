@@ -17,7 +17,7 @@ class Signe
     #[ORM\Column(name: "sig_nom", length: 255)]
     private ?string $nom = null;
 
-    #[ORM\Column(name: "sig_description", length: 255)]
+    #[ORM\Column(name: "sig_description", type: "text")]
     private ?string $description = null;
 
     #[ORM\Column(name: "sig_cout", length: 255)]

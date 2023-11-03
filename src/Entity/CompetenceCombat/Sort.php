@@ -18,13 +18,13 @@ class Sort
     private ?string $nom = null;
 
     #[ORM\Column(name: "sor_cout")]
-    private ?int $cout = null;
+    private ?string $cout = null;
 
-    #[ORM\Column(name: "sor_effet", length: 255)]
+    #[ORM\Column(name: "sor_effet", type: "text")]
     private ?string $effet = null;
 
     #[ORM\Column(name: "sor_portee")]
-    private ?int $portee = null;
+    private ?string $portee = null;
 
     #[ORM\Column(name: "sor_duree", length: 255)]
     private ?string $duree = null;
@@ -38,7 +38,7 @@ class Sort
 
     #[ORM\ManyToOne(targetEntity: NiveauSort::class, inversedBy: 'sorts')]
     #[ORM\JoinColumn(name: "sor_fk_nso_id", referencedColumnName: "nso_id")]
-    private ?NiveauSort $niveau = null;
+    private ?NiveauSort $niveauSort = null;
 
     public function getId(): ?int
     {
@@ -57,12 +57,12 @@ class Sort
         return $this;
     }
 
-    public function getCout(): ?int
+    public function getCout(): ?string
     {
         return $this->cout;
     }
 
-    public function setCout(int $cout): static
+    public function setCout(string $cout): static
     {
         $this->cout = $cout;
 
@@ -81,12 +81,12 @@ class Sort
         return $this;
     }
 
-    public function getPortee(): ?int
+    public function getPortee(): ?string
     {
         return $this->portee;
     }
 
-    public function setPortee(int $portee): static
+    public function setPortee(string $portee): static
     {
         $this->portee = $portee;
 
@@ -129,14 +129,14 @@ class Sort
         return $this;
     }
 
-    public function getNiveau(): ?NiveauSort
+    public function getNiveauSort(): ?NiveauSort
     {
-        return $this->niveau;
+        return $this->niveauSort;
     }
 
-    public function setNiveau(?NiveauSort $niveau): static
+    public function setNiveauSort(?NiveauSort $niveauSort): static
     {
-        $this->niveau = $niveau;
+        $this->niveauSort = $niveauSort;
 
         return $this;
     }

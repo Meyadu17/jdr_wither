@@ -22,9 +22,13 @@ class Element
     #[ORM\OneToMany(mappedBy: 'niveauSigne', targetEntity: Signe::class)]
     private Collection $signes;
 
+    #[ORM\OneToMany(mappedBy: 'niveauSort', targetEntity: Sort::class)]
+    private Collection $sorts;
+
     public function __construct()
     {
         $this->signes = new ArrayCollection();
+        $this->sorts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -65,9 +69,37 @@ class Element
     public function removeSigne(Signe $signe): static
     {
         if ($this->signes->removeElement($signe)) {
-            // set the owning side to null (unless already changed)
             if ($signe->getElement() === $this) {
                 $signe->setElement(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Sort>
+     */
+    public function getSorts(): Collection
+    {
+        return $this->sorts;
+    }
+
+    public function addSorts(Sort $sort): static
+    {
+        if (!$this->sorts->contains($sort)) {
+            $this->sorts->add($sort);
+            $sort->setElement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSort(Signe $sort): static
+    {
+        if ($this->sorts->removeElement($sort)) {
+            if ($sort->getElement() === $this) {
+                $sort->setElement(null);
             }
         }
 
