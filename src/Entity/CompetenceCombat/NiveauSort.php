@@ -6,15 +6,15 @@ use App\Repository\CompetenceCombat\NiveauSortRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: NiveauSortRepository::class)]
-#[ORM\Table(name: "niveau_sor_nis")]
+#[ORM\Table(name: "niveau_sor_nso")]
 class NiveauSort
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(name: "nis_id")]
+    #[ORM\Column(name: "nso_id")]
     private ?int $id = null;
 
-    #[ORM\Column(name: "nis_libelle", length: 255)]
+    #[ORM\Column(name: "nso_libelle", length: 255)]
     private ?string $libelle = null;
 
     public function getId(): ?int

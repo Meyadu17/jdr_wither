@@ -14,12 +14,104 @@
 
 {% block body %}
 
-    <h1>Nouveau signe</h1>
+    <section class=" text-center text-lg-start">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/melod/PhpstormProjects/jdr_wither/src/Controller/SigneController.php'|file_link(0) }}">src/Controller/SigneController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/melod/PhpstormProjects/jdr_wither/templates/signe/index.html.twig'|file_link(0) }}">templates/signe/index.html.twig</a></code></li>
-    </ul>
+        <h1>Nouveau signe</h1>
+        <div class="card mb-3">
+            <div class="row g-0 d-flex align-items-center fond-image">
+
+                <div class="col-lg-4 d-none d-lg-flex">
+                    <img src="{{ asset('images/competencesCombat/signe.jpg') }}" alt="Trendy Pants and Shoes"
+                         class="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5" />
+                </div>
+                <div class="col-lg-8">
+                    <div class="card-body py-5 px-md-5">
+
+                        {{ form_start(form, {'attr':{'class':'row g-3 controle-form', 'novalidate': 'novalidate'}}) }}
+                        <!-- Ligne 1 -->
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    {{ form_widget(form.niveauSigne) }}
+                                    <label for="{{ form.niveauSigne.vars.id }}" class="form-label">{{ form.niveauSigne.vars.label }}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    {{ form_widget(form.element) }}
+                                    <label for="{{ form.element.vars.id }}" class="form-label">{{ form.element.vars.label }}</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ligne 2 -->
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    {{ form_widget(form.nom) }}
+                                    {{ form_label(form.nom) }}
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    {{ form_widget(form.portee) }}
+                                    {{ form_label(form.portee) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ligne 3 -->
+                        <div class="row">
+                            <div class="col-md-12 mb-4">
+                                <div class="form-outline">
+                                    {{ form_widget(form.description) }}
+                                    {{ form_label(form.description) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ligne 4 -->
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    {{ form_widget(form.cout) }}
+                                    {{ form_label(form.cout) }}
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    {{ form_widget(form.duree) }}
+                                    {{ form_label(form.duree) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ligne 5 -->
+                        <div class="row">
+                            <div class="col-md-12 mb-4">
+                                <div class="form-outline">
+                                    {{ form_widget(form.contre) }}
+                                    {{ form_label(form.contre) }}
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Submit button -->
+                        <div class="col-md-6 mb-4">
+                            {% if app.request.get('_route') == "app_admin_signe_ajouter" %}
+                                <button class="btn btn-outline-info" type="submit">Ajouter</button>
+                                <button class="btn btn-outline-info" type="submit" name="create_and_new">Valider et créer de nouveau</button>
+                            {% else %}
+                                <button class="btn btn-outline-info" type="submit">Modifier</button>
+                            {% endif %}
+                            <a href="{{ path('app_competence_combat_signe') }}" class="btn btn-outline-light">Retour</a>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 {% endblock %}

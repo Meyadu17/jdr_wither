@@ -2,21 +2,21 @@
 
 namespace App\Entity\CompetenceCombat;
 
-use App\Repository\CompetenceCombat\ElementRepository;
+use App\Repository\CompetenceCombat\NiveauDonRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ElementRepository::class)]
-#[ORM\Table(name: "element_ele")]
-class Element
+#[ORM\Entity(repositoryClass: NiveauDonRepository::class)]
+#[ORM\Table(name: "niveau_signe_nsi")]
+class NiveauSigne
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(name: "ele_id")]
+    #[ORM\Column(name: "nsi_id")]
     private ?int $id = null;
 
-    #[ORM\Column(name: "ele_libelle", length: 255)]
+    #[ORM\Column(name: "nsi_libelle", length: 255)]
     private ?string $libelle = null;
 
     #[ORM\OneToMany(mappedBy: 'niveauSigne', targetEntity: Signe::class)]
@@ -26,7 +26,6 @@ class Element
     {
         $this->signes = new ArrayCollection();
     }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -56,7 +55,7 @@ class Element
     {
         if (!$this->signes->contains($signe)) {
             $this->signes->add($signe);
-            $signe->setElement($this);
+            $signe->setNiveauSigne($this);
         }
 
         return $this;
@@ -66,8 +65,8 @@ class Element
     {
         if ($this->signes->removeElement($signe)) {
             // set the owning side to null (unless already changed)
-            if ($signe->getElement() === $this) {
-                $signe->setElement(null);
+            if ($signe->getNiveauSigne() === $this) {
+                $signe->setNiveauSigne(null);
             }
         }
 

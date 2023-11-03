@@ -37,7 +37,7 @@ class Sort
     private ?Element $element = null;
 
     #[ORM\ManyToOne(targetEntity: NiveauSort::class, inversedBy: 'sorts')]
-    #[ORM\JoinColumn(name: "sor_fk_nis_id", referencedColumnName: "nis_id")]
+    #[ORM\JoinColumn(name: "sor_fk_nso_id", referencedColumnName: "nso_id")]
     private ?NiveauSort $niveau = null;
 
     public function getId(): ?int

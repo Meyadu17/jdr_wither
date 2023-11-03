@@ -75,7 +75,7 @@
                                     {% for arme in armes %}
                                         <div class="card card-size">
                                             <div class="card-body fond-image">
-                                                <h5 class="card-title">{{arme.nom}}}</h5>
+                                                <h5 class="card-title">{{arme.nom}}</h5>
                                                 <h6 class="card-title">{{arme.poids}} Kg - {{arme.prix}} Couronnes</h6>
                                                 <h6 class="card-title">Taille {{arme.taille.libelle}} {% if arme.degat is not null %} - {{arme.degat}}{% endif %}</h6>
                                                 <p class="card-text">{{arme.mains}} min(s) - Portée de {{arme.portee}}</p>

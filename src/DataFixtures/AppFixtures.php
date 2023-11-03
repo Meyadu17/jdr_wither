@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\CompetenceCombat\Element;
+use App\Entity\CompetenceCombat\NiveauSigne;
 use App\Entity\CompetenceCombat\NiveauSort;
 use App\Entity\CompetenceCombat\TypeDon;
 use App\Entity\Stuff\CategorieArme;
@@ -82,17 +83,27 @@ class AppFixtures extends Fixture
 
         //#region -------------------------- NIVEAU DU SORT --------------------------
         $nivSort1 = new NiveauSort();
-        $nivSort1->setLibelle('Sort de novice');
+        $nivSort1->setLibelle('Sorts de novice');
         $manager->persist($nivSort1);
 
         $nivSort2 = new NiveauSort();
-        $nivSort2->setLibelle('Sort de compagnon');
+        $nivSort2->setLibelle('Sorts de compagnon');
         $manager->persist($nivSort2);
 
         $nivSort3 = new NiveauSort();
-        $nivSort3->setLibelle('Sort de maitre');
+        $nivSort3->setLibelle('Sorts de maitre');
         $manager->persist($nivSort3);
         //#endregion -------------------------- NIVEAU DU SORT --------------------------
+
+        //#region -------------------------- NIVEAU DU SIGNE --------------------------
+        $nivSigne1 = new NiveauSigne();
+        $nivSigne1->setLibelle('Signes de base');
+        $manager->persist($nivSigne1);
+
+        $nivSigne2 = new NiveauSigne();
+        $nivSigne2->setLibelle('Signes alternatif');
+        $manager->persist($nivSigne2);
+        //#endregion -------------------------- NIVEAU DU SIGNE --------------------------
         //#endregion -------------------------- COMPETENCE DE GUERRE --------------------------
 
         //#region -------------------------- STUFF --------------------------

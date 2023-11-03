@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20231102201202 extends AbstractMigration
+final class Version20231103200648 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -24,16 +24,17 @@ final class Version20231102201202 extends AbstractMigration
         $this->addSql('CREATE TABLE armure_apr (apr_id INT AUTO_INCREMENT NOT NULL, apr_fk_tar_id INT NOT NULL, apr_fk_ear_id INT NOT NULL, apr_nom VARCHAR(255) NOT NULL, apr_protection INT DEFAULT NULL, apr_effet VARCHAR(255) DEFAULT NULL, apr_poids DOUBLE PRECISION NOT NULL, apr_prix INT NOT NULL, apr_description LONGTEXT NOT NULL, INDEX IDX_AA33257FDB84AD8 (apr_fk_tar_id), INDEX IDX_AA33257FC5329BE6 (apr_fk_ear_id), PRIMARY KEY(apr_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE categorie_arme_car (car_id INT AUTO_INCREMENT NOT NULL, car_libelle VARCHAR(255) NOT NULL, PRIMARY KEY(car_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE categorie_fourniture_caf (caf_id INT AUTO_INCREMENT NOT NULL, caf_libelle VARCHAR(255) NOT NULL, PRIMARY KEY(caf_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE don_don (don_id INT AUTO_INCREMENT NOT NULL, don_fk_tdo_id INT DEFAULT NULL, don_nom VARCHAR(255) NOT NULL, don_pres_requis VARCHAR(255) DEFAULT NULL, don_initiative INT DEFAULT NULL, don_effet VARCHAR(255) NOT NULL, INDEX IDX_A9EA8414A064DD78 (don_fk_tdo_id), PRIMARY KEY(don_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE don_don (don_id INT AUTO_INCREMENT NOT NULL, don_fk_tdo_id INT DEFAULT NULL, don_nom VARCHAR(255) NOT NULL, don_pres_requis VARCHAR(255) DEFAULT NULL, don_initiative INT NOT NULL, don_effet LONGTEXT NOT NULL, INDEX IDX_A9EA8414A064DD78 (don_fk_tdo_id), PRIMARY KEY(don_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE element_ele (ele_id INT AUTO_INCREMENT NOT NULL, ele_libelle VARCHAR(255) NOT NULL, PRIMARY KEY(ele_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE emplacement_armure_tar (tar_id INT AUTO_INCREMENT NOT NULL, tar_libelle VARCHAR(255) NOT NULL, PRIMARY KEY(tar_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE encombrement_armure_ear (ear_id INT AUTO_INCREMENT NOT NULL, ear_libelle VARCHAR(255) NOT NULL, PRIMARY KEY(ear_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE equipement_general_eqg (eqg_id INT AUTO_INCREMENT NOT NULL, eqg_fk_caf_id INT NOT NULL, eqg_nom VARCHAR(255) NOT NULL, eqg_poids DOUBLE PRECISION NOT NULL, eqg_prix INT NOT NULL, eqg_description LONGTEXT NOT NULL, INDEX IDX_A50205A748ADF643 (eqg_fk_caf_id), PRIMARY KEY(eqg_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE ingredient_ing (id INT AUTO_INCREMENT NOT NULL, ing_nom VARCHAR(255) NOT NULL, ing_description LONGTEXT NOT NULL, ing_effet LONGTEXT NOT NULL, ing_prix INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE niveau_sor_nis (nis_id INT AUTO_INCREMENT NOT NULL, nis_libelle VARCHAR(255) NOT NULL, PRIMARY KEY(nis_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE niveau_signe_nsi (nsi_id INT AUTO_INCREMENT NOT NULL, nsi_libelle VARCHAR(255) NOT NULL, PRIMARY KEY(nsi_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE niveau_sor_nso (nso_id INT AUTO_INCREMENT NOT NULL, nso_libelle VARCHAR(255) NOT NULL, PRIMARY KEY(nso_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE outil_out (out_id INT AUTO_INCREMENT NOT NULL, out_id_tai_id INT DEFAULT NULL, out_nom VARCHAR(255) NOT NULL, out_effet VARCHAR(255) NOT NULL, out_poids DOUBLE PRECISION NOT NULL, out_prix INT NOT NULL, INDEX IDX_3FB85EB66C9F6D8 (out_id_tai_id), PRIMARY KEY(out_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE signe_sig (sig_id INT AUTO_INCREMENT NOT NULL, sig_fk_ele_id INT DEFAULT NULL, sig_nom VARCHAR(255) NOT NULL, sig_niveau_ VARCHAR(255) NOT NULL, sig_description VARCHAR(255) NOT NULL, sig_cout VARCHAR(255) NOT NULL, sig_portee INT NOT NULL, sig_contre VARCHAR(255) DEFAULT NULL, sig_duree VARCHAR(255) NOT NULL, INDEX IDX_6F8E59BA6A279C04 (sig_fk_ele_id), PRIMARY KEY(sig_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE sort_sor (sor_id INT AUTO_INCREMENT NOT NULL, sor_fk_ele_id INT DEFAULT NULL, sor_fk_nis_id INT DEFAULT NULL, sor_nom VARCHAR(255) NOT NULL, sor_cout INT NOT NULL, sor_effet VARCHAR(255) NOT NULL, sor_portee INT NOT NULL, sor_duree VARCHAR(255) NOT NULL, sor_contre VARCHAR(255) NOT NULL, INDEX IDX_E90C31565ABB516D (sor_fk_ele_id), INDEX IDX_E90C31568DEE269D (sor_fk_nis_id), PRIMARY KEY(sor_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE signe_sig (sig_id INT AUTO_INCREMENT NOT NULL, sig_fk_ele_id INT DEFAULT NULL, sigr_fk_nsi_id INT NOT NULL, sig_nom VARCHAR(255) NOT NULL, sig_description VARCHAR(255) NOT NULL, sig_cout VARCHAR(255) NOT NULL, sig_portee VARCHAR(255) NOT NULL, sig_contre VARCHAR(255) DEFAULT NULL, sig_duree VARCHAR(255) NOT NULL, INDEX IDX_6F8E59BA6A279C04 (sig_fk_ele_id), INDEX IDX_6F8E59BA588F019C (sigr_fk_nsi_id), PRIMARY KEY(sig_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE sort_sor (sor_id INT AUTO_INCREMENT NOT NULL, sor_fk_ele_id INT DEFAULT NULL, sor_fk_nso_id INT DEFAULT NULL, sor_nom VARCHAR(255) NOT NULL, sor_cout INT NOT NULL, sor_effet VARCHAR(255) NOT NULL, sor_portee INT NOT NULL, sor_duree VARCHAR(255) NOT NULL, sor_contre VARCHAR(255) NOT NULL, INDEX IDX_E90C31565ABB516D (sor_fk_ele_id), INDEX IDX_E90C3156BD714199 (sor_fk_nso_id), PRIMARY KEY(sor_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE taille_tai (tai_id INT AUTO_INCREMENT NOT NULL, tai_libelle VARCHAR(255) NOT NULL, PRIMARY KEY(tai_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE type_don_tdo (tdo_id INT AUTO_INCREMENT NOT NULL, tdo_libelle VARCHAR(255) NOT NULL, PRIMARY KEY(tdo_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, is_verified TINYINT(1) NOT NULL, pseudo VARCHAR(255) NOT NULL, photo VARCHAR(255) DEFAULT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), UNIQUE INDEX UNIQ_8D93D64986CC499D (pseudo), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
@@ -46,8 +47,9 @@ final class Version20231102201202 extends AbstractMigration
         $this->addSql('ALTER TABLE equipement_general_eqg ADD CONSTRAINT FK_A50205A748ADF643 FOREIGN KEY (eqg_fk_caf_id) REFERENCES categorie_fourniture_caf (caf_id)');
         $this->addSql('ALTER TABLE outil_out ADD CONSTRAINT FK_3FB85EB66C9F6D8 FOREIGN KEY (out_id_tai_id) REFERENCES taille_tai (tai_id)');
         $this->addSql('ALTER TABLE signe_sig ADD CONSTRAINT FK_6F8E59BA6A279C04 FOREIGN KEY (sig_fk_ele_id) REFERENCES element_ele (ele_id)');
+        $this->addSql('ALTER TABLE signe_sig ADD CONSTRAINT FK_6F8E59BA588F019C FOREIGN KEY (sigr_fk_nsi_id) REFERENCES niveau_signe_nsi (nsi_id)');
         $this->addSql('ALTER TABLE sort_sor ADD CONSTRAINT FK_E90C31565ABB516D FOREIGN KEY (sor_fk_ele_id) REFERENCES element_ele (ele_id)');
-        $this->addSql('ALTER TABLE sort_sor ADD CONSTRAINT FK_E90C31568DEE269D FOREIGN KEY (sor_fk_nis_id) REFERENCES niveau_sor_nis (nis_id)');
+        $this->addSql('ALTER TABLE sort_sor ADD CONSTRAINT FK_E90C3156BD714199 FOREIGN KEY (sor_fk_nso_id) REFERENCES niveau_sor_nso (nso_id)');
     }
 
     public function down(Schema $schema): void
@@ -61,8 +63,9 @@ final class Version20231102201202 extends AbstractMigration
         $this->addSql('ALTER TABLE equipement_general_eqg DROP FOREIGN KEY FK_A50205A748ADF643');
         $this->addSql('ALTER TABLE outil_out DROP FOREIGN KEY FK_3FB85EB66C9F6D8');
         $this->addSql('ALTER TABLE signe_sig DROP FOREIGN KEY FK_6F8E59BA6A279C04');
+        $this->addSql('ALTER TABLE signe_sig DROP FOREIGN KEY FK_6F8E59BA588F019C');
         $this->addSql('ALTER TABLE sort_sor DROP FOREIGN KEY FK_E90C31565ABB516D');
-        $this->addSql('ALTER TABLE sort_sor DROP FOREIGN KEY FK_E90C31568DEE269D');
+        $this->addSql('ALTER TABLE sort_sor DROP FOREIGN KEY FK_E90C3156BD714199');
         $this->addSql('DROP TABLE arme_arm');
         $this->addSql('DROP TABLE armure_apr');
         $this->addSql('DROP TABLE categorie_arme_car');
@@ -73,7 +76,8 @@ final class Version20231102201202 extends AbstractMigration
         $this->addSql('DROP TABLE encombrement_armure_ear');
         $this->addSql('DROP TABLE equipement_general_eqg');
         $this->addSql('DROP TABLE ingredient_ing');
-        $this->addSql('DROP TABLE niveau_sor_nis');
+        $this->addSql('DROP TABLE niveau_signe_nsi');
+        $this->addSql('DROP TABLE niveau_sor_nso');
         $this->addSql('DROP TABLE outil_out');
         $this->addSql('DROP TABLE signe_sig');
         $this->addSql('DROP TABLE sort_sor');

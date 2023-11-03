@@ -17,9 +17,6 @@ class Signe
     #[ORM\Column(name: "sig_nom", length: 255)]
     private ?string $nom = null;
 
-    #[ORM\Column(name: "sig_niveau_", length: 255)]
-    private ?string $niveau = null;
-
     #[ORM\Column(name: "sig_description", length: 255)]
     private ?string $description = null;
 
@@ -27,7 +24,7 @@ class Signe
     private ?string $cout = null;
 
     #[ORM\Column(name: "sig_portee")]
-    private ?int $portee = null;
+    private ?string $portee = null;
 
     #[ORM\Column(name: "sig_contre", length: 255, nullable: true)]
     private ?string $contre = null;
@@ -38,6 +35,10 @@ class Signe
     #[ORM\ManyToOne(targetEntity: Element::class, inversedBy: 'signes')]
     #[ORM\JoinColumn(name: "sig_fk_ele_id", referencedColumnName: "ele_id")]
     private ?Element $element = null;
+
+    #[ORM\ManyToOne(targetEntity: NiveauSigne::class, inversedBy: 'signes')]
+    #[ORM\JoinColumn(name: "sig_fk_nsi_id", referencedColumnName: "nsi_id", nullable: false)]
+    private ?NiveauSigne $niveauSigne = null;
 
     public function getId(): ?int
     {
@@ -56,17 +57,6 @@ class Signe
         return $this;
     }
 
-    public function getNiveau(): ?string
-    {
-        return $this->niveau;
-    }
-
-    public function setNiveau(string $niveau): static
-    {
-        $this->niveau = $niveau;
-
-        return $this;
-    }
     public function getDescription(): ?string
     {
         return $this->description;
@@ -91,12 +81,12 @@ class Signe
         return $this;
     }
 
-    public function getPortee(): ?int
+    public function getPortee(): ?string
     {
         return $this->portee;
     }
 
-    public function setPortee(int $portee): static
+    public function setPortee(string $portee): static
     {
         $this->portee = $portee;
 
@@ -135,6 +125,18 @@ class Signe
     public function setElement(?Element $element): static
     {
         $this->element = $element;
+
+        return $this;
+    }
+
+    public function getNiveauSigne(): ?NiveauSigne
+    {
+        return $this->niveauSigne;
+    }
+
+    public function setNiveauSigne(?NiveauSigne $niveauSigne): static
+    {
+        $this->niveauSigne = $niveauSigne;
 
         return $this;
     }

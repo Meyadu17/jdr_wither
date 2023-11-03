@@ -57,7 +57,6 @@ class StuffController extends AbstractController
         }
 
         // Si ce n'est pas une requête AJAX, affichez la page normalement
-
         return $this->render('stuff/arme/listerArme.html.twig', [
             'armesGroupedByType' => $armesGroupedByType,
             'form' => $form->createView(),

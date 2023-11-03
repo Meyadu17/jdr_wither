@@ -43,7 +43,7 @@ class DonType extends AbstractType
                 ],
             ])
             ->add('initiative', IntegerType::class, [
-                'label' => "Initiative",
+                'label' => "Initiative*",
                 'attr' => [
                     'class' => 'form-control required-field positive-integer',
                     'placeholder' => 'Saisissez un nombre',

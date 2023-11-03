@@ -9,9 +9,9 @@ use Doctrine\Persistence\ManagerRegistry;
 /**
  * @extends ServiceEntityRepository<\App\Entity\CompetenceCombat\Signe>
  *
- * @method \App\Entity\CompetenceCombat\Signe|null find($id, $lockMode = null, $lockVersion = null)
- * @method \App\Entity\CompetenceCombat\Signe|null findOneBy(array $criteria, array $orderBy = null)
- * @method \App\Entity\CompetenceCombat\Signe[]    findAll()
+ * @method Signe|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Signe|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Signe[]    findAll()
  * @method Signe[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class SigneRepository extends ServiceEntityRepository
@@ -20,29 +20,49 @@ class SigneRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, \App\Entity\CompetenceCombat\Signe::class);
     }
+    /**
+     * @return Signe[] Retourne un tableau d'objet d'armes
+     */
+    public function findSignesGroupedByType()
+    {
+        $qb = $this->createQueryBuilder('s')
+            ->join('s.niveauSigne', 'ns')
+            ->orderBy('ns.libelle', 'ASC')
+            ->addOrderBy('s.nom', 'ASC') // Ajout du critère de tri par nom
+            ->getQuery();
 
-//    /**
-//     * @return Signe[] Returns an array of Signe objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('s.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+        $result = $qb->getResult();
 
-//    public function findOneBySomeField($value): ?Signe
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        $signesGroupedByType = [];
+        foreach ($result as $signe) {
+            $niveau = $signe->getNiveauSigne();
+            $signesGroupedByType[$niveau->getLibelle()][] = $signe;
+        }
+
+        return $signesGroupedByType;
+    }
+
+    /**
+     * @param string $nom Le nom de l'arme à filtrer
+     * @return Signe[] Retourne un tableau d'objet d'armes filtré par nom
+     */
+    public function findSignesFilteredByNom($nom)
+    {
+        $qb = $this->createQueryBuilder('s')
+            ->join('s.niveauSigne', 'ns')
+            ->where('s.nom LIKE :nom')
+            ->setParameter('nom', '%' . $nom . '%')
+            ->orderBy('ns.id', 'ASC')
+            ->getQuery();
+
+        $result = $qb->getResult();
+
+        $signesGroupedByType = [];
+        foreach ($result as $signe) {
+            $niveau = $signe->getNiveauSigne();
+            $signesGroupedByType[$niveau->getLibelle()][] = $signe;
+        }
+
+        return $signesGroupedByType;
+    }
 }
