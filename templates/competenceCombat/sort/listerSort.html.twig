@@ -15,6 +15,18 @@
 
 {% block body %}
 
+    <div class="btn-group" role="group" aria-label="Default button group">
+        <a class="btn btn-outline-info" href="{{ path('app_competence_combat_don') }}">Dons</a>
+        <a class="btn btn-outline-info" href="{{ path('app_competence_combat_signe') }}">Signe</a>
+        <a class="btn btn-info" href="{{ path('app_competence_combat_sort') }}">Sorts</a>
+        <a class="btn btn-outline-light" href="{{ path('app_stuff_lister') }}">Retour</a>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a class="btn btn-outline-warning" href="{{ path('app_admin_sort_ajouter') }}">
+                Nouveau Sort
+            </a>
+        {% endif %}
+    </div>
+
     <!--titre-->
     <div class="titre-logo">
         <img class="logo" src="{{ asset('images/competencesCombat/logo-sort.png') }}" alt="Logo" />
@@ -22,29 +34,18 @@
         <img class="logo" src="{{ asset('images/competencesCombat/logo-sort.png') }}" alt="Logo" />
     </div>
 
+    <!--filtres de recherche-->
     <div class="card text-center">
         <div class="card-body fond-image">
-
-            <!--bouton-->
             <section class="admin_body_container" >
-                {% if is_granted('ROLE_ADMIN') %}
-                    <a class="btn btn-outline-info" href="{{ path('app_admin_sort_ajouter') }}">
-                        Nouveau Sort
-                    </a>
-                {% endif %}
-                <a class="btn btn-outline-light" href="{{ path('app_competence_combat_lister') }}">Retour</a>
+                <h4>Filtre de recherche</h4
+                {{ form_start(form) }}
+                    <div class="input-group">
+                        {{ form_widget(form.nom, {'attr': {'class': 'form-control', 'type': 'search', 'placeholder': 'Rechercher par nom...', 'aria-label': 'Search', 'id': 'search-input'}}) }}
+                        <span class="input-group-text"><a class="btn-close" href="{{ path('app_competence_combat_sort') }}"></a></span>
+                    </div>
+                {{ form_end(form) }}
             </section>
-            <br>
-            <!--filtres de recherche-->
-            {{ form_start(form) }}
-            <section class="admin_body_container " >
-                <div class="input-group">
-                    {{ form_widget(form.nom, {'attr': {'class': 'form-control', 'type': 'search', 'placeholder': 'Rechercher par nom...', 'aria-label': 'Search', 'id': 'search-input'}}) }}
-                    <span class="input-group-text"><a class="btn-close" href="{{ path('app_competence_combat_sort') }}"></a></span>
-                </div>
-            </section>
-            {{ form_end(form) }}
-
         </div>
     </div>
     <br>

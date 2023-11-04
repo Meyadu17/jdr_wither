@@ -23,25 +23,18 @@
                 </div>
 
                 <a href="{{ path('app_accueil') }}">Accueil</a>
-
                 {% if is_granted('ROLE_USER') %}
                     <a href="#">Fiches personnage</a>
-
                     <a href="{{ path('app_stuff_lister') }}">Magasin</a>
-
-                    <a href="{{ path('app_competence_combat_lister') }}">Guide de création</a>
-
-                    <a href="#">Compétences & talents</a>
-
+                    <a href="{{ path('app_competence_combat_lister') }}">Compétences & talents</a>
+                    <a href="#">Guide de création</a>
                     <a href="#">Bestiaire</a>
-
                 {% endif %}
 
                 {% if app.user is null %}
                     <a href="{{ path('app_login') }}">Connexion</a>
                 {% else %}
                     <a href="{{ path('app_logout') }}">Déconnexion</a>
-
                     <a class="user-profile-link" href="{{ path('app_profil_consulter') }}">
                         <span class="material-symbols-outlined">edit</span>
                         Profil de {{ app.user.pseudo }}</a>

@@ -15,6 +15,20 @@
 
 {% block body %}
 
+    <div class="btn-group" role="group" aria-label="Default button group">
+        <a class="btn btn-info" href="{{ path('app_stuff_arme') }}">Arme</a>
+        <a class="btn btn-outline-info" href="{{ path('app_stuff_armure') }}">Armure</a>
+        <a class="btn btn-outline-info" href="{{ path('app_stuff_equipement') }}">Équipement général</a>
+        <a class="btn btn-outline-info" href="{{ path('app_stuff_ingredient') }}">Composant d'alchimie</a>
+        <a class="btn btn-outline-info" href="{{ path('app_stuff_outil') }}">Outils</a>
+        <a class="btn btn-outline-light" href="{{ path('app_stuff_lister') }}">Retour</a>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a class="btn btn-outline-warning" href="{{ path('app_admin_arme_ajouter') }}">
+                Mettre une arme en vente
+            </a>
+        {% endif %}
+    </div>
+
     <!--titre-->
     <div class="titre-logo">
         <img class="logo" src="{{ asset('images/stuff/logo-armes.png') }}" alt="Logo" />
@@ -22,28 +36,18 @@
         <img class="logo" src="{{ asset('images/stuff/logo-armes.png') }}" alt="Logo" />
     </div>
 
+    <!--filtres de recherche-->
     <div class="card text-center">
         <div class="card-body fond-image">
-
-            <!--bouton-->
             <section class="admin_body_container" >
-                {% if is_granted('ROLE_ADMIN') %}
-                <a class="btn btn-outline-info" href="{{ path('app_admin_arme_ajouter') }}">
-                    Mettre une arme en vente
-                </a>
-                {% endif %}
-                <a class="btn btn-outline-light" href="{{ path('app_stuff_lister') }}">Retour</a>
+                <h4>Filtre de recherche</h4>
+                {{ form_start(form) }}
+                    <div class="input-group">
+                        {{ form_widget(form.nom, {'attr': {'class': 'form-control', 'type': 'search', 'placeholder': 'Rechercher par nom...', 'aria-label': 'Search', 'id': 'search-input'}}) }}
+                        <span class="input-group-text"><a class="btn-close" href="{{ path('app_stuff_arme') }}"></a></span>
+                    </div>
+                {{ form_end(form) }}
             </section>
-            <br>
-            <!--filtres de recherche-->
-            {{ form_start(form) }}
-            <section class="admin_body_container " >
-                <div class="input-group">
-                    {{ form_widget(form.nom, {'attr': {'class': 'form-control', 'type': 'search', 'placeholder': 'Rechercher par nom...', 'aria-label': 'Search', 'id': 'search-input'}}) }}
-                    <span class="input-group-text"><a class="btn-close" href="{{ path('app_stuff_arme') }}"></a></span>
-                </div>
-            </section>
-            {{ form_end(form) }}
 
         </div>
     </div>
