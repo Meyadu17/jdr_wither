@@ -63,19 +63,18 @@
     <section class="admin_body_container">
         <div class="card-element">
             {% for ingredient in ingredients %}
-                <div class="card card-size">
+                <div class="card card-size-info">
                     <div class="card-body fond-image">
-                        <h5 class="card-title">{{ingredient.nom}}</h5>
-                        <h6 class="card-title">{{ingredient.prix}} Couronnes</h6>
-                        <p class="card-text">{% if ingredient.effet is not null %}effet(s) : {{ingredient.effet}}{% endif %}</p>
-                        <p class="card-text">{{ingredient.description}}</p>
-                        <p href="#" class="card-text">
+                        <h5 class="card-title">{{ingredient.nom}}
                             {% if is_granted('ROLE_ADMIN') %}
-                                <a class="btn btn-outline-info" href="{{ path('app_admin_ingredient_modifier', { 'id' : ingredient.id }) }}">
-                                    modifier
+                                <a href="{{ path('app_admin_ingredient_modifier', { 'id' : ingredient.id }) }}">
+                                    <span class="material-symbols-outlined">edit</span>
                                 </a>
                             {% endif %}
-                        </p>
+                        </h5>
+                        <h6 class="card-title"><i>{{ingredient.prix}} Couronnes</i></h6>
+                        <p class="card-text">{% if ingredient.effet is not null %}<b>Effet(s)</b> : {{ingredient.effet}}{% endif %}</p>
+                        <p class="card-text"><i>{{ingredient.description}}</i></p>
                     </div>
                 </div>
             {% endfor %}

@@ -63,19 +63,19 @@
     <section class="admin_body_container">
         <div class="card-element">
             {% for outil in outils %}
-                <div class="card card-size">
+                <div class="card card-size-info">
                     <div class="card-body fond-image">
-                        <h5 class="card-title">{{outil.nom}}</h5>
-                        <h6 class="card-title">{{outil.poids}} Kg - {{outil.prix}} Couronnes</h6>
-                        <h6 class="card-title">Taille {{outil.taille.libelle}}</h6>
-                        <p class="card-text">effet(s) : {{outil.effet}}</p>
-                        <p href="#" class="card-text">
+                        <h5 class="card-title">{{outil.nom}}
                             {% if is_granted('ROLE_ADMIN') %}
-                                <a class="btn btn-outline-info" href="{{ path('app_admin_outil_modifier', { 'id' : outil.id }) }}">
-                                    modifier
+                                <a href="{{ path('app_admin_outil_modifier', { 'id' : outil.id }) }}">
+                                    <span class="material-symbols-outlined">edit</span>
                                 </a>
                             {% endif %}
-                        </p>
+                        </h5>
+                        <h6 class="card-title"><i>{{outil.poids}} Kg - {{outil.prix}} Couronnes</i></h6>
+
+                        <p class="card-title"><b>Taille</b> {{outil.taille.libelle}}</p>
+                        <p class="card-text"><b>Effet(s)</b> : {{outil.effet}}</p>
                     </div>
                 </div>
             {% endfor %}

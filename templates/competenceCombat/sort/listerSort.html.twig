@@ -74,20 +74,21 @@
                             <section class="admin_body_container">
                                 <div class="card-element">
                                     {% for sort in sorts %}
-                                        <div class="card card-size">
+                                        <div class="card card-size-info">
                                             <div class="card-body fond-image">
-                                                <h5 class="card-title">{{sort.nom}}</h5>
-                                                <h6 class="card-title">{{sort.cout}} END - Portée : {{sort.portee}}</h6>
-                                                <h6 class="card-title">{% if sort.contre is not null %}Contré part {{sort.contre}} {% endif %}</h6>
-                                                <p class="card-text"> durée {{sort.portee}} - {{sort.element.libelle}} </p>
-                                                <p class="card-text">{{sort.effet}}</p>
-                                                <p href="#" class="card-text">
-                                                    {% if is_granted('ROLE_ADMIN') %}
-                                                        <a class="btn btn-outline-info" href="{{ path('app_admin_sort_modifier', { 'id' : sort.id }) }}">
-                                                            modifier
+                                                <h4 class="card-title">{{sort.nom}}{% if is_granted('ROLE_ADMIN') %}
+                                                        <a href="{{ path('app_admin_sort_modifier', { 'id' : sort.id }) }}">
+                                                            <span class="material-symbols-outlined">edit</span>
                                                         </a>
                                                     {% endif %}
-                                                </p>
+                                                </h4>
+                                                <h6 class="card-text"><i>{{sort.element.libelle}}</i></h6>
+
+                                                <p class="card-text"><b>Durée</b> : {{sort.duree}}</p>
+                                                <p class="card-title"><b>Coût</b> : {{sort.cout}}</p>
+                                                <p class="card-title"><b>Portée</b> : {{sort.portee}}</p>
+                                                <p class="card-title">{% if sort.contre is not null %}<b>Contré part</b> : {{sort.contre}} {% endif %}</p>
+                                                <p class="card-text">{{sort.effet}}</p>
                                             </div>
                                         </div>
                                     {% endfor %}

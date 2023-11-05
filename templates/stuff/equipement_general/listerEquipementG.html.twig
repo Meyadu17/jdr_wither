@@ -76,18 +76,18 @@
                         <section class="admin_body_container">
                             <div class="card-element">
                                 {% for equipement in equipements %}
-                                    <div class="card card-size">
+                                    <div class="card card-size-info">
                                     <div class="card-body fond-image">
-                                        <h5 class="card-title">{{equipement.nom}}</h5>
-                                        <h6 class="card-title">{{equipement.poids}} Kg - {{equipement.prix}} Couronnes</h6>
-                                        <p class="card-text">{{equipement.description}}</p>
-                                        <p href="#" class="card-text">
+                                        <h5 class="card-title">{{equipement.nom}}
                                             {% if is_granted('ROLE_ADMIN') %}
-                                            <a class="btn btn-outline-info" href="{{ path('app_admin_equipement_modifier', { 'id' : equipement.id }) }}">
-                                                modifier
-                                            </a>
+                                                <a href="{{ path('app_admin_equipement_modifier', { 'id' : equipement.id }) }}">
+                                                    <span class="material-symbols-outlined">edit</span>
+                                                </a>
                                             {% endif %}
-                                        </p>
+                                        </h5>
+                                        <h6 class="card-title"><i>{{equipement.poids}} Kg - {{equipement.prix}} Couronnes</i></h6>
+
+                                        <p class="card-text"><i>{{equipement.description}}</i></p>
                                     </div>
                                 </div>
                                 {% endfor %}

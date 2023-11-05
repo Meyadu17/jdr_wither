@@ -77,21 +77,25 @@
                             <section class="admin_body_container">
                                 <div class="card-element">
                                     {% for arme in armes %}
-                                        <div class="card card-size">
+                                        <div class="card card-size-info">
                                             <div class="card-body fond-image">
-                                                <h5 class="card-title">{{arme.nom}}</h5>
-                                                <h6 class="card-title">{{arme.poids}} Kg - {{arme.prix}} Couronnes</h6>
-                                                <h6 class="card-title">Taille {{arme.taille.libelle}} {% if arme.degat is not null %} - {{arme.degat}}{% endif %}</h6>
-                                                <p class="card-text">{{arme.mains}} min(s) - Portée de {{arme.portee}}</p>
-                                                <p class="card-text">{% if arme.effet is not null %}effet(s) : {{arme.effet}}{% endif %}</p>
-                                                <p class="card-text">{{arme.description}}</p>
-                                                <p href="#" class="card-text">
+                                                <h5 class="card-title">{{arme.nom}}
                                                     {% if is_granted('ROLE_ADMIN') %}
-                                                        <a class="btn btn-outline-info" href="{{ path('app_admin_arme_modifier', { 'id' : arme.id }) }}">
-                                                            modifier
+                                                        <a href="{{ path('app_admin_arme_modifier', { 'id' : arme.id }) }}">
+                                                            <span class="material-symbols-outlined">edit</span>
                                                         </a>
                                                     {% endif %}
+                                                </h5>
+                                                <h6 class="card-title"><i>Taille : {{arme.taille.libelle}}</i></h6>
+
+                                                <p class="card-title">{{arme.poids}} Kg - {{arme.prix}} Couronnes</p>
+                                                <p class="card-title">{% if arme.degat is not null %}<b>Dégats</b> : {{arme.degat}}{% endif %}</p>
+                                                <p class="card-text">{{arme.mains}}
+                                                    {% if arme.mains == 1 %} main{% else %} mains{% endif %}
+                                                    {% if arme.portee is not null %} - <b>Portée</b> : {{arme.portee}}{% endif %}
                                                 </p>
+                                                <p class="card-text">{% if arme.effet is not null %}effet(s) : {{arme.effet}}{% endif %}</p>
+                                                <p class="card-text"><i>{{arme.description}}</i></p>
                                             </div>
                                         </div>
                                     {% endfor %}

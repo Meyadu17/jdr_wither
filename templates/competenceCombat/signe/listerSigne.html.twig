@@ -75,20 +75,23 @@
                             <section class="admin_body_container">
                                 <div class="card-element">
                                     {% for signe in signes %}
-                                        <div class="card card-size">
+                                        <div class="card card-size-info">
                                             <div class="card-body fond-image">
-                                                <h5 class="card-title">{{signe.nom}}</h5>
-                                                <h6 class="card-title">{{signe.cout}} END - Portée : {{signe.portee}}</h6>
-                                                <h6 class="card-title">{% if signe.contre is not null %}Contré part {{signe.contre}} {% endif %}</h6>
-                                                <p class="card-text"> durée {{signe.portee}} - {{signe.element.libelle}} </p>
-                                                <p class="card-text">{{signe.description}}</p>
-                                                <p href="#" class="card-text">
+                                                <h4 class="card-title">{{signe.nom}}
                                                     {% if is_granted('ROLE_ADMIN') %}
-                                                        <a class="btn btn-outline-info" href="{{ path('app_admin_signe_modifier', { 'id' : signe.id }) }}">
-                                                            modifier
+                                                        <a href="{{ path('app_admin_signe_modifier', { 'id' : signe.id }) }}">
+                                                            <span class="material-symbols-outlined">edit</span>
                                                         </a>
                                                     {% endif %}
-                                                </p>
+                                                </h4>
+                                                <h6 class="card-text"><i>{{signe.element.libelle}} </i></h6>
+
+                                                <p class="card-text"><b>Durée</b> : {{signe.duree}}</p>
+                                                <p class="card-title"><b>Coût</b> : {{signe.cout}}</p>
+                                                <p class="card-title"><b>Portée</b> : {{signe.portee}}</p>
+                                                <p class="card-title">{% if signe.contre is not null %}<b>Contré part</b> : {{signe.contre}} {% endif %}</p>
+                                                <p class="card-text">{{signe.description}}</p>
+
                                             </div>
                                         </div>
                                     {% endfor %}

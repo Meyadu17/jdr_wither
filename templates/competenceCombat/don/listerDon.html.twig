@@ -60,19 +60,19 @@
     <section class="admin_body_container">
         <div class="card-element">
             {% for don in dons %}
-                <div class="card card-size">
+                <div class="card card-size-info">
                     <div class="card-body fond-image">
-                        <h5 class="card-title">{{don.nom}}</h5>
-                        <h6 class="card-title">Initiative : {{don.initiative}}</h6>
-                        <p class="card-text">{% if don.presRequis is not null %}Près-requis : {{don.presRequis}}{% endif %}</p>
-                        <p class="card-text">{{don.effet}}</p>
-                        <p href="#" class="card-text">
+                        <h4 class="card-title">{{don.nom}}
                             {% if is_granted('ROLE_ADMIN') %}
-                                <a class="btn btn-outline-info" href="{{ path('app_admin_don_modifier', { 'id' : don.id }) }}">
-                                    modifier
+                                <a href="{{ path('app_admin_don_modifier', { 'id' : don.id }) }}">
+                                    <span class="material-symbols-outlined">edit</span>
                                 </a>
                             {% endif %}
-                        </p>
+                        </h4>
+                        <h6 class="card-text"><i>{{don.type.libelle}}</i></h6>
+                        <p class="card-title"><b>Initiative</b> : {{don.initiative}}</p>
+                        <p class="card-text">{% if don.presRequis is not null %}<b>Près-requis</b> : {{don.presRequis}}{% endif %}</p>
+                        <p class="card-text">{{don.effet}}</p>
                     </div>
                 </div>
             {% endfor %}
