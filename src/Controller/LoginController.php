@@ -8,6 +8,7 @@ use App\Repository\UserRepository;
 use App\Service\UploadService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,8 +30,11 @@ class LoginController extends AbstractController
     */
     //#endregion déclaration variable email
     #[Route('/connexion', name: 'app_login')]
-    public function index(AuthenticationUtils $authenticationUtils): Response
+    public function index(AuthenticationUtils $authenticationUtils, Security $security): Response
     {
+        if ($security->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirectToRoute('app_accueil'); // Redirigez l'utilisateur connecté vers la page d'accueil
+        }
         // Obtenez l'erreur de connexion s'il y en a une
         $error = $authenticationUtils->getLastAuthenticationError();
 
@@ -46,10 +50,15 @@ class LoginController extends AbstractController
     #[Route('/inscription', name: 'app_register')]
     public function register(Request $request,
                              UserPasswordHasherInterface $userPasswordHasher,
-                             EntityManagerInterface $entityManager,
-                             UserRepository $userRepository,
-                             UploadService $uploadService): Response
+                             EntityManagerInterface      $entityManager,
+                             UserRepository              $userRepository,
+                             UploadService               $uploadService,
+                             Security                    $security): Response
     {
+        if ($security->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirectToRoute('app_accueil'); // Redirigez l'utilisateur connecté vers la page d'accueil
+        }
+
         $user = new User();
         $form = $this->createForm(RegistrationType::class, $user);
         $form->handleRequest($request);
