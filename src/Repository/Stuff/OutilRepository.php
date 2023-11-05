@@ -18,7 +18,7 @@ class OutilRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, \App\Entity\Stuff\Outil::class);
+        parent::__construct($registry, Outil::class);
     }
 
     /**

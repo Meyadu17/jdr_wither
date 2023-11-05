@@ -7,19 +7,19 @@ function initializeSearch(searchInputId, resultContainerId, urlPath) {
 
     searchInput.addEventListener('input', function() {
         const searchTerm = searchInput.value;
-
         if (searchTerm === '') {
             resultContainer.innerHTML = '';
             return;
         }
+        console.log("fraise");
 
         fetch(urlPath + '?nom=' + searchTerm)
             .then(response => response.json())
             .then(data => {
                 resultContainer.innerHTML = '';
                 if (data.length > 0) {
-                    data.forEach(arme => {
-                        resultContainer.innerHTML += `<p>${arme.nom}</p>`;
+                    data.forEach(item => {
+                        resultContainer.innerHTML += `<p>${item.nom}</p>`;
                     });
                 } else {
                     resultContainer.innerHTML = '<p>Aucun résultat trouvé.</p>';
