@@ -19,7 +19,7 @@
     <a class="btn btn-outline-info" href="{{ path('app_competence_combat_don') }}">Dons</a>
     <a class="btn btn-info" href="{{ path('app_competence_combat_signe') }}">Signe</a>
     <a class="btn btn-outline-info" href="{{ path('app_competence_combat_sort') }}">Sorts</a>
-    <a class="btn btn-outline-light" href="{{ path('app_stuff_lister') }}">Retour</a>
+    <a class="btn btn-outline-light" href="{{ path('app_competence_combat_lister') }}">Retour</a>
     {% if is_granted('ROLE_ADMIN') %}
         <a class="btn btn-outline-warning" href="{{ path('app_admin_signe_ajouter') }}">
             Nouveau Signe
@@ -85,11 +85,12 @@
                                                     {% endif %}
                                                 </h4>
                                                 <h6 class="card-text"><i>{{signe.element.libelle}} </i></h6>
-
+                                                <p class="card-text"><hr></p>
                                                 <p class="card-text"><b>Durée</b> : {{signe.duree}}</p>
                                                 <p class="card-title"><b>Coût</b> : {{signe.cout}}</p>
                                                 <p class="card-title"><b>Portée</b> : {{signe.portee}}</p>
                                                 <p class="card-title">{% if signe.contre is not null %}<b>Contré part</b> : {{signe.contre}} {% endif %}</p>
+                                                <p class="card-text"><hr></p>
                                                 <p class="card-text">{{signe.description}}</p>
 
                                             </div>

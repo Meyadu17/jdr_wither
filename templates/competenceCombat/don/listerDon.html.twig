@@ -18,10 +18,10 @@
         <a class="btn btn-info" href="{{ path('app_competence_combat_don') }}">Dons</a>
         <a class="btn btn-outline-info" href="{{ path('app_competence_combat_signe') }}">Signe</a>
         <a class="btn btn-outline-info" href="{{ path('app_competence_combat_sort') }}">Sorts</a>
-        <a class="btn btn-outline-light" href="{{ path('app_stuff_lister') }}">Retour</a>
+        <a class="btn btn-outline-light" href="{{ path('app_competence_combat_lister') }}">Retour</a>
         {% if is_granted('ROLE_ADMIN') %}
             <a class="btn btn-outline-warning" href="{{ path('app_admin_don_ajouter') }}">
-                Nouveau don
+                Nouveau
             </a>
         {% endif %}
     </div>
@@ -29,7 +29,7 @@
     <!--titre-->
     <div class="titre-logo">
         <img class="logo" src="{{ asset('images/competencesCombat/logo-don.png') }}" alt="Logo" />
-        <h1>Dons</h1>
+        <h1>Art du Guerrier</h1>
         <img class="logo" src="{{ asset('images/competencesCombat/logo-don.png') }}" alt="Logo" />
     </div>
 
