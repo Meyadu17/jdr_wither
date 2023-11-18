@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Caracteristique;
 use App\Entity\CompetenceCombat\Don;
 use App\Entity\CompetenceCombat\Element;
 use App\Entity\CompetenceCombat\NiveauSigne;
@@ -603,6 +604,26 @@ class AppFixtures extends Fixture
         $manager->persist($outil4);
         //#endregion -------------------------- OUTILS --------------------------
         //#endregion -------------------------- STUFF --------------------------
+
+        //#region -------------------------- GUIDE  DU PERSONNAGE --------------------------
+        //#region -------------------------- CARACTÉRISTIQUE --------------------------
+        $caracteristique1 = new Caracteristique();
+        $caracteristique1->setLibelle('Force');
+        $manager->persist($caracteristique1);
+
+        $caracteristique2 = new Caracteristique();
+        $caracteristique2->setLibelle('Habileté');
+        $manager->persist($caracteristique2);
+
+        $caracteristique3 = new Caracteristique();
+        $caracteristique3->setLibelle('Charme');
+        $manager->persist($caracteristique3);
+
+        $caracteristique4 = new Caracteristique();
+        $caracteristique4->setLibelle('Sagacité');
+        $manager->persist($caracteristique4);
+        //#endregion -------------------------- CARACTÉRISTIQUE --------------------------
+        //#endregion -------------------------- GUIDE  DU PERSONNAGE --------------------------
 
         $manager->flush();
     }

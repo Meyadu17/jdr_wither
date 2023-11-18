@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Jobs{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    <h1>Jobs</h1>
+
+    <div class="card-element">
+        <a href="#">
+            <div class="card card-size fond-image">
+                <img src="{{ asset('images/competencesCombat/don.jpg') }}" class="card-img-top" alt="magasin">
+                <div class="card-body">
+                    <h5 class="card-title">Jobs</h5>
+                    <p class="card-text">Duis aute irure dolor in reprehenderit in voluptate velit.</p>
+                </div>
+            </div>
+        </a>
+    </div>
+{% endblock %}

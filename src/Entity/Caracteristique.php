@@ -26,18 +26,9 @@ class Caracteristique
     #[ORM\OneToMany(mappedBy: 'caracteristique', targetEntity: Talent::class)]
     private Collection $talent;
 
-    #[ORM\OneToMany(mappedBy: 'caracteristique', targetEntity: JobCaracteristique::class)]
-    private Collection $jobCaracteristiques;
-
-    #[ORM\OneToMany(mappedBy: 'caracteristique', targetEntity: TalentCaracteristique::class)]
-    private Collection $talentCaracteristiques;
-
-
     public function __construct()
     {
         $this->talent = new ArrayCollection();
-        $this->jobCaracteristiques = new ArrayCollection();
-        $this->talentCaracteristiques = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -81,66 +72,6 @@ class Caracteristique
             // set the owning side to null (unless already changed)
             if ($talent->getCaracteristique() === $this) {
                 $talent->setCaracteristique(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, JobCaracteristique>
-     */
-    public function getJobCaracteristiques(): Collection
-    {
-        return $this->jobCaracteristiques;
-    }
-
-    public function addJobCaracteristique(JobCaracteristique $jobCaracteristique): static
-    {
-        if (!$this->jobCaracteristiques->contains($jobCaracteristique)) {
-            $this->jobCaracteristiques->add($jobCaracteristique);
-            $jobCaracteristique->setCaracteristique($this);
-        }
-
-        return $this;
-    }
-
-    public function removeJobCaracteristique(JobCaracteristique $jobCaracteristique): static
-    {
-        if ($this->jobCaracteristiques->removeElement($jobCaracteristique)) {
-            // set the owning side to null (unless already changed)
-            if ($jobCaracteristique->getCaracteristique() === $this) {
-                $jobCaracteristique->setCaracteristique(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, TalentCaracteristique>
-     */
-    public function getTalentCaracteristiques(): Collection
-    {
-        return $this->talentCaracteristiques;
-    }
-
-    public function addTalentCaracteristique(TalentCaracteristique $talentCaracteristique): static
-    {
-        if (!$this->talentCaracteristiques->contains($talentCaracteristique)) {
-            $this->talentCaracteristiques->add($talentCaracteristique);
-            $talentCaracteristique->setCaracteristique($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTalentCaracteristique(TalentCaracteristique $talentCaracteristique): static
-    {
-        if ($this->talentCaracteristiques->removeElement($talentCaracteristique)) {
-            // set the owning side to null (unless already changed)
-            if ($talentCaracteristique->getCaracteristique() === $this) {
-                $talentCaracteristique->setCaracteristique(null);
             }
         }
 

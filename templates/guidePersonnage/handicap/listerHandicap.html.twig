@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Handicaps{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    <h1>Handicaps</h1>
+
+    <div class="card-element">
+        <a href="#">
+            <div class="card card-size fond-image">
+                <img src="{{ asset('images/competencesCombat/don.jpg') }}" class="card-img-top" alt="magasin">
+                <div class="card-body">
+                    <h5 class="card-title">Handicaps</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+            </div>
+        </a>
+    </div>
+{% endblock %}

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\JobRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,17 +26,11 @@ class Job
     #[ORM\Column(name: "job_presrequis", length: 15)]
     private ?string $presrequis = null;
 
-    #[ORM\OneToMany(mappedBy: 'job', targetEntity: JobCaracteristique::class, orphanRemoval: true)]
-    private Collection $jobCaracteristiques;
+    #[ORM\Column]
+    private array $bonusCaracteristiques = [];
 
-    #[ORM\OneToMany(mappedBy: 'job', targetEntity: TalentJob::class)]
-    private Collection $talentJobs;
-
-    public function __construct()
-    {
-        $this->jobCaracteristiques = new ArrayCollection();
-        $this->talentJobs = new ArrayCollection();
-    }
+    #[ORM\Column]
+    private array $bonusTalent = [];
 
     public function getId(): ?int
     {
@@ -66,62 +61,26 @@ class Job
         return $this;
     }
 
-    /**
-     * @return Collection<int, JobCaracteristique>
-     */
-    public function getJobCaracteristiques(): Collection
+    public function getBonusCaracteristiques(): array
     {
-        return $this->jobCaracteristiques;
+        return $this->bonusCaracteristiques;
     }
 
-    public function addJobCaracteristique(JobCaracteristique $jobCaracteristique): static
+    public function setBonusCaracteristiques(array $bonusCaracteristiques): static
     {
-        if (!$this->jobCaracteristiques->contains($jobCaracteristique)) {
-            $this->jobCaracteristiques->add($jobCaracteristique);
-            $jobCaracteristique->setJob($this);
-        }
+        $this->bonusCaracteristiques = $bonusCaracteristiques;
 
         return $this;
     }
 
-    public function removeJobCaracteristique(JobCaracteristique $jobCaracteristique): static
+    public function getBonusTalent(): array
     {
-        if ($this->jobCaracteristiques->removeElement($jobCaracteristique)) {
-            // set the owning side to null (unless already changed)
-            if ($jobCaracteristique->getJob() === $this) {
-                $jobCaracteristique->setJob(null);
-            }
-        }
-
-        return $this;
+        return $this->bonusTalent;
     }
 
-    /**
-     * @return Collection<int, TalentJob>
-     */
-    public function getTalentJobs(): Collection
+    public function setBonusTalent(array $bonusTalent): static
     {
-        return $this->talentJobs;
-    }
-
-    public function addTalentJob(TalentJob $talentJob): static
-    {
-        if (!$this->talentJobs->contains($talentJob)) {
-            $this->talentJobs->add($talentJob);
-            $talentJob->setJob($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTalentJob(TalentJob $talentJob): static
-    {
-        if ($this->talentJobs->removeElement($talentJob)) {
-            // set the owning side to null (unless already changed)
-            if ($talentJob->getJob() === $this) {
-                $talentJob->setJob(null);
-            }
-        }
+        $this->bonusTalent = $bonusTalent;
 
         return $this;
     }

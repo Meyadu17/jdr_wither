@@ -30,15 +30,8 @@ class Talent
     #[ORM\JoinColumn(name: "tal_fk_cap_id", referencedColumnName: "cap_id", nullable: false)]
     private ?Caracteristique $caracteristique = null;
 
-    #[ORM\OneToMany(mappedBy: 'talent', targetEntity: TalentCaracteristique::class)]
-    private Collection $talentCaracteristiques;
-
-    #[ORM\OneToMany(mappedBy: 'talent', targetEntity: TalentJob::class)]
-    private Collection $talentJobs;
-
     public function __construct()
     {
-        $this->talentCaracteristiques = new ArrayCollection();
         $this->talentJobs = new ArrayCollection();
     }
 
@@ -80,66 +73,6 @@ class Talent
     public function setCaracteristique(?Caracteristique $caracteristique): static
     {
         $this->caracteristique = $caracteristique;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, TalentCaracteristique>
-     */
-    public function getTalentCaracteristiques(): Collection
-    {
-        return $this->talentCaracteristiques;
-    }
-
-    public function addTalentCaracteristique(TalentCaracteristique $talentCaracteristique): static
-    {
-        if (!$this->talentCaracteristiques->contains($talentCaracteristique)) {
-            $this->talentCaracteristiques->add($talentCaracteristique);
-            $talentCaracteristique->setTalent($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTalentCaracteristique(TalentCaracteristique $talentCaracteristique): static
-    {
-        if ($this->talentCaracteristiques->removeElement($talentCaracteristique)) {
-            // set the owning side to null (unless already changed)
-            if ($talentCaracteristique->getTalent() === $this) {
-                $talentCaracteristique->setTalent(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, TalentJob>
-     */
-    public function getTalentJobs(): Collection
-    {
-        return $this->talentJobs;
-    }
-
-    public function addTalentJob(TalentJob $talentJob): static
-    {
-        if (!$this->talentJobs->contains($talentJob)) {
-            $this->talentJobs->add($talentJob);
-            $talentJob->setTalent($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTalentJob(TalentJob $talentJob): static
-    {
-        if ($this->talentJobs->removeElement($talentJob)) {
-            // set the owning side to null (unless already changed)
-            if ($talentJob->getTalent() === $this) {
-                $talentJob->setTalent(null);
-            }
-        }
 
         return $this;
     }
