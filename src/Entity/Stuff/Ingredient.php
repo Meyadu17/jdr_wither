@@ -20,9 +20,6 @@ class Ingredient
     #[ORM\Column(name: "ing_nom", length: 255)]
     private ?string $nom = null;
 
-    #[ORM\Column(name: "ing_description", type: "text")]
-    private ?string $description = null;
-
     #[ORM\Column(name: "ing_effet", type: "text")]
     private ?string $effet = null;
 
@@ -42,18 +39,6 @@ class Ingredient
     public function setNom(string $nom): static
     {
         $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(string $description): static
-    {
-        $this->description = $description;
 
         return $this;
     }

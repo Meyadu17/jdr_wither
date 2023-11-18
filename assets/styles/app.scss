@@ -100,11 +100,13 @@ body {
 }
 
 .card-element {
+    text-align: justify;
     display: flex;
     flex-wrap: wrap;
     justify-content: start ;
     gap: 10px 30px;
     margin: 1em auto;
     width: 95%;
+
 }
 //#endregion Card

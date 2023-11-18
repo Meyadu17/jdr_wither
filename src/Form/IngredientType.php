@@ -23,13 +23,6 @@ class IngredientType extends AbstractType
                     'required' => true,
                 ],
             ])
-            ->add('description', TextareaType::class, [
-                'label' => "Desctiption",
-                'attr' => [
-                    'class' => 'form-control',
-                    'placeholder' => 'description de l\'ingrédient...',
-                ],
-            ])
             ->add('effet', TextareaType::class, [
                 'label' => "Effet(s)",
                 'attr' => [
