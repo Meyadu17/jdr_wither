@@ -8,10 +8,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HandicapController extends AbstractController
 {
-    #[Route('/handicap', name: 'app_handicap')]
+    #[Route('/epreuves', name: 'app_handicap')]
     public function index(): Response
     {
-        return $this->render('handicap/listerJob.html.twig', [
+        return $this->render('epreuves/listerJob.html.twig', [
             'controller_name' => 'HandicapController',
         ]);
     }

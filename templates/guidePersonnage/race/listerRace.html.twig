@@ -14,7 +14,7 @@
 
     <div class="btn-group" role="group" aria-label="Default button group">
         <a class="btn btn-outline-info" href="{{ path('app_guide_personnage_talents') }}">Talents</a>
-        <a class="btn btn-outline-info" href="{{ path('app_guide_personnage_handicaps') }}">Handicaps</a>
+        <a class="btn btn-outline-info" href="{{ path('app_guide_personnage_handicaps') }}">Epreuves</a>
         <a class="btn btn-outline-info" href="{{ path('app_guide_personnage_jobs') }}">Jobs</a>
         <a class="btn btn-info" href="{{ path('app_guide_personnage_races') }}">Races</a>
         <a class="btn btn-outline-light" href="{{ path('app_guide_personnage_lister') }}">Retour</a>
@@ -27,15 +27,27 @@
 
     <h1>Races</h1>
 
+    <!--massage flash-->
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success alert-time" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+
     <div class="card-element">
-         <a href="#">
-            <div class="card card-size fond-image">
-                <img src="{{ asset('images/competencesCombat/don.jpg') }}" class="card-img-top" alt="magasin">
-                <div class="card-body">
-                    <h5 class="card-title">Races</h5>
-                    <p class="card-text">Duis aute irure dolor in reprehenderit in voluptate velit.</p>
-                </div>
+        <div class="card card-size fond-image card-size-info">
+            <img src="{{ asset('images/guideCreation/race/humain.jpg') }}" class="card-img-top" alt="magasin">
+            <div class="card-body">
+                <h4 class="card-title">
+                    Humain
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('app_guide_personnage_lister') }}">
+                            <span class="material-symbols-outlined">edit</span>
+                        </a>
+                    {% endif %}
+                </h4>
+                <p class="card-text">Bien qu’ils n’en soient pas les premiers habitants, les humains exercent aujourd'hui leur domination sur le monde.</p>
             </div>
-        </a>
+        </div>
     </div>
 {% endblock %}

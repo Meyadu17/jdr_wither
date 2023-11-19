@@ -31,7 +31,7 @@ class GuidePersonnageController extends AbstractController
         return $this->render('guidePersonnage/talent/listerTalent.html.twig');
     }
 
-    #[Route('/handicaps', name: '_handicaps')]
+    #[Route('/epreuves', name: '_handicaps')]
     public function handicaps(): Response
     {
         $user = $this->getUser();
@@ -39,7 +39,7 @@ class GuidePersonnageController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        return $this->render('guidePersonnage/handicap/listerHandicap.html.twig');
+        return $this->render('guidePersonnage/epreuves/listerEpreuves.html.twig');
     }
 
     #[Route('/jobs', name: '_jobs')]

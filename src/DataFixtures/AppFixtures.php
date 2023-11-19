@@ -10,6 +10,9 @@ use App\Entity\CompetenceCombat\NiveauSort;
 use App\Entity\CompetenceCombat\Signe;
 use App\Entity\CompetenceCombat\Sort;
 use App\Entity\CompetenceCombat\TypeDon;
+use App\Entity\HandicapMoral;
+use App\Entity\HandicapPhysique;
+use App\Entity\Quete;
 use App\Entity\Stuff\Arme;
 use App\Entity\Stuff\Armure;
 use App\Entity\Stuff\CategorieArme;
@@ -623,6 +626,348 @@ class AppFixtures extends Fixture
         $caracteristique4->setLibelle('Sagacité');
         $manager->persist($caracteristique4);
         //#endregion -------------------------- CARACTÉRISTIQUE --------------------------
+
+        //#region -------------------------- HANDICAPS MORAUX --------------------------
+        $handicapMoral1 = new HandicapMoral();
+        $handicapMoral1->setValeur(1);
+        $handicapMoral1->setCaractere("Acariâtre");
+        $handicapMoral1->setDescription("Est souvent de mauvaise humeur, voire se montre carrément insupportable");
+        $manager->persist($handicapMoral1);
+
+        $handicapMoral2 = new HandicapMoral();
+        $handicapMoral2->setValeur(2);
+        $handicapMoral2->setCaractere("Craintif");
+        $handicapMoral2->setDescription("Est facilement effrayé et n'ose pas prendre de risque");
+        $manager->persist($handicapMoral2);
+
+        $handicapMoral3 = new HandicapMoral();
+        $handicapMoral3->setValeur(3);
+        $handicapMoral3->setCaractere("Cruel");
+        $handicapMoral3->setDescription("Est insensible à la souffrance d'autrui, voire prend plaisir à faire souffrir les autres");
+        $manager->persist($handicapMoral3);
+
+        $handicapMoral4 = new HandicapMoral();
+        $handicapMoral4->setValeur(4);
+        $handicapMoral4->setCaractere("Cupide");
+        $handicapMoral4->setDescription("Se montre avide de richesse et veut toujours s'enrichir");
+        $manager->persist($handicapMoral4);
+
+        $handicapMoral5 = new HandicapMoral();
+        $handicapMoral5->setValeur(5);
+        $handicapMoral5->setCaractere("Drogué");
+        $handicapMoral5->setDescription("Est dépendant de drogue (fisstech) et prêt à tout pour s'en procurer");
+        $manager->persist($handicapMoral5);
+
+        $handicapMoral6 = new HandicapMoral();
+        $handicapMoral6->setValeur(6);
+        $handicapMoral6->setCaractere("Grossier");
+        $handicapMoral6->setDescription("Possède un vocabulaire outrancier et se montre souvent impoli");
+        $manager->persist($handicapMoral6);
+
+        $handicapMoral7 = new HandicapMoral();
+        $handicapMoral7->setValeur(7);
+        $handicapMoral7->setCaractere("Impulsif");
+        $handicapMoral7->setDescription("Agit spontanément et ne réfléchit pas aux conséquences");
+        $manager->persist($handicapMoral7);
+
+        $handicapMoral8 = new HandicapMoral();
+        $handicapMoral8->setValeur(8);
+        $handicapMoral8->setCaractere("Naïf");
+        $handicapMoral8->setDescription("Se montre ingénu voire crédule");
+        $manager->persist($handicapMoral8);
+
+        $handicapMoral9 = new HandicapMoral();
+        $handicapMoral9->setValeur(9);
+        $handicapMoral9->setCaractere("Négligé");
+        $handicapMoral9->setDescription("Possède une hygiène douteuse et dégage une odeur désagréable");
+        $manager->persist($handicapMoral9);
+
+        $handicapMoral10 = new HandicapMoral();
+        $handicapMoral10->setValeur(10);
+        $handicapMoral10->setCaractere("Névrosé");
+        $handicapMoral10->setDescription("Est victime de phobie (Acrophobie, Cheimophobie, Hydrophobie, Pyrophobie)");
+        $manager->persist($handicapMoral10);
+
+        $handicapMoral11 = new HandicapMoral();
+        $handicapMoral11->setValeur(11);
+        $handicapMoral11->setCaractere("Obsédé");
+        $handicapMoral11->setDescription("Se montre souvent séducteur voire est obnubilé par ses désirs sexuels");
+        $manager->persist($handicapMoral11);
+
+        $handicapMoral12 = new HandicapMoral();
+        $handicapMoral12->setValeur(12);
+        $handicapMoral12->setCaractere("Obstiné");
+        $handicapMoral12->setDescription("Persévère de manière irréfléchie dans une action et accepte difficilement l'échec");
+        $manager->persist($handicapMoral12);
+
+        $handicapMoral13 = new HandicapMoral();
+        $handicapMoral13->setValeur(13);
+        $handicapMoral13->setCaractere("Orgueilleux");
+        $handicapMoral13->setDescription("Se montre prétentieux voire arrogant");
+        $manager->persist($handicapMoral13);
+
+        $handicapMoral14 = new HandicapMoral();
+        $handicapMoral14->setValeur(14);
+        $handicapMoral14->setCaractere("Paresseux");
+        $handicapMoral14->setDescription("Refuse l'effort et se montre indolent");
+        $manager->persist($handicapMoral14);
+
+        $handicapMoral15 = new HandicapMoral();
+        $handicapMoral15->setValeur(15);
+        $handicapMoral15->setCaractere("Précieux");
+        $handicapMoral15->setDescription("Possède un langage raffiné et des manières élégantes");
+        $manager->persist($handicapMoral15);
+
+        $handicapMoral16 = new HandicapMoral();
+        $handicapMoral16->setValeur(16);
+        $handicapMoral16->setCaractere("Sentimental");
+        $handicapMoral16->setDescription("Manifeste une sensibilité extrême, voire se montre mièvre");
+        $manager->persist($handicapMoral16);
+
+        $handicapMoral17 = new HandicapMoral();
+        $handicapMoral17->setValeur(17);
+        $handicapMoral17->setCaractere("Soupçonneux");
+        $handicapMoral17->setDescription("Accorde difficilement sa confiance et est difficile à convaincre");
+        $manager->persist($handicapMoral17);
+
+        $handicapMoral18 = new HandicapMoral();
+        $handicapMoral18->setValeur(18);
+        $handicapMoral18->setCaractere("Sournois");
+        $handicapMoral18->setDescription("Dissimule ses véritables intentions et n'hésite pas à trahir ses alliés");
+        $manager->persist($handicapMoral18);
+
+        $handicapMoral19 = new HandicapMoral();
+        $handicapMoral19->setValeur(19);
+        $handicapMoral19->setCaractere("Tourmenté");
+        $handicapMoral19->setDescription("Est victime d'hallucinations et se montre souvent déprimé");
+        $manager->persist($handicapMoral19);
+
+        $handicapMoral20 = new HandicapMoral();
+        $handicapMoral20->setValeur(20);
+        $handicapMoral20->setCaractere("Violent");
+        $handicapMoral20->setDescription("Se montre excessif et use fréquemment de sa force physique");
+        $manager->persist($handicapMoral20);
+        //#endregion -------------------------- HANDICAPS MORAUX --------------------------
+
+        //#region -------------------------- HANDICAPS PHYSIQUES --------------------------
+        $handicapPhysique1 = new HandicapPhysique();
+        $handicapPhysique1->setValeur(1);
+        $handicapPhysique1->setDescription("Obligation de prendre un handicap physique avec -8 Bonus de Formation");
+        $manager->persist($handicapPhysique1);
+
+        $handicapPhysique2 = new HandicapPhysique();
+        $handicapPhysique2->setValeur(2);
+        $handicapPhysique2->setDescription("Genou fracturé et maintenu par des tiges d'acier");
+        $handicapPhysique2->setMalus("Acrobaties");
+        $manager->persist($handicapPhysique2);
+
+        $handicapPhysique3 = new HandicapPhysique();
+        $handicapPhysique3->setValeur(3);
+        $handicapPhysique3->setDescription("Nez cassé et suturé avec un morceau de cuir");
+        $handicapPhysique3->setMalus("Alchimie");
+        $manager->persist($handicapPhysique3);
+
+        $handicapPhysique4 = new HandicapPhysique();
+        $handicapPhysique4->setValeur(4);
+        $handicapPhysique4->setDescription("Pouce tranché et remplacé par un crochet d'acier");
+        $handicapPhysique4->setMalus("Artisanat");
+        $manager->persist($handicapPhysique4);
+
+        $handicapPhysique5 = new HandicapPhysique();
+        $handicapPhysique5->setValeur(5);
+        $handicapPhysique5->setDescription("Tempe fissurée et renforcée par des broches d'acier");
+        $handicapPhysique5->setMalus("Connaissances");
+        $manager->persist($handicapPhysique5);
+
+        $handicapPhysique6 = new HandicapPhysique();
+        $handicapPhysique6->setValeur(6);
+        $handicapPhysique6->setDescription("Œil crevé et masqué par un bandeau de cuir");
+        $handicapPhysique6->setMalus("Détection");
+        $manager->persist($handicapPhysique6);
+
+        $handicapPhysique7 = new HandicapPhysique();
+        $handicapPhysique7->setValeur(7);
+        $handicapPhysique7->setDescription("Odeur forte et bestiale aux relents perturbants");
+        $handicapPhysique7->setMalus("Diplomatie");
+        $manager->persist($handicapPhysique7);
+
+        $handicapPhysique8 = new HandicapPhysique();
+        $handicapPhysique8->setValeur(8);
+        $handicapPhysique8->setDescription("Pied arraché et remplacé par un pivot de bois");
+        $handicapPhysique8->setMalus("Escalade");
+        $manager->persist($handicapPhysique8);
+
+        $handicapPhysique9 = new HandicapPhysique();
+        $handicapPhysique9->setValeur(9);
+        $handicapPhysique9->setDescription("Chevelure longue et hirsute de couleur inhabituelle");
+        $handicapPhysique9->setMalus("Furtivité");
+        $manager->persist($handicapPhysique9);
+
+        $handicapPhysique10 = new HandicapPhysique();
+        $handicapPhysique10->setValeur(10);
+        $handicapPhysique10->setDescription("Possibilité de prendre un handicap physique avec -2 Bonus de Formation");
+        $manager->persist($handicapPhysique10);
+
+        $handicapPhysique11 = new HandicapPhysique();
+        $handicapPhysique11->setValeur(11);
+        $handicapPhysique11->setDescription("Obligation de prendre un handicap physique avec -8 Bonus de Formation");
+        $manager->persist($handicapPhysique11);
+
+        $handicapPhysique12 = new HandicapPhysique();
+        $handicapPhysique12->setValeur(12);
+        $handicapPhysique12->setDescription("Front tailladé et frappé d'une plaque en acier");
+        $handicapPhysique12->setMalus("Intuition");
+        $manager->persist($handicapPhysique12);
+
+        $handicapPhysique13 = new HandicapPhysique();
+        $handicapPhysique13->setValeur(13);
+        $handicapPhysique13->setDescription("Poignet brisé et entouré d'une attelle en bois");
+        $handicapPhysique13->setMalus("Larcin");
+        $manager->persist($handicapPhysique13);
+
+        $handicapPhysique14 = new HandicapPhysique();
+        $handicapPhysique14->setValeur(14);
+        $handicapPhysique14->setDescription("Poitrine lacérée et affaiblie par de profondes cicatrices");
+        $handicapPhysique14->setMalus("Lutte");
+        $manager->persist($handicapPhysique14);
+
+        $handicapPhysique15 = new HandicapPhysique();
+        $handicapPhysique15->setValeur(15);
+        $handicapPhysique15->setDescription("Main brûlée et gantée de cuir noir");
+        $handicapPhysique15->setMalus("Piège");
+        $manager->persist($handicapPhysique15);
+
+        $handicapPhysique16 = new HandicapPhysique();
+        $handicapPhysique16->setValeur(16);
+        $handicapPhysique16->setDescription("Oreille coupée et dissimulée par un ruban de soie");
+        $handicapPhysique16->setMalus("Pistage");
+        $manager->persist($handicapPhysique16);
+
+        $handicapPhysique17 = new HandicapPhysique();
+        $handicapPhysique17->setValeur(17);
+        $handicapPhysique17->setDescription("Ongles acérés et contaminés par la lèpre du sang (catriona)");
+        $handicapPhysique17->setMalus("Soins");
+        $manager->persist($handicapPhysique17);
+
+        $handicapPhysique18 = new HandicapPhysique();
+        $handicapPhysique18->setValeur(18);
+        $handicapPhysique18->setDescription("Voix sourde et rocailleuse de faible volume");
+        $handicapPhysique18->setMalus("Spectacle");
+        $manager->persist($handicapPhysique18);
+
+        $handicapPhysique19 = new HandicapPhysique();
+        $handicapPhysique19->setValeur(19);
+        $handicapPhysique19->setDescription("Teint blafard et maladif dû à une santé précaire");
+        $handicapPhysique19->setMalus("Survie");
+        $manager->persist($handicapPhysique19);
+
+        $handicapPhysique20 = new HandicapPhysique();
+        $handicapPhysique20->setValeur(20);
+        $handicapPhysique20->setDescription("Possibilité de prendre un handicap physique avec -2 Bonus de Formation");
+        $manager->persist($handicapPhysique20);
+        //#endregion -------------------------- HANDICAPS PHYSIQUES --------------------------
+
+        //#region -------------------------- QUÊTE --------------------------
+        $quete1 = new Quete();
+        $quete1->setValeur(1);
+        $quete1->setDescription("Défendre les non-humains");
+        $manager->persist($quete1);
+
+        $quete2 = new Quete();
+        $quete2->setValeur(2);
+        $quete2->setDescription("Anéantir les non humains");
+        $manager->persist($quete2);
+
+        $quete3 = new Quete();
+        $quete3->setValeur(3);
+        $quete3->setDescription("Discréditer le culte du Feu Eternel");
+        $manager->persist($quete3);
+
+        $quete4 = new Quete();
+        $quete4->setValeur(4);
+        $quete4->setDescription("Combattre aux cotés de la Rose-Ardente");
+        $manager->persist($quete4);
+
+        $quete5 = new Quete();
+        $quete5->setValeur(5);
+        $quete5->setDescription("Eradiquer le culte de l'Araignée à tête de lion");
+        $manager->persist($quete5);
+
+        $quete6 = new Quete();
+        $quete6->setValeur(6);
+        $quete6->setDescription("Eradiquer l'organisation de la Salamandre");
+        $manager->persist($quete6);
+
+        $quete7 = new Quete();
+        $quete7->setValeur(7);
+        $quete7->setDescription("Exercer un 'droit de surprise'");
+        $manager->persist($quete7);
+
+        $quete8 = new Quete();
+        $quete8->setValeur(8);
+        $quete8->setDescription("Rencontrer l'âme sœur");
+        $manager->persist($quete8);
+
+        $quete9 = new Quete();
+        $quete9->setValeur(9);
+        $quete9->setDescription("Retrouver un endroit abandonné");
+        $manager->persist($quete9);
+
+        $quete10 = new Quete();
+        $quete10->setValeur(10);
+        $quete10->setDescription("Combattre un spécimen de chaque monstre des Royaumes du nord");
+        $manager->persist($quete10);
+
+        $quete11 = new Quete();
+        $quete11->setValeur(11);
+        $quete11->setDescription("Tuer une personne");
+        $manager->persist($quete11);
+
+        $quete12 = new Quete();
+        $quete12->setValeur(12);
+        $quete12->setDescription("Secourir une personne");
+        $manager->persist($quete12);
+
+        $quete13 = new Quete();
+        $quete13->setValeur(13);
+        $quete13->setDescription("Connaître l'identité d'une personne");
+        $manager->persist($quete13);
+
+        $quete14 = new Quete();
+        $quete14->setValeur(14);
+        $quete14->setDescription("Trouver le moyen de guérir une personne");
+        $manager->persist($quete14);
+
+        $quete15 = new Quete();
+        $quete15->setValeur(15);
+        $quete15->setDescription("Retrouver la trace d'une personne");
+        $manager->persist($quete15);
+
+        $quete16 = new Quete();
+        $quete16->setValeur(16);
+        $quete16->setDescription("Venger la mort d'une personne");
+        $manager->persist($quete16);
+
+        $quete17 = new Quete();
+        $quete17->setValeur(17);
+        $quete17->setDescription("Retrouver la mémoire");
+        $manager->persist($quete17);
+
+        $quete18 = new Quete();
+        $quete18->setValeur(18);
+        $quete18->setDescription("Honorer une promesse");
+        $manager->persist($quete18);
+
+        $quete19 = new Quete();
+        $quete19->setValeur(19);
+        $quete19->setDescription("Retrouver un artefact");
+        $manager->persist($quete19);
+
+        $quete20 = new Quete();
+        $quete20->setValeur(20);
+        $quete20->setDescription("Détruire un artefact");
+        $manager->persist($quete20);
+        //#endregion -------------------------- QUÊTE --------------------------
         //#endregion -------------------------- GUIDE  DU PERSONNAGE --------------------------
 
         $manager->flush();

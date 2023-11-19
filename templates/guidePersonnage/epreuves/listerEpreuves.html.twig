@@ -1,0 +1,216 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Handicaps{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('accordion') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('accordion') }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="btn-group" role="group" aria-label="Default button group">
+        <a class="btn btn-outline-info" href="{{ path('app_guide_personnage_talents') }}">Talents</a>
+        <a class="btn btn-info" href="{{ path('app_guide_personnage_handicaps') }}">Epreuves</a>
+        <a class="btn btn-outline-info" href="{{ path('app_guide_personnage_jobs') }}">Jobs</a>
+        <a class="btn btn-outline-info" href="{{ path('app_guide_personnage_races') }}">Races</a>
+        <a class="btn btn-outline-light" href="{{ path('app_guide_personnage_lister') }}">Retour</a>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a class="btn btn-outline-warning" href="#">
+                Nouveau
+            </a>
+        {% endif %}
+    </div>
+
+    <h1>Handicaps</h1>
+
+    <!--massage flash-->
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success alert-time" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <!--afficher la liste-->
+    <section class="admin_body_container">
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+
+                <div class="accordion-item accordion-color">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree"
+                                aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                            Handicaps Physique
+                        </button>
+                    </h2>
+                    <div class="accordion-collapse collapse show">
+                        <div class="accordion-body">
+                            <table class="table table-dark">
+                                <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Malus de -4</th>
+                                    <th scope="col"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Obligation de prendre un handicap physique avec -8 Bonus de Formation</td>
+                                        <td></td>
+                                        <td>
+                                            <a href="{{ path('app_guide_personnage_lister') }}">
+                                                <span class="material-symbols-outlined">edit</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Genou fracturé et maintenu par des tiges d'acier</td>
+                                        <td>Acrobaties</td>
+                                        <td>
+                                            <a href="{{ path('app_guide_personnage_lister') }}">
+                                                <span class="material-symbols-outlined">edit</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Nez cassé et suturé avec un morceau de cuir</td>
+                                        <td>Alchimie</td>
+                                        <td>
+                                            <a href="{{ path('app_guide_personnage_lister') }}">
+                                                <span class="material-symbols-outlined">edit</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="accordion-item accordion-color">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree"
+                            aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                        Handicaps Moral
+                    </button>
+                </h2>
+                <div class="accordion-collapse collapse show">
+                    <div class="accordion-body">
+                        <table class="table table-dark">
+                            <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">Caractère</th>
+                                <th scope="col">Description</th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr>
+                                <td>1</td>
+                                <td>Acariâtre</td>
+                                <td>Est souvent de mauvaise humeur, voire se montre carrément insupportable</td>
+                                <td>
+                                    <a href="{{ path('app_guide_personnage_lister') }}">
+                                        <span class="material-symbols-outlined">edit</span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Craintif</td>
+                                <td>Est facilement effrayé et n'ose pas prendre de risque</td>
+                                <td>
+                                    <a href="{{ path('app_guide_personnage_lister') }}">
+                                        <span class="material-symbols-outlined">edit</span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Cruel</td>
+                                <td>Est insensible à la souffrance d'autrui, voire prend plaisir à faire souffrir les autres</td>
+                                <td>
+                                    <a href="{{ path('app_guide_personnage_lister') }}">
+                                        <span class="material-symbols-outlined">edit</span>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item accordion-color">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree"
+                            aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                        Quêtes
+                    </button>
+                </h2>
+                <div class="accordion-collapse collapse show">
+                    <div class="accordion-body">
+                        <table class="table table-dark">
+                            <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">Description</th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr>
+                                <td>1</td>
+                                <td>Défendre les non-humains</td>
+                                <td>
+                                    <a href="{{ path('app_guide_personnage_lister') }}">
+                                        <span class="material-symbols-outlined">edit</span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Anéantir les non humains</td>
+                                <td>
+                                    <a href="{{ path('app_guide_personnage_lister') }}">
+                                        <span class="material-symbols-outlined">edit</span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Discréditer le culte du Feu Eternel</td>
+                                <td>
+                                    <a href="{{ path('app_guide_personnage_lister') }}">
+                                        <span class="material-symbols-outlined">edit</span>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+{% endblock %}
