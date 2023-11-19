@@ -13,6 +13,7 @@ use App\Entity\CompetenceCombat\TypeDon;
 use App\Entity\HandicapMoral;
 use App\Entity\HandicapPhysique;
 use App\Entity\Quete;
+use App\Entity\Race;
 use App\Entity\Stuff\Arme;
 use App\Entity\Stuff\Armure;
 use App\Entity\Stuff\CategorieArme;
@@ -968,6 +969,34 @@ class AppFixtures extends Fixture
         $quete20->setDescription("Détruire un artefact");
         $manager->persist($quete20);
         //#endregion -------------------------- QUÊTE --------------------------
+
+        //#region -------------------------- RACES --------------------------
+        $race1 = new Race();
+        $race1->setLibelle("Elfe");
+        $race1->setDescription("Les elfes font partie, comme les hobbits et les nains, des Anciennes Races.");
+        $race1->setPhoto("elfe.jpg");
+        $manager->persist($race1);
+
+        $race2 = new Race();
+        $race2->setLibelle("Hobbit");
+        $race2->setDescription("Les hobbits constituent la plus vieille des Anciennes Races. Ils sont particulièrement vifs d’esprit, mais demeurent secrets et mystérieux.");
+        $race2->setPhoto("hobbit.jpg");
+        $manager->persist($race2);
+
+        $race3 = new Race();
+        $race3->setLibelle("Humain");
+        $race3->setDescription("Bien qu’ils n’en soient pas les premiers habitants, les humains exercent aujourd'hui leur domination sur le monde.");
+        $race3->setPhoto("humain.jpg");
+        $manager->persist($race3);
+
+        $race4 = new Race();
+        $race4->setLibelle("Nain");
+        $race4->setDescription("Les nains sont plus petits que les humains, mais plus robustes et plus musclés. Les mâles portent généralement de longues barbes.");
+        $race4->setPhoto("nain.jpg");
+        $manager->persist($race4);
+
+        //#endregion -------------------------- RACES --------------------------
+
         //#endregion -------------------------- GUIDE  DU PERSONNAGE --------------------------
 
         $manager->flush();

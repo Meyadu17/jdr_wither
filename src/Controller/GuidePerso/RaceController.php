@@ -8,11 +8,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class RaceController extends AbstractController
 {
-    #[Route('/race', name: 'app_race')]
+    #[Route('/admin/race', name: 'app_race')]
     public function index(): Response
     {
-        return $this->render('race/listerJob.html.twig', [
-            'controller_name' => 'RaceController',
-        ]);
+        return $this->render('race/listerJob.html.twig');
     }
 }

@@ -35,19 +35,21 @@
     {% endfor %}
 
     <div class="card-element">
-        <div class="card card-size fond-image card-size-info">
-            <img src="{{ asset('images/guideCreation/race/humain.jpg') }}" class="card-img-top" alt="magasin">
-            <div class="card-body">
-                <h4 class="card-title">
-                    Humain
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <a href="{{ path('app_guide_personnage_lister') }}">
-                            <span class="material-symbols-outlined">edit</span>
-                        </a>
-                    {% endif %}
-                </h4>
-                <p class="card-text">Bien qu’ils n’en soient pas les premiers habitants, les humains exercent aujourd'hui leur domination sur le monde.</p>
+        {% for race in races %}
+            <div class="card card-size fond-image card-size-info">
+                <img src="{{ asset('images/guideCreation/race/'~ race.photo) }}" class="card-img-top" alt="magasin">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        {{race.libelle}}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('app_guide_personnage_lister') }}">
+                                <span class="material-symbols-outlined">edit</span>
+                            </a>
+                        {% endif %}
+                    </h4>
+                    <p class="card-text">{{race.description}}</p>
+                </div>
             </div>
-        </div>
+        {% endfor %}
     </div>
 {% endblock %}

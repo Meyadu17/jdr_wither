@@ -8,11 +8,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class JobController extends AbstractController
 {
-    #[Route('/job', name: 'app_job')]
+    #[Route('/admin/job', name: 'app_job')]
     public function index(): Response
     {
-        return $this->render('job/listerJob.html.twig', [
-            'controller_name' => 'JobController',
-        ]);
+        return $this->render('job/listerJob.html.twig');
     }
 }

@@ -8,11 +8,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TalentController extends AbstractController
 {
-    #[Route('/talent', name: 'app_talent')]
+    #[Route('/admin/talent', name: 'app_talent')]
     public function index(): Response
     {
-        return $this->render('talent/listerJob.html.twig', [
-            'controller_name' => 'TalentController',
-        ]);
+        return $this->render('talent/listerJob.html.twig');
     }
 }

@@ -6,13 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class HandicapController extends AbstractController
+class EpreuveController extends AbstractController
 {
-    #[Route('/epreuves', name: 'app_handicap')]
+    #[Route('/admin/epreuves', name: 'app_handicap')]
     public function index(): Response
     {
-        return $this->render('epreuves/listerJob.html.twig', [
-            'controller_name' => 'HandicapController',
-        ]);
+        return $this->render('epreuves/listerJob.html.twig');
     }
 }

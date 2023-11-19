@@ -2,6 +2,7 @@
 
 namespace App\Controller\GuidePerso;
 
+use App\Repository\RaceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -54,13 +55,15 @@ class GuidePersonnageController extends AbstractController
     }
 
     #[Route('/races', name: '_races')]
-    public function races(): Response
+    public function races(RaceRepository $raceRepository): Response
     {
         $user = $this->getUser();
         if (!$user) {
             return $this->redirectToRoute('app_login');
         }
 
-        return $this->render('guidePersonnage/race/listerRace.html.twig');
+        return $this->render('guidePersonnage/race/listerRace.html.twig',[
+            'races' => $raceRepository->findAll()
+        ]);
     }
 }
