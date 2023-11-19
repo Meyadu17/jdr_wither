@@ -12,6 +12,19 @@
 
 {% block body %}
 
+    <div class="btn-group" role="group" aria-label="Default button group">
+        <a class="btn btn-outline-info" href="{{ path('app_guide_personnage_talents') }}">Talents</a>
+        <a class="btn btn-outline-info" href="{{ path('app_guide_personnage_handicaps') }}">Handicaps</a>
+        <a class="btn btn-outline-info" href="{{ path('app_guide_personnage_jobs') }}">Jobs</a>
+        <a class="btn btn-info" href="{{ path('app_guide_personnage_races') }}">Races</a>
+        <a class="btn btn-outline-light" href="{{ path('app_guide_personnage_lister') }}">Retour</a>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a class="btn btn-outline-warning" href="#">
+                Nouveau
+            </a>
+        {% endif %}
+    </div>
+
     <h1>Races</h1>
 
     <div class="card-element">
