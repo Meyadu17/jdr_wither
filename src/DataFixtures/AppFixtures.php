@@ -25,6 +25,7 @@ use App\Entity\Stuff\EquipementGeneral;
 use App\Entity\Stuff\Ingredient;
 use App\Entity\Stuff\Outil;
 use App\Entity\Stuff\Taille;
+use App\Entity\Talent;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -998,7 +999,7 @@ class AppFixtures extends Fixture
 
         //#endregion -------------------------- RACES --------------------------
 
-        //#region -------------------------- JOB --------------------------
+        //#region -------------------------- JOBS --------------------------
         $job1 = new Job();
         $job1->setLibelle("Assassin de Nilfgaard");
         $job1->setBonusCaracteristiques(["Force","Sagacité"]);
@@ -1059,9 +1060,106 @@ class AppFixtures extends Fixture
         $job8->setBonusTalent(["Larcin","Piège"]);
         $job8->setPhoto("voleur.jpg");
         $manager->persist($job8);
-        //#enfregion -------------------------- JOB --------------------------
+        //#endregion -------------------------- JOBS --------------------------
 
-        //#endregion -------------------------- GUIDE  DU PERSONNAGE --------------------------
+        //#region -------------------------- TALENTS --------------------------
+        $talent1 = new Talent();
+        $talent1->setLibelle("Acrobaties");
+        $talent1->setDescription("Le personnage se sert du Talent Acrobaties pour réaliser des sauts périlleux, effectuer des roulés-boulés ou amortir ses chutes.");
+        $talent1->setCaracteristique($caracteristique1);
+        $manager->persist($talent1);
+
+        $talent2 = new Talent();
+        $talent2->setLibelle("Alchimie");
+        $talent2->setDescription("Le personnage se sert du Talent Alchimie pour réaliser des élixirs, identifier des substances ou prélever des ingrédients.");
+        $talent2->setCaracteristique($caracteristique4);
+        $manager->persist($talent2);
+
+        $talent3 = new Talent();
+        $talent3->setLibelle("Artisanat");
+        $talent3->setDescription("Le personnage se sert du Talent Artisanat pour réparer une arbalète, forger une épée ou évaluer un bijou.");
+        $talent3->setCaracteristique($caracteristique2);
+        $manager->persist($talent3);
+
+        $talent4 = new Talent();
+        $talent4->setLibelle("Connaissances");
+        $talent4->setDescription("Le personnage se sert du Talent Connaissances pour retenir des informations, mémoriser des faits et comprendre des idées.");
+        $talent4->setCaracteristique($caracteristique4);
+        $manager->persist($talent4);
+
+        $talent5 = new Talent();
+        $talent5->setLibelle("Détection");
+        $talent5->setDescription("Le personnage se sert du Talent Détection pour repérer des mouvements, entendre des sons ou percevoir des odeurs.");
+        $talent5->setCaracteristique($caracteristique3);
+        $manager->persist($talent5);
+
+        $talent6 = new Talent();
+        $talent6->setLibelle("Diplomatie");
+        $talent6->setDescription("Le personnage se sert du Talent Diplomatie pour négocier un achat, convaincre d’un évènement ou intimider un brigand.");
+        $talent6->setCaracteristique($caracteristique3);
+        $manager->persist($talent6);
+
+        $talent7 = new Talent();
+        $talent7->setLibelle("Escalade");
+        $talent7->setDescription("Le personnage se sert du Talent Escalade pour gravir une falaise, lancer un grappin ou se déplacer sur une corniche.");
+        $talent7->setCaracteristique($caracteristique1);
+        $manager->persist($talent7);
+
+        $talent8 = new Talent();
+        $talent8->setLibelle("Furtivité");
+        $talent8->setDescription("Le personnage se sert du Talent Furtivité pour se fondre dans l’ombre, se déplacer sans bruit ou se perdre dans la foule.");
+        $talent8->setCaracteristique($caracteristique2);
+        $manager->persist($talent8);
+
+        $talent9 = new Talent();
+        $talent9->setLibelle("Intuition");
+        $talent9->setDescription("Le personnage se sert du Talent Intuition pour détecter un mensonge, intercepter un message secret ou deviner un sentiment caché.");
+        $talent9->setCaracteristique($caracteristique3);
+        $manager->persist($talent9);
+
+        $talent10 = new Talent();
+        $talent10->setLibelle("Larcin");
+        $talent10->setDescription("Le personnage se sert du Talent Larcin pour crocheter une serrure, détrousser des poches ou escamoter une bague.");
+        $talent10->setCaracteristique($caracteristique2);
+        $manager->persist($talent10);
+
+        $talent11 = new Talent();
+        $talent11->setLibelle("Lutte");
+        $talent11->setDescription("Le personnage se sert du Talent Lutte pour assommer un garde, maîtriser un compagnon ou gifler un enfant.");
+        $talent11->setCaracteristique($caracteristique1);
+        $manager->persist($talent11);
+
+        $talent12 = new Talent();
+        $talent12->setLibelle("Piège");
+        $talent12->setDescription("Le personnage se sert du Talent Piège pour détecter une alarme, désamorcer un mécanisme ou contrefaire une signature.");
+        $talent12->setCaracteristique($caracteristique2);
+        $manager->persist($talent12);
+
+        $talent13 = new Talent();
+        $talent13->setLibelle("Pistage");
+        $talent13->setDescription("Le personnage se sert du Talent Pistage pour suivre une piste, apaiser un animal ou identifier des empreintes.");
+        $talent13->setCaracteristique($caracteristique4);
+        $manager->persist($talent13);
+
+        $talent14 = new Talent();
+        $talent14->setLibelle("Soins");
+        $talent14->setDescription("Le personnage se sert du Talent Soins pour apaiser les blessés, contenir une hémorragie ou réaliser une autopsie.");
+        $talent14->setCaracteristique($caracteristique4);
+        $manager->persist($talent14);
+
+        $talent15 = new Talent();
+        $talent15->setLibelle("Spectacle");
+        $talent15->setDescription("Le personnage se sert du Talent Spectacle pour peindre un portrait, donner un récital ou jongler avec quelques balles.");
+        $talent15->setCaracteristique($caracteristique3);
+        $manager->persist($talent15);
+
+        $talent16 = new Talent();
+        $talent16->setLibelle("Survie");
+        $talent16->setDescription("Le personnage se sert du Talent Survie pour résister à certains poisons, endurer les changements climatiques ou éviter une noyade.");
+        $talent16->setCaracteristique($caracteristique1);
+        $manager->persist($talent16);
+        //#endregion -------------------------- TALENTS --------------------------
+
         //#endregion -------------------------- GUIDE  DU PERSONNAGE --------------------------
 
         $manager->flush();

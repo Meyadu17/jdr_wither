@@ -26,20 +26,32 @@
     </div>
 
     <h1>Talents</h1>
-
-    <div class="card card-size-info">
-        <div class="card-body fond-image">
-            <h5 class="card-title">Acrobaties
-                {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('app_guide_personnage_lister') }}">
-                        <span class="material-symbols-outlined">edit</span>
-                    </a>
-                {% endif %}
-            </h5>
-            <h6 class="card-title"><i>Force</i></h6>
-
-            <p class="card-title">Le personnage se sert du Talent Acrobaties pour réaliser des sauts périlleux,
-                effectuer des roulés-boulés ou amortir ses chutes.</p>
+    <!--massage flash-->
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success alert-time" role="alert">
+            {{ message }}
         </div>
-    </div>
+    {% endfor %}
+
+    <!--afficher la liste-->
+    <section class="admin_body_container">
+        <div class="card-element">
+            {% for talent in talents %}
+                <div class="card card-size-info">
+                    <div class="card-body fond-image">
+                        <h5 class="card-title">{{talent.libelle}}
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a href="{{ path('app_guide_personnage_lister') }}">
+                                    <span class="material-symbols-outlined">edit</span>
+                                </a>
+                            {% endif %}
+                        </h5>
+                        <h6 class="card-title"><i>{{talent.caracteristique.libelle}}</i></h6>
+
+                        <p class="card-title">{{talent.description}}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
 {% endblock %}
