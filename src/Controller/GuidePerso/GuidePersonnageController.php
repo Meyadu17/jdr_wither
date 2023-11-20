@@ -50,9 +50,9 @@ class GuidePersonnageController extends AbstractController
         }
 
         return $this->render('guidePersonnage/epreuves/listerEpreuves.html.twig',[
-            'handicapMoralRepository' => $handicapMoralRepository->findAll(),
-            'handicapPhysiqueRepository' => $handicapPhysiqueRepository->findAll(),
-            'queteRepository' => $queteRepository->findAll()
+            'handicapsMoraux' => $handicapMoralRepository->findAll(),
+            'handicapsPhysiques' => $handicapPhysiqueRepository->findAll(),
+            'quetes' => $queteRepository->findAll()
         ]);
     }
 
