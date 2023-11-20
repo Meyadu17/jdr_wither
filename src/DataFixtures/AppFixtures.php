@@ -12,6 +12,7 @@ use App\Entity\CompetenceCombat\Sort;
 use App\Entity\CompetenceCombat\TypeDon;
 use App\Entity\HandicapMoral;
 use App\Entity\HandicapPhysique;
+use App\Entity\Job;
 use App\Entity\Quete;
 use App\Entity\Race;
 use App\Entity\Stuff\Arme;
@@ -997,6 +998,70 @@ class AppFixtures extends Fixture
 
         //#endregion -------------------------- RACES --------------------------
 
+        //#region -------------------------- JOB --------------------------
+        $job1 = new Job();
+        $job1->setLibelle("Assassin de Nilfgaard");
+        $job1->setBonusCaracteristiques(["Force","Sagacité"]);
+        $job1->setBonusTalent(["Acrobaties","Furtivité"]);
+        $job1->setPhoto("assassin.jpg");
+        $manager->persist($job1);
+
+        $job2 = new Job();
+        $job2->setLibelle("Barde des îles Skellige");
+        $job2->setBonusCaracteristiques(["Habileté","Charme"]);
+        $job2->setBonusTalent(["Artisanat","Spectacle"]);
+        $job2->setPhoto("barde.jpg");
+        $manager->persist($job2);
+
+        $job3 = new Job();
+        $job3->setLibelle("Chevalier de la Rose-Ardente");
+        $job3->setPresrequis("Humain");
+        $job3->setBonusCaracteristiques(["Force","Charme"]);
+        $job3->setBonusTalent(["Lutte","Survie"]);
+        $job3->setPhoto("chevalier.jpg");
+        $manager->persist($job3);
+
+        $job4 = new Job();
+        $job4->setLibelle("Inquisitrice de Melitele");
+        $job4->setPresrequis("Femme");
+        $job4->setBonusCaracteristiques(["Habileté","Sagacité"]);
+        $job4->setBonusTalent(["Intuition","Soins"]);
+        $job4->setPhoto("inquisitrice.jpg");
+        $manager->persist($job4);
+
+        $job5 = new Job();
+        $job5->setLibelle("Magicienne de la Loge");
+        $job5->setPresrequis("Femme");
+        $job5->setBonusCaracteristiques(["Sagacité","Charme"]);
+        $job5->setBonusTalent(["Connaissances","Diplomatie"]);
+        $job5->setPhoto("magicienne.jpg");
+        $manager->persist($job5);
+
+        $job6 = new Job();
+        $job6->setLibelle("Rebelle de la Scoia'tael");
+        $job6->setPresrequis("Non-humain");
+        $job6->setBonusCaracteristiques(["Force","Habileté"]);
+        $job6->setBonusTalent(["Escalade","Pistage"]);
+        $job6->setPhoto("rebelle.jpg");
+        $manager->persist($job6);
+
+        $job7 = new Job();
+        $job7->setLibelle("Sorceleur de Kaer Morhen");
+        $job7->setPresrequis("Humain");
+        $job7->setBonusCaracteristiques(["Force","Charme"]);
+        $job7->setBonusTalent(["Alchimie","Détection"]);
+        $job7->setPhoto("sorceleur.jpg");
+        $manager->persist($job7);
+
+        $job8 = new Job();
+        $job8->setLibelle("Voleur de la Salamandre");
+        $job8->setBonusCaracteristiques(["Habileté","Sagacité"]);
+        $job8->setBonusTalent(["Larcin","Piège"]);
+        $job8->setPhoto("voleur.jpg");
+        $manager->persist($job8);
+        //#enfregion -------------------------- JOB --------------------------
+
+        //#endregion -------------------------- GUIDE  DU PERSONNAGE --------------------------
         //#endregion -------------------------- GUIDE  DU PERSONNAGE --------------------------
 
         $manager->flush();

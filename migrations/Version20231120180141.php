@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20231119215027 extends AbstractMigration
+final class Version20231120180141 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -33,7 +33,7 @@ final class Version20231119215027 extends AbstractMigration
         $this->addSql('CREATE TABLE handicap_moral (id INT AUTO_INCREMENT NOT NULL, valeur INT NOT NULL, caractere VARCHAR(20) NOT NULL, description VARCHAR(200) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE handicap_physique (id INT AUTO_INCREMENT NOT NULL, valeur INT NOT NULL, description VARCHAR(200) NOT NULL, malus VARCHAR(20) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE ingredient_ing (id INT AUTO_INCREMENT NOT NULL, ing_nom VARCHAR(255) NOT NULL, ing_effet LONGTEXT NOT NULL, ing_prix INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE job_job (job_id INT AUTO_INCREMENT NOT NULL, job_libelle VARCHAR(50) NOT NULL, job_presrequis VARCHAR(15) NOT NULL, bonus_caracteristiques JSON NOT NULL, bonus_talent JSON NOT NULL, PRIMARY KEY(job_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE job_job (job_id INT AUTO_INCREMENT NOT NULL, job_libelle VARCHAR(50) NOT NULL, job_presrequis VARCHAR(15) DEFAULT NULL, job_bonus_caracteristiques JSON NOT NULL, job_bonus_talent JSON NOT NULL, photo VARCHAR(255) NOT NULL, PRIMARY KEY(job_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE niveau_signe_nsi (nsi_id INT AUTO_INCREMENT NOT NULL, nsi_libelle VARCHAR(255) NOT NULL, PRIMARY KEY(nsi_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE niveau_sor_nso (nso_id INT AUTO_INCREMENT NOT NULL, nso_libelle VARCHAR(255) NOT NULL, PRIMARY KEY(nso_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE outil_out (out_id INT AUTO_INCREMENT NOT NULL, out_id_tai_id INT DEFAULT NULL, out_nom VARCHAR(255) NOT NULL, out_effet VARCHAR(255) NOT NULL, out_poids DOUBLE PRECISION NOT NULL, out_prix INT NOT NULL, INDEX IDX_3FB85EB66C9F6D8 (out_id_tai_id), PRIMARY KEY(out_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');

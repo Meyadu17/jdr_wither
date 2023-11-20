@@ -23,14 +23,17 @@ class Job
     #[ORM\Column(name: "job_libelle", length: 50)]
     private ?string $libelle = null;
 
-    #[ORM\Column(name: "job_presrequis", length: 15)]
+    #[ORM\Column(name: "job_presrequis", length: 15, nullable: true)]
     private ?string $presrequis = null;
 
-    #[ORM\Column]
+    #[ORM\Column(name: "job_bonus_caracteristiques")]
     private array $bonusCaracteristiques = [];
 
-    #[ORM\Column]
+    #[ORM\Column(name: "job_bonus_talent")]
     private array $bonusTalent = [];
+
+    #[ORM\Column(length: 255)]
+    private ?string $photo = null;
 
     public function getId(): ?int
     {
@@ -81,6 +84,18 @@ class Job
     public function setBonusTalent(array $bonusTalent): static
     {
         $this->bonusTalent = $bonusTalent;
+
+        return $this;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(string $photo): static
+    {
+        $this->photo = $photo;
 
         return $this;
     }

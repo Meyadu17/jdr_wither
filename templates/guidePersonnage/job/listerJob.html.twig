@@ -35,21 +35,38 @@
     {% endfor %}
 
     <div class="card-element">
-        <div class="card card-size fond-image card-size-info">
-            <img src="{{ asset('images/guideCreation/job/assassin.jpg') }}" class="card-img-top" alt="magasin">
-            <div class="card-body">
-                <h4 class="card-title">
-                    Assassin de Nilfgaard
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <a href="{{ path('app_guide_personnage_lister') }}">
-                            <span class="material-symbols-outlined">edit</span>
-                        </a>
-                    {% endif %}
-                </h4>
-                <p class="card-text"><b>Condition</b> : aucune</p>
-                <p class="card-text"><b>+1 aux caractéritiques</b> : Force, Sagacité</p>
-                <p class="card-text"><b>+2 aux talents</b> : Acrobaties, Furtivité</p>
+        {% for job in jobs %}
+            <div class="card card-size fond-image card-size-info">
+                <img src="{{ asset('images/guideCreation/job/'~ job.photo) }}" class="card-img-top" alt="magasin">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        {{job.libelle}}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('app_guide_personnage_lister') }}">
+                                <span class="material-symbols-outlined">edit</span>
+                            </a>
+                        {% endif %}
+                    </h4>
+
+                    <p class="card-text">
+                        {% if job.presrequis is not null %}
+                            <b>Condition</b> : {{job.presrequis}}
+                        {% endif %}
+                    </p>
+                    <p class="card-text">
+                        <b>+1 aux caractéristiques</b> :
+                        {% for bonus in job.bonusCaracteristiques %}
+                            {{ bonus }}
+                            {% if not loop.last %}, {% endif %}
+                        {% endfor %}</p>
+                    <p class="card-text">
+                        <b>+2 aux talents</b> :
+                        {% for bonus in job.bonusTalent %}
+                            {{ bonus }}
+                            {% if not loop.last %}, {% endif %}
+                        {% endfor %}</p>
+                </div>
             </div>
-        </div>
+        {% endfor %}
     </div>
 {% endblock %}
