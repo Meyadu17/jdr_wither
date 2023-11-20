@@ -26,7 +26,6 @@ class UserController extends AbstractController
 
     #[Route('/modifier', name: '_modifier')]
     public function modifier(Request $request,
-                             UserPasswordHasherInterface $userPasswordHasher,
                              EntityManagerInterface $entityManager,
                              UserRepository $userRepository,
                              UploadService $uploadService): Response

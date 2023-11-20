@@ -32,8 +32,8 @@ class ArmeController extends AbstractController
 
         $form = $this->createForm(ArmeType::class, $arme);
         $form->handleRequest($request);
-        //Si le formulaire est valide
 
+        //Si le formulaire est valide
         if($form->isSubmitted() && $form->isValid()) {
             if (is_numeric($arme->getPoids())) {
                 //traitement des données
