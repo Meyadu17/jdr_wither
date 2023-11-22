@@ -1,0 +1,134 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Jobs{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('formControl') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('formControl') }}
+{% endblock %}
+
+{% block body %}
+
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <section class=" text-center text-lg-start">
+
+        <h1>Nouvelle job</h1>
+        <div class="card mb-3">
+            <div class="row g-0 d-flex align-items-center fond-image">
+
+                <div class="col-lg-4 d-none d-lg-flex">
+                    <img src="{{ asset('images/guideCreation/jobs.jpg') }}" alt="Trendy Pants and Shoes"
+                         class="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5" />
+                </div>
+                <div class="col-lg-8">
+                    <div class="card-body py-5 px-md-5">
+
+                        {{ form_start(form, {'attr':{'class':'row g-3 controle-form', 'novalidate': 'novalidate'}}) }}
+                        <!-- Ligne 1 -->
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                {{ form_widget(form.libelle) }}
+                                {{ form_label(form.libelle) }}
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    {{ form_widget(form.presrequis) }}
+                                    {{ form_label(form.presrequis) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ligne 2 -->
+                        <div class="row">
+                            <div class="col-md-12 mb-4">
+                                <div class="form-outline">
+                                    {{ form_widget(form.photo) }}
+                                    {{ form_label(form.photo) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ligne 3 -->
+                        <div class="row">
+                            <div class="col-md-12 mb-4">
+                                {{ form_label(form.bonusCaracteristiques) }} :
+                                <hr>
+
+                                {# Définir le nombre maximal de checkboxes par ligne #}
+                                {% set maxCheckboxesPerRow = 4 %}
+                                {% set currentCheckboxCount = 0 %}
+
+                                {% for checkbox in form.bonusCaracteristiques %}
+                                {# Ajouter une nouvelle ligne après le nombre maximal de checkboxes par ligne #}
+                                {% if currentCheckboxCount > 0 and currentCheckboxCount % maxCheckboxesPerRow == 0 %}
+                            </div>
+                            <div class="col-md-12 mb-4">
+                                {% endif %}
+
+                                <div class="form-check form-check-inline">
+                                    {{ form_widget(checkbox, {'attr': {'class': 'form-check-input'}}) }}
+                                    {{ form_label(checkbox, null, {'label_attr': {'class': 'form-check-label'}}) }}
+                                </div>
+
+                                {% set currentCheckboxCount = currentCheckboxCount + 1 %}
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <!-- Ligne 4 -->
+                        <div class="row">
+                            <div class="col-md-12 mb-4">
+                                {{ form_label(form.bonusTalent) }} :
+                                <hr>
+
+                                {# Définir le nombre maximal de checkboxes par ligne #}
+                                {% set maxCheckboxesPerRow1 = 8 %}
+                                {% set currentCheckboxCount1 = 0 %}
+
+                                {% for checkbox in form.bonusTalent %}
+                                {# Ajouter une nouvelle ligne après le nombre maximal de checkboxes par ligne #}
+                                {% if currentCheckboxCount1 > 0 and currentCheckboxCount1 % maxCheckboxesPerRow1 == 0 %}
+                            </div>
+                            <div class="col-md-12 mb-4">
+                                {% endif %}
+
+                                <div class="form-check form-check-inline">
+                                    {{ form_widget(checkbox, {'attr': {'class': 'form-check-input'}}) }}
+                                    {{ form_label(checkbox, null, {'label_attr': {'class': 'form-check-label'}}) }}
+                                </div>
+
+                                {% set currentCheckboxCount1 = currentCheckboxCount1 + 1 %}
+                                {% endfor %}
+                            </div>
+                        </div>
+
+
+                        <!-- Submit button -->
+                        <div class="col-md-6 mb-4">
+                            {% if app.request.get('_route') == "app_admin_job_ajouter" %}
+                                <button class="btn btn-outline-info" type="submit">Ajouter</button>
+                                <button class="btn btn-outline-info" type="submit" name="create_and_new">Valider et créer de nouveau</button>
+                            {% else %}
+                                <button class="btn btn-outline-info" type="submit">Modifier</button>
+                            {% endif %}
+                            <a href="{{ path('app_guide_personnage_jobs') }}" class="btn btn-outline-light">Retour</a>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
