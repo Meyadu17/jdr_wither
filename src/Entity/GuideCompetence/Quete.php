@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\GuideCompetence;
 
-use App\Repository\HandicapPhysiqueRepository;
+use App\Repository\GuideCompetence\QueteRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: HandicapPhysiqueRepository::class)]
-class HandicapPhysique
+#[ORM\Entity(repositoryClass: QueteRepository::class)]
+class Quete
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -18,9 +18,6 @@ class HandicapPhysique
 
     #[ORM\Column(length: 200)]
     private ?string $description = null;
-
-    #[ORM\Column(length: 20, nullable: true)]
-    private ?string $malus = null;
 
     public function getId(): ?int
     {
@@ -47,18 +44,6 @@ class HandicapPhysique
     public function setDescription(string $description): static
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getMalus(): ?string
-    {
-        return $this->malus;
-    }
-
-    public function setMalus(string $malus): static
-    {
-        $this->malus = $malus;
 
         return $this;
     }

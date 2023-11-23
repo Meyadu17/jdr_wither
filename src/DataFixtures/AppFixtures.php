@@ -2,7 +2,6 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Caracteristique;
 use App\Entity\CompetenceCombat\Don;
 use App\Entity\CompetenceCombat\Element;
 use App\Entity\CompetenceCombat\NiveauSigne;
@@ -10,11 +9,13 @@ use App\Entity\CompetenceCombat\NiveauSort;
 use App\Entity\CompetenceCombat\Signe;
 use App\Entity\CompetenceCombat\Sort;
 use App\Entity\CompetenceCombat\TypeDon;
-use App\Entity\HandicapMoral;
-use App\Entity\HandicapPhysique;
-use App\Entity\Job;
-use App\Entity\Quete;
-use App\Entity\Race;
+use App\Entity\GuideCompetence\Caracteristique;
+use App\Entity\GuideCompetence\HandicapMoral;
+use App\Entity\GuideCompetence\HandicapPhysique;
+use App\Entity\GuideCompetence\Job;
+use App\Entity\GuideCompetence\Quete;
+use App\Entity\GuideCompetence\Race;
+use App\Entity\GuideCompetence\Talent;
 use App\Entity\Stuff\Arme;
 use App\Entity\Stuff\Armure;
 use App\Entity\Stuff\CategorieArme;
@@ -25,7 +26,6 @@ use App\Entity\Stuff\EquipementGeneral;
 use App\Entity\Stuff\Ingredient;
 use App\Entity\Stuff\Outil;
 use App\Entity\Stuff\Taille;
-use App\Entity\Talent;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;

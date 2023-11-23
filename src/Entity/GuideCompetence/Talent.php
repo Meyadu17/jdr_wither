@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\GuideCompetence;
 
-use App\Repository\TalentRepository;
+use App\Repository\GuideCompetence\TalentRepository;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**

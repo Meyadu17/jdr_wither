@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\GuideCompetence;
 
-use App\Repository\HandicapMoralRepository;
+use App\Repository\GuideCompetence\HandicapMoralRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: HandicapMoralRepository::class)]

@@ -2,15 +2,16 @@
 
 namespace App\Controller\GuidePerso;
 
-use App\Entity\Race;
+use App\Entity\GuideCompetence\Race;
 use App\Form\RaceType;
-use App\Repository\RaceRepository;
+use App\Repository\GuideCompetence\RaceRepository;
 use App\Service\UploadService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 #[Route('/admin/race', name: 'app_admin_race')]
 class RaceController extends AbstractController
 {

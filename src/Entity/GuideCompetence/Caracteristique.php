@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\GuideCompetence;
 
-use App\Repository\CaracteristiqueRepository;
+use App\Repository\GuideCompetence\CaracteristiqueRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;

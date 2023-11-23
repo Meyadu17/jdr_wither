@@ -2,12 +2,12 @@
 
 namespace App\Controller\GuidePerso;
 
-use App\Repository\HandicapMoralRepository;
-use App\Repository\HandicapPhysiqueRepository;
-use App\Repository\JobRepository;
-use App\Repository\QueteRepository;
-use App\Repository\RaceRepository;
-use App\Repository\TalentRepository;
+use App\Repository\GuideCompetence\HandicapMoralRepository;
+use App\Repository\GuideCompetence\HandicapPhysiqueRepository;
+use App\Repository\GuideCompetence\JobRepository;
+use App\Repository\GuideCompetence\QueteRepository;
+use App\Repository\GuideCompetence\RaceRepository;
+use App\Repository\GuideCompetence\TalentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

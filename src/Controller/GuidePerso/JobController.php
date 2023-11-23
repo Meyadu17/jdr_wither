@@ -2,15 +2,16 @@
 
 namespace App\Controller\GuidePerso;
 
-use App\Entity\Job;
+use App\Entity\GuideCompetence\Job;
 use App\Form\JobType;
-use App\Repository\JobRepository;
+use App\Repository\GuideCompetence\JobRepository;
 use App\Service\UploadService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 #[Route('/admin/job', name: 'app_admin_job')]
 class JobController extends AbstractController
 {

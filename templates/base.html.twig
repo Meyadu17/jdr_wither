@@ -19,16 +19,16 @@
         <header>
             <nav class="navbar-expand-lg nav-links">
                 <div>
-                    <img class="logo" src="{{ asset('images/favicon.png') }}" alt="Logo" />
+                    <a href="{{ path('app_accueil') }}"><img class="logo" src="{{ asset('images/favicon.png') }}" alt="Logo" /></a>
                 </div>
 
                 <a href="{{ path('app_accueil') }}">Accueil</a>
                 {% if is_granted('ROLE_USER') %}
-                    <a href="#">Fiches personnage</a>
+                    <a href="#">XFiches personnageX</a>
                     <a href="{{ path('app_stuff_lister') }}">Magasin</a>
                     <a href="{{ path('app_competence_combat_lister') }}">Art du combat</a>
                     <a href="{{ path('app_guide_personnage_lister') }}">Guide du personnage</a>
-                    <a href="#">Bestiaire</a>
+                    <a href="#">XBestiaireX</a>
                 {% endif %}
 
                 {% if app.user is null %}
