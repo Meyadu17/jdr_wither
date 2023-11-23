@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bestiaire{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    <h1>Consulter monstre</h1>
+
+    <div class="card mb-3">
+        <div class="row g-0">
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">Nom du monstre</h5>
+                    <p class="card-text">Tootsie roll soufflé pie chocolate bar muffin jujubes macaroon. Pie muffin danish tiramisu I love lemon drops liquorice chocolate cake sweet roll. Wafer I love chocolate soufflé jelly beans topping. Toffee halvah candy candy wafer. Danish toffee halvah sweet roll shortbread bear claw gummi bears caramels macaroon. Wafer ice cream I love donut sesame snaps shortbread I love. Pie wafer gummies I love ice cream ice cream marshmallow chocolate powder. Shortbread macaroon bonbon I love soufflé. Gummi bears cotton candy shortbread apple pie cookie chocolate bar candy tiramisu. Icing carrot cake macaroon tootsie roll lemon drops halvah sugar plum liquorice. Halvah candy canes tootsie roll gummies biscuit pie cake I love. Candy canes I love cake toffee I love cookie chocolate bar candy.</p>
+
+                    <div class="row">
+                        <div class="col-3 mb-5">
+                            <caption><b>Caractéristiques</b> :</caption>
+                            <table class="table table-sm">
+
+                                <tr>
+                                    <th scope="row">Force :</th>
+                                    <td>3</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Habileté :</th>
+                                    <td>6</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Sagacité :</th>
+                                    <td>7</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Charme :</th>
+                                    <td>4</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="col-3 mb-5">
+                            <caption><b>Talents</b> :</caption>
+                            <table class="table table-sm">
+                                <tr>
+                                    <th scope="row">Acrobatie :</th>
+                                    <td>3</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Artisanat :</th>
+                                    <td>6</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Furtivité :</th>
+                                    <td>7</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Soins :</th>
+                                    <td>4</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="col-3 mb-5">
+                            <caption><b>Recompenses</b> : 1500 couronne</caption>
+                            <table class="table table-sm">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Butins :</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>300 couronnes</td>
+                                </tr>
+                                <tr>
+                                    <td>1 stylet</td>
+                                </tr>
+                                <tr>
+                                    <td>3 griffes de Nekkers</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p>reste à ajouter vulnerabilité, capacités, pv, armure etc...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <img src="{{ asset('images/bestiaire/bestiaire.jpg') }}" class="img-fluid rounded-start" alt="monstre">
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

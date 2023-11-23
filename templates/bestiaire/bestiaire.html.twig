@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bestiaire{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    <h1>Bestiaire</h1>
+
+    <div class="card-element">
+
+        <div class="card card-size fond-image card-size-info">
+            <a href="{{ path('app_bestiaire_consulter') }}">
+                <img src="{{ asset('images/bestiaire/bestiaire.jpg') }}" class="card-img-top" alt="magasin">
+            </a>
+            <div class="card-body">
+                <h5 class="card-title">
+                    Nekker
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('app_bestiaire_editer') }}"><span class="material-symbols-outlined">edit</span></a>
+                    {% endif %}
+                </h5>
+                <p class="card-text">Tootsie roll soufflé pie chocolate bar muffin jujubes macaroon...</p>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
